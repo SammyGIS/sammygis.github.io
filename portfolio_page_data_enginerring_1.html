@@ -1,202 +1,281 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Samuel Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<html lang="en">
+<head>
+    <title>Samuel Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #60a5fa;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+        }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-	
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">HOME</a>
-					</header>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="portfolio_gis_page1.html">GIS & RS</a></li>
-							<li class="active"><a href="portfolio_page_data_enginerring_1.html">Data Engineering</a></li>
-							<li class="active"><a href="portfolio_page_data_analysis_1.html">Data Analysis</a></li>
-							<!-- <li><a href="generic.html">Generic Page</a></li>
-							<li><a href="elements.html">Elements Reference</a></li> -->
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi-83b80914b/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="https://github.com/SammyGIS/" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+        .nav-wrapper {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
 
-				<!-- Main -->
-					<div id="main">
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-						
-						<!-- Posts -->
-							<section class="posts">
-								
-								<!-- <article>
-									<header>
-										<span class="date">May 12, 2022</span>
-										<h2><a href="https://colab.research.google.com/drive/1e4HVgA_XVOLj3YEz-m_yUombtJZE0ft7?usp=sharing">Mosquito Wildfire<br />
-											Analysis Using Satelite Imagery & Geemap</a></h2>
-									</header>
-									<a href="https://colab.research.google.com/drive/1e4HVgA_XVOLj3YEz-m_yUombtJZE0ft7?usp=sharing" class="image fit"><img src="images/forestfire.jpeg" alt="" /></a>
-									<p>The 2022 Mosquito Fire was a large wildfire that burned in California's Placer and El Dorado counties as the state's largest wildfire of the year.</p>
-									<ul class="actions special">
-										<li><a href="https://colab.research.google.com/drive/1e4HVgA_XVOLj3YEz-m_yUombtJZE0ft7?usp=sharing" class="button">View Project</a></li>
-									</ul>
-								</article> -->
-								<!-- <article>
-									<header>
-										<span class="date">May 22, 2022</span>
-										<h2><a href="https://github.com/SammyGIS/DSN_Geospatial_Hackaton">Zamfara Health Facility<br />
-										Assessment using Geospatial Techniques</a></h2>
-									</header>
-									<a href="https://github.com/SammyGIS/DSN_Geospatial_Hackaton" class="image fit"><img src="images/zamfara.JPG" alt="" /></a>
-									<p>The aim of this project is to develop a notebook and a webGIS platform that can be used to measure accessibility of healthcare facilities in Zamfara state and also identify location that are suitable to siting health facilities.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/SammyGIS/DSN_Geospatial_Hackaton" class="button">View Project</a></li>
-									</ul>
-								</article> -->
-								<!-- <article>
-									<header>
-										<span class="date">May 12, 2022</span>
-										<h2><a href="https://github.com/SammyGIS/Air-Quality-Prediction-Analysis-in-R">Air Quality<br />
-											Prediction Analysis using R Spatial</a></h2>
-									</header>
-									<a href="https://github.com/SammyGIS/Air-Quality-Prediction-Analysis-in-R" class="image fit"><img src="images/r-spatial.jpg" alt="" /></a>
-									<p>This study makes use of historical air quality data for 2000 which was obtained from the United States Environmental Protection Agency (EPA) monitoring stations to modelled and generate a prediction map that shows the distribution of the Ozone (O3), Nitrogen (02) and PM2.5 local condition.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/SammyGIS/Air-Quality-Prediction-Analysis-in-R" class="button">View Project</a></li>
-									</ul>
-								</article> -->
-								<article>
-									<header>
-										<span class="date">May 12, 2022</span>
-										<h2><a href="https://github.com/SammyGIS/selenium-youtube-scrapper-streaming">Selenium<br />
-											Scrapping Youtube Trending Video Data</a></h2>
-									</header>
-									<a href="https://github.com/SammyGIS/selenium-youtube-scrapper-streaming" class="image fit"><img src="images/web-scrapping.png" alt="" /></a>
-									<p>Scrape list of top trending videos on youtube using Selenium and AWS lambda.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/SammyGIS/selenium-youtube-scrapper-streaming" class="button">View Project</a></li>
-									</ul>
-								</article>
-								
-								<!-- <article>
-									<header>
-										<span class="date">May 14, 2023</span>
-										<h2><a href="https://github.com/SammyGIS/Flood-Modeeling-using-ML">Flood Modeling<br />
-										Using Mahine Learning</a></h2>
-									</header>
-									<a href="https://github.com/SammyGIS/Flood-Modeeling-using-ML" class="image fit"><img src="images/flood-ml.jpeg" alt="" /></a>
-									<p>This project is a machine learning model built using different APIs to source data. The goal of this project is to predict the likelihood of flooding in a particular area based on certain topographial and environmental factors such as landuse, slope and elevation.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/SammyGIS/Flood-Modeeling-using-ML" class="button">View Project</a></li>
-									</ul>
-								</article> -->
+        .logo {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
 
-								<article>
-									<header>
-										<span class="date">May 26, 2023</span>
-										<h2><a href="https://github.com/SammyGIS/Mappa-Master-Property-List-for-London">Property<br />
-										Master List For London</a></h2>
-									</header>
-									<a href="https://github.com/SammyGIS/Mappa-Master-Property-List-for-London" class="image fit"><img src="images/DataArchitecture_Mappa.jpg" alt="" /></a>
-									<p>The goal of this Project is to create a master list of listed properties starting with London. Your task is the extract and blend property datasets across the Greater London area (United Kingdom) in one dataset.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/SammyGIS/Mappa-Master-Property-List-for-London" class="button">View Project</a></li>
-									</ul>
-								</article>
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-								<article>
-									<header>
-										<span class="date">August 9th, 2023</span>
-										<h2><a href="https://github.com/SammyGIS/Mappa-Master-Property-List-for-London">AWS<br />
-										Weather Data Collection and Storage Project</a></h2>
-									</header>
-									<a href="https://github.com/SammyGIS/cilAcademy/tree/main/Lambda%2CS3%26Nosql" class="image fit"><img src="images/Data-architecture.JPG" alt="" /></a>
-									<p>This project demonstrates how to use AWS services, including Lambda, S3, EventBridge, and DynamoDB, to collect weather data from the Open Weather API for Lagos state in Nigeria. The data is collected every four hours using a Python script deployed as an AWS Lambda function, triggered by an EventBridge rule. The raw data is stored in an Amazon S3 data lake, and the cleaned data is stored in a DynamoDB database.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/SammyGIS/cilAcademy/tree/main/Lambda%2CS3%26Nosql" class="button">View Project</a></li>
-									</ul>
-								</article>
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-								
-							</section>
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
 
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									 <a href="#" class="page">2</a>
-									<!--<a href="#" class="page">3</a> -->
-									<span class="extra">&hellip;</span>
-									<!-- <a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a> -->
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
+        .nav-links .active a {
+            color: var(--accent-color);
+        }
 
-					</div>
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
 
-				<!-- Footer -->
-					<!-- <footer id="footer">
-					
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>1234 Somewhere Road #87257<br />
-								Nashville, TN 00000-0000</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(000) 000-0000</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">info@untitled.tld</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer> -->
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy;</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+        .social-links a:hover {
+            transform: translateY(-2px);
+            color: var(--accent-color);
+        }
 
-			</div>
+        main {
+            max-width: 1200px;
+            margin: 7rem auto 2rem;
+            padding: 0 2rem;
+        }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
-	</body>
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-date {
+            color: var(--accent-color);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.925rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateX(5px);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .pagination a {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination a.active {
+            background-color: var(--primary-color);
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: var(--card-bg);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-wrapper">
+        <nav>
+            <a href="index.html" class="logo">HOME</a>
+            <ul class="nav-links">
+                <li ><a href="portfolio_gis_page1.html">GIS & RS</a></li>
+                <li class="active"><a href="portfolio_page_data_enginerring_1.html">Data Engineering</a></li>
+                <li><a href="portfolio_page_data_analysis_1.html">Data Analysis</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi-83b80914b/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/SammyGIS/"><i class="fab fa-github"></i></a>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <div class="projects-grid">
+            <article class="project-card">
+                <img src="images/airline_analytics.png" alt="Airline Analytics" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">May 22, 2022</div>
+                    <h2><a href="https://github.com/SammyGIS/Maven_Airline_Challenge" class="project-title">Airline Analytics Using Tableau</a></h2>
+                    <p class="project-description">Create a Visual Report of Airline Passenger Satisfaction Feedback using Tableau.</p>
+                    <a href="https://github.com/SammyGIS/Maven_Airline_Challenge" class="project-link">View Project</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="images/unicon.png" alt="Unicorn Companies" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">May 12, 2022</div>
+                    <h2><a href="https://datastudio.google.com/reporting/311554fc-5369-4960-882a-d2df6d4a7847" class="project-title">Unicorn Companies Dashboard Analysis using Looker</a></h2>
+                    <p class="project-description">The Unicon Dashboard Analysis aims to explore and uncover insights. It involves evaluating Unicon's performance based on key metrics presented in the dashboard.</p>
+                    <a href="https://datastudio.google.com/reporting/311554fc-5369-4960-882a-d2df6d4a7847" class="project-link">View Project</a>
+                </div>
+            </article>
+        </div>
+
+        <div class="pagination">
+            <a href="portfolio_page1.html">Prev</a>
+            <a href="portfolio_page2.html" class="active">1</a>
+            <span>...</span>
+            <a href="#">Next</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>Design: HTML5 UP | Enhanced by Samuel</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav-wrapper');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(30, 41, 59, 0.95)';
+            } else {
+                nav.style.background = 'rgba(30, 41, 59, 0.8)';
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
 </html>
