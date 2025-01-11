@@ -63,6 +63,15 @@
             list-style: none;
         }
 
+        
+        .pagination a.active {
+            background-color: var(--primary-color);
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: var(--card-bg);
+        }
+
         .nav-links a {
             color: var(--text-primary);
             text-decoration: none;
@@ -209,7 +218,7 @@
         <nav>
             <a href="index.html" class="logo">HOME</a>
             <ul class="nav-links">
-                <li><a href="portfolio_gis_page1.html">GIS & RS</a></li>
+                <li class="active"><a href="portfolio_gis_page1.html">GIS & RS</a></li>
                 <li><a href="portfolio_page_data_enginerring_1.html">Data Engineering</a></li>
                 <li><a href="portfolio_page_data_analysis_1.html">Data Analysis</a></li>
             </ul>

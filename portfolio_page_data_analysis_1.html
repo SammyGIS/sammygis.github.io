@@ -174,8 +174,18 @@
             border-radius: 0.5rem;
             transition: background-color 0.3s ease;
         }
+		.nav-links .active a {
+            color: var(--accent-color);
+        }
 
-        .pagination a.active {
+       
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
+		.pagination a.active {
             background-color: var(--primary-color);
         }
 
@@ -183,11 +193,6 @@
             background-color: var(--card-bg);
         }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
-        }
 
         @media (max-width: 768px) {
             nav {
