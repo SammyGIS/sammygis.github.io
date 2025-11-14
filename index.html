@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Portfolio - Ajeyomi Adedoyin Samuel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -15,177 +17,121 @@
             --accent-color: #60a5fa;
             --text-color: #1f2937;
             --bg-color: #0f172a;
+            --card-bg: #1e293b;
             --white: #ffffff;
+            --text-secondary: #94a3b8;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Space Grotesk', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .map-background {
+        /* Navigation */
+        .nav-wrapper {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            pointer-events: none;
-            z-index: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(96, 165, 250, 0.2);
         }
 
-        .map-grid {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(96, 165, 250, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(96, 165, 250, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveGrid 15s linear infinite;
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        @keyframes moveGrid {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
         }
 
-        .header {
-            position: relative;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 2rem 0;
-            z-index: 1;
+            padding: 6rem 2rem 2rem;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 64, 175, 0.9));
+            position: relative;
         }
 
-        .container {
+        .hero-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .profile-image {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-        }
-
-        .profile-frame {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px solid var(--accent-color);
-            border-radius: 1rem;
-            animation: frameFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes frameFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .profile-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 1rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-
-        .profile-image img:hover {
-            transform: scale(1.02);
-        }
-
-        .header-text {
-            flex: 1.5;
-            min-width: 300px;
-            color: var(--white);
-        }
-
-        .greeting {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 0.5s ease forwards;
-        }
-
-        .name {
+        .hero-text h1 {
             font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--white);
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            animation: fadeInUp 0.5s ease forwards 0.2s;
         }
 
-        .title {
+        .hero-text .subtitle {
             font-size: 1.25rem;
+            color: var(--accent-color);
             margin-bottom: 2rem;
-            line-height: 1.8;
-            opacity: 0;
-            animation: fadeInUp 0.5s ease forwards 0.4s;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .social-links {
             display: flex;
             gap: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 0.5s ease forwards 0.6s;
+            margin: 2rem 0;
         }
 
         .social-links a {
             color: var(--white);
             font-size: 1.5rem;
             transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .social-links a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent-color);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
         }
 
         .social-links a:hover {
@@ -193,16 +139,10 @@
             transform: translateY(-3px);
         }
 
-        .social-links a:hover::after {
-            transform: scaleX(1);
-        }
-
         .cta-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeInUp 0.5s ease forwards 0.8s;
         }
 
         .btn {
@@ -213,142 +153,585 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--accent-color);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            transform: translateX(0);
+            display: inline-block;
         }
 
         .btn:hover {
-            color: var(--bg-color);
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
-        .floating-dots {
-            position: absolute;
+        .hero-image img {
             width: 100%;
-            height: 100%;
-            pointer-events: none;
+            max-width: 400px;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-date {
+            color: var(--accent-color);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.925rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Conference/Talks Section */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 3px solid var(--bg-color);
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+        }
+
+        /* Development Section */
+        .dev-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .dev-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .dev-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dev-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .dev-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .dev-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .header-content {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
                 flex-direction: column;
+                padding: 2rem;
                 text-align: center;
-                gap: 2rem;
             }
 
-            .profile-image {
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
                 order: -1;
-            }
-
-            .social-links, .cta-buttons {
+                display: flex;
                 justify-content: center;
             }
 
-            .name {
-                font-size: 2.5rem;
+            .social-links,
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .projects-grid,
+            .dev-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
-    <div class="map-background">
-        <div class="map-grid"></div>
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+        <nav>
+            <a href="#home" class="logo">AAS</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#gis-rs" class="nav-link">GIS & RS</a></li>
+                <li><a href="#data-engineering" class="nav-link">Data Engineering</a></li>
+                <li><a href="#data-analysis" class="nav-link">Data Analysis</a></li>
+                <li><a href="#conferences" class="nav-link">Conferences & Talks</a></li>
+                <li><a href="#development" class="nav-link">Development</a></li>
+            </ul>
+        </nav>
     </div>
-    
-    <header class="header">
-        <div class="floating-dots"></div>
-        <div class="container">
-            <div class="header-content">
-                <div class="profile-image">
-                    <div class="profile-frame"></div>
-                    <img src="img/profile.jpg" alt="Ajeyomi Adedoyin Samuel">
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p style="font-size: 1.5rem; opacity: 0.9;">Hello, I'm</p>
+                <h1>Ajeyomi Adedoyin Samuel</h1>
+                <p class="subtitle">Remote Sensing Analyst | Geospatial Data Scientist | Data Analyst | Budding Data
+                    Engineer</p>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi-83b80914b/" target="_blank"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/SammyGIS/" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en" target="_blank"
+                        aria-label="Google Scholar">
+                        <i class="fab fa-google"></i>
+                    </a>
                 </div>
-                <div class="header-text">
-                    <p class="greeting">Hello, I'm</p>
-                    <h1 class="name">Ajeyomi Adedoyin Samuel</h1>
-                    <p class="title">Remote Sensing Analyst | Geospatial Data Scientist | Data Analyst | Budding Data Engineer</p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi-83b80914b/" target="_blank" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/SammyGIS/" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
 
-                        <a href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en" target="_blank" aria-label="GitHub">
-                            <i class="<i class="fab fa-google"></i>
-                        </a>
+                <div class="cta-buttons">
+                    <a href="https://drive.google.com/file/d/1iG0bq6EU6IfEEX1yjoBvmJPr6mS7HyhW/view?usp=sharing"
+                        class="btn" target="_blank">View CV</a>
+                    <a href="https://www.spatialnode.net/sammygis/articles" class="btn" target="_blank">Articles</a>
+                    <a href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en" class="btn"
+                        target="_blank">Publications</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img/profile.jpg" alt="Ajeyomi Adedoyin Samuel">
+            </div>
+        </div>
+    </section>
 
-                    </div>
-                    <div class="cta-buttons">
-                        <a href="https://drive.google.com/file/d/1iG0bq6EU6IfEEX1yjoBvmJPr6mS7HyhW/view?usp=sharing" class="btn" target="_blank">View CV</a>
-                        <a href="projects/rs_gis/page1.html" class="btn"  target="_blank">Projects</a>
-                        <a href="https://www.spatialnode.net/sammygis/articles" class="btn"  target="_blank">Articles</a>
-                        <a href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en" class="btn" target="_blank" >Publications</a>
-                    </div>
+    <!-- GIS & RS Projects -->
+    <section id="gis-rs">
+        <h2 class="section-title">GIS & Remote Sensing Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="images/nigeria_forest.png" alt="Nigeria Forest Watch" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">April 1st, 2025</div>
+                    <h3 class="project-title">Nigeria Forest Watch</h3>
+                    <p class="project-description">A tool designed to visualize and analyze forest data in Nigeria using
+                        remote sensing datasets.</p>
+                    <a href="https://ee-adedoyinsamuel25.projects.earthengine.app/view/nigeriaforestapp"
+                        class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/farm-watch.png" alt="FarmWatch" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">May 25th, 2024</div>
+                    <h3 class="project-title">FarmWatch: Monitoring Agricultural Lands</h3>
+                    <p class="project-description">A geospatial pipeline that monitors agricultural lands using
+                        satellite imagery and OSM data.</p>
+                    <a href="https://github.com/SammyGIS/geospatial-de-pipeline" class="project-link"
+                        target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/gee-app.png" alt="GEE Deforestation App" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">February 25th, 2025</div>
+                    <h3 class="project-title">GEE App for Monitoring Deforestation</h3>
+                    <p class="project-description">Leveraging Google Earth Engine to visualize land use changes in the
+                        Amazon.</p>
+                    <a href="https://ee-adedoyinsamuel25.projects.earthengine.app/view/deforestation-app"
+                        class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/tree-dash.png" alt="Tree Monitoring" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">March 29th, 2025</div>
+                    <h3 class="project-title">Monitoring Tree Health with Geospatial Technology</h3>
+                    <p class="project-description">Advanced geospatial pipeline using ArcGIS Notebooks and Google Earth
+                        Engine.</p>
+                    <a href="https://milsat.maps.arcgis.com/apps/dashboards/6af06d2657914369a3e774d3a9781a8b"
+                        class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/Predicted_SOC.jpg" alt="SOC Prediction" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">March 22, 2025</div>
+                    <h3 class="project-title">Soil Organic Carbon Prediction</h3>
+                    <p class="project-description">ML-based spatial modeling for predicting SOC in Mato Grosso, Brazil.
+                    </p>
+                    <a href="https://github.com/SammyGIS/matto-grosso-soc-prediction" class="project-link"
+                        target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/r-spatial.jpg" alt="Air Quality" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">May 22, 2022</div>
+                    <h3 class="project-title">Air Quality Prediction Analysis</h3>
+                    <p class="project-description">Analysis of EPA monitoring station data using R Spatial.</p>
+                    <a href="https://github.com/SammyGIS/Air-Quality-Prediction-Analysis-in-R" class="project-link"
+                        target="_blank">View Project</a>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
+
+    <!-- Data Engineering Projects -->
+    <section id="data-engineering">
+        <h2 class="section-title">Data Engineering Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="images/de-hack.png" alt="Data Pipeline" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">Oct 26, 2024</div>
+                    <h3 class="project-title">Scalable Data Pipeline for Travel Insights</h3>
+                    <p class="project-description">End-to-end data pipeline extracting, transforming, and visualizing
+                        travel data.</p>
+                    <a href="https://github.com/SammyGIS/dec-hackathon-team-1-solution" class="project-link"
+                        target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/web-scrapping.png" alt="YouTube Scraper" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">May 26, 2023</div>
+                    <h3 class="project-title">YouTube Trending Video Scraper</h3>
+                    <p class="project-description">Scraping top trending videos using Selenium and AWS Lambda.</p>
+                    <a href="https://github.com/SammyGIS/selenium-youtube-scrapper-streaming" class="project-link"
+                        target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/Data-architecture.JPG" alt="Weather Data" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">May 26, 2023</div>
+                    <h3 class="project-title">Weather Data Collection & Storage</h3>
+                    <p class="project-description">AWS-based system collecting weather data using Lambda, S3, and
+                        DynamoDB.</p>
+                    <a href="https://github.com/SammyGIS/cilAcademy/tree/main/Lambda%2CS3%26Nosql" class="project-link"
+                        target="_blank">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Analysis Projects -->
+    <section id="data-analysis">
+        <h2 class="section-title">Data Analysis Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="images/airline_analytics.png" alt="Airline Analytics" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">May 22, 2022</div>
+                    <h3 class="project-title">Airline Analytics Using Tableau</h3>
+                    <p class="project-description">Visual report of airline passenger satisfaction feedback.</p>
+                    <a href="https://github.com/SammyGIS/Maven_Airline_Challenge" class="project-link"
+                        target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/unicon.png" alt="Unicorn Companies" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">May 12, 2022</div>
+                    <h3 class="project-title">Unicorn Companies Dashboard</h3>
+                    <p class="project-description">Dashboard analysis using Google Looker to explore unicorn company
+                        metrics.</p>
+                    <a href="https://datastudio.google.com/reporting/311554fc-5369-4960-882a-d2df6d4a7847"
+                        class="project-link" target="_blank">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conferences & Talks -->
+    <section id="conferences">
+        <h2 class="section-title">Conferences & Talks</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">December 2024</div>
+                    <h3 class="timeline-title">International Remote Sensing Conference</h3>
+                    <p class="timeline-description">Presented research on "Advanced Machine Learning Techniques for Land
+                        Cover Classification in Tropical Regions"</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">September 2024</div>
+                    <h3 class="timeline-title">GIS Day Nigeria Workshop</h3>
+                    <p class="timeline-description">Led workshop on "Building Geospatial Data Pipelines with Open Source
+                        Tools"</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">June 2024</div>
+                    <h3 class="timeline-title">Data Engineering Summit</h3>
+                    <p class="timeline-description">Speaker on "Integrating Geospatial Data in Modern Data Warehouses"
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">March 2024</div>
+                    <h3 class="timeline-title">Earth Observation Symposium</h3>
+                    <p class="timeline-description">Panelist discussing "The Future of Forest Monitoring Using Satellite
+                        Technology"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development -->
+    <section id="development">
+        <h2 class="section-title">Development & Skills</h2>
+        <div class="dev-grid">
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-satellite"></i></div>
+                <h3 class="dev-title">Remote Sensing</h3>
+                <p class="dev-description">Google Earth Engine, QGIS, ArcGIS, Sentinel, Landsat, MODIS, SAR Processing
+                </p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-code"></i></div>
+                <h3 class="dev-title">Programming</h3>
+                <p class="dev-description">Python, R, JavaScript, SQL, PostgreSQL, PostGIS</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-database"></i></div>
+                <h3 class="dev-title">Data Engineering</h3>
+                <p class="dev-description">AWS (Lambda, S3, DynamoDB), ETL Pipelines, Apache Airflow, Docker</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 class="dev-title">Data Analysis</h3>
+                <p class="dev-description">Tableau, Power BI, Pandas, NumPy, Scikit-learn, Statistical Analysis</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-brain"></i></div>
+                <h3 class="dev-title">Machine Learning</h3>
+                <p class="dev-description">Random Forest, Deep Learning, TensorFlow, Computer Vision, Spatial ML</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-globe"></i></div>
+                <h3 class="dev-title">Web Mapping</h3>
+                <p class="dev-description">Leaflet, Mapbox, ArcGIS API, Carto, Interactive Dashboards</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Ajeyomi Adedoyin Samuel. All rights reserved.</p>
+        <p>Remote Sensing Analyst | Geospatial Data Scientist | Data Engineer</p>
+    </footer>
 
     <script>
-        // Create floating dots effect
-        function createDots() {
-            const dotsContainer = document.querySelector('.floating-dots');
-            const numDots = 50;
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
 
-            for (let i = 0; i < numDots; i++) {
-                const dot = document.createElement('div');
-                dot.style.position = 'absolute';
-                dot.style.width = '2px';
-                dot.style.height = '2px';
-                dot.style.backgroundColor = 'rgba(96, 165, 250, 0.2)';
-                dot.style.borderRadius = '50%';
-                dot.style.left = Math.random() * 100 + '%';
-                dot.style.top = Math.random() * 100 + '%';
-                dot.style.animation = `float ${Math.random() * 3 + 2}s linear infinite`;
-                
-                const keyframes = `
-                    @keyframes float {
-                        0% { transform: translate(0, 0); }
-                        50% { transform: translate(${Math.random() * 30}px, ${Math.random() * 30}px); }
-                        100% { transform: translate(0, 0); }
-                    }
-                `;
-                
-                const style = document.createElement('style');
-                style.textContent = keyframes;
-                document.head.appendChild(style);
-                
-                dotsContainer.appendChild(dot);
-            }
-        }
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const background = document.querySelector('.map-grid');
-            background.style.transform = `translate(${scrolled * 0.1}px, ${scrolled * 0.1}px)`;
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
 
-        // Initialize effects
-        createDots();
+        // Active Navigation Link
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').slice(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking a link
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
+
 </html>
