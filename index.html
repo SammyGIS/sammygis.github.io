@@ -560,169 +560,169 @@
         }
 
         /* Carousel Styles */
-    .carousel-container {
-        position: relative;
-        max-width: 1000px;
-        margin: 0 auto;
-        background: var(--card-bg);
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
 
-    .carousel-main {
-        position: relative;
-        width: 100%;
-        height: 600px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #000;
-    }
-
-    .carousel-main img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: opacity 0.3s ease;
-    }
-
-    .carousel-caption {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-        color: var(--white);
-        padding: 2rem 1.5rem 1rem;
-        font-size: 1rem;
-        line-height: 1.5;
-    }
-
-    .carousel-counter {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: rgba(0, 0, 0, 0.7);
-        color: var(--white);
-        padding: 0.5rem 1rem;
-        border-radius: 2rem;
-        font-size: 0.9rem;
-        font-weight: 600;
-    }
-
-    .carousel-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.6);
-        color: var(--white);
-        border: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .carousel-btn:hover {
-        background: var(--accent-color);
-        transform: translateY(-50%) scale(1.1);
-    }
-
-    .carousel-btn-prev {
-        left: 20px;
-    }
-
-    .carousel-btn-next {
-        right: 20px;
-    }
-
-    .carousel-thumbnails {
-        display: flex;
-        gap: 1rem;
-        padding: 1.5rem;
-        overflow-x: auto;
-        background: var(--card-bg);
-        scrollbar-width: thin;
-        scrollbar-color: var(--accent-color) var(--bg-color);
-    }
-
-    .carousel-thumbnails::-webkit-scrollbar {
-        height: 8px;
-    }
-
-    .carousel-thumbnails::-webkit-scrollbar-track {
-        background: var(--bg-color);
-    }
-
-    .carousel-thumbnails::-webkit-scrollbar-thumb {
-        background: var(--accent-color);
-        border-radius: 4px;
-    }
-
-    .carousel-thumbnail {
-        min-width: 120px;
-        height: 80px;
-        cursor: pointer;
-        border-radius: 0.5rem;
-        overflow: hidden;
-        border: 3px solid transparent;
-        transition: all 0.3s ease;
-        opacity: 0.6;
-    }
-
-    .carousel-thumbnail:hover {
-        opacity: 1;
-        transform: scale(1.05);
-    }
-
-    .carousel-thumbnail.active {
-        border-color: var(--accent-color);
-        opacity: 1;
-    }
-
-    .carousel-thumbnail img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
         .carousel-main {
-            height: 400px;
+            position: relative;
+            width: 100%;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
         }
-        
-        .carousel-btn {
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
+
+        .carousel-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.3s ease;
         }
-        
-        .carousel-btn-prev {
-            left: 10px;
-        }
-        
-        .carousel-btn-next {
-            right: 10px;
-        }
-        
+
         .carousel-caption {
-            font-size: 0.85rem;
-            padding: 1.5rem 1rem 0.75rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: var(--white);
+            padding: 2rem 1.5rem 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
         }
-        
+
+        .carousel-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn-prev {
+            left: 20px;
+        }
+
+        .carousel-btn-next {
+            right: 20px;
+        }
+
+        .carousel-thumbnails {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            overflow-x: auto;
+            background: var(--card-bg);
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--bg-color);
+        }
+
+        .carousel-thumbnails::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .carousel-thumbnails::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        .carousel-thumbnails::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
         .carousel-thumbnail {
-            min-width: 100px;
-            height: 70px;
+            min-width: 120px;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            opacity: 0.6;
         }
-    }
+
+        .carousel-thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .carousel-thumbnail.active {
+            border-color: var(--accent-color);
+            opacity: 1;
+        }
+
+        .carousel-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .carousel-main {
+                height: 400px;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .carousel-btn-prev {
+                left: 10px;
+            }
+
+            .carousel-btn-next {
+                right: 10px;
+            }
+
+            .carousel-caption {
+                font-size: 0.85rem;
+                padding: 1.5rem 1rem 0.75rem;
+            }
+
+            .carousel-thumbnail {
+                min-width: 100px;
+                height: 70px;
+            }
+        }
     </style>
 </head>
 
@@ -736,9 +736,10 @@
             </button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#development" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experiences</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#conferences" class="nav-link">Conferences</a></li>
-                <li><a href="#development" class="nav-link">Skills</a></li>
                 <li><a href="#gallery" class="nav-link">Gallery</a></li>
             </ul>
         </nav>
@@ -750,8 +751,7 @@
             <div class="hero-text">
                 <p style="font-size: 1.2rem; opacity: 0.9;">Hello, I'm</p>
                 <h1>Ajeyomi Adedoyin Samuel</h1>
-                <p class="subtitle">Remote Sensing Analyst | Geospatial Data Scientist | Data Analyst | Budding Data
-                    Engineer</p>
+                <p class="subtitle">Geospatial Data Scientist | Developer</p>
 
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi-83b80914b/" target="_blank"
@@ -781,6 +781,162 @@
         </div>
     </section>
 
+
+    <!-- Development & Skills -->
+    <section id="development">
+        <h2 class="section-title">Development & Skills</h2>
+        <div class="dev-grid">
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-satellite"></i></div>
+                <h3 class="dev-title">Remote Sensing</h3>
+                <p class="dev-description">Google Earth Engine, QGIS, ArcGIS, Sentinel, Landsat</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-code"></i></div>
+                <h3 class="dev-title">Programming</h3>
+                <p class="dev-description">Python, R, JavaScript, SQL, PostgreSQL</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-database"></i></div>
+                <h3 class="dev-title">Data Engineering</h3>
+                <p class="dev-description">AWS, ETL Pipelines, Airflow, Docker</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 class="dev-title">Data Analysis</h3>
+                <p class="dev-description">Tableau, Power BI, Pandas, Scikit-learn</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-brain"></i></div>
+                <h3 class="dev-title">Machine Learning</h3>
+                <p class="dev-description">Random Forest, TensorFlow, Computer Vision</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-globe"></i></div>
+                <h3 class="dev-title">Web Mapping</h3>
+                <p class="dev-description">Leaflet, Mapbox, ArcGIS API, Carto</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Relevant Experiences</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">June 2025 - Present (Remote)</div>
+                    <h3 class="timeline-title">Geospatial Data Engineer</h3>
+                    <h4 class="timeline-company">Envirotrust, Germany <a href="https://envirotrust.eu/" target="_blank"
+                            rel="noopener noreferrer">(envirotrust.eu)</a></h4>
+                    <ul class="timeline-description">
+                        <li>Built scalable ETL pipelines and RESTful APIs to process and serve large geospatial datasets
+                            (Zarr, COG,
+                            Parquet) using Xarray, DuckDB, FastAPI, and Titiler for real-time visualization and analysis
+                        </li>
+                        <li>Deployed cloud-native infrastructure on AWS (S3, Lambda, EC2) with Docker and CI/CD (GitHub
+                            Actions) to
+                            automate, scale, and maintain geospatial workflows</li>
+                        <li>Led collaborative development on GitHub, ensuring clean code, agile iteration, and reliable
+                            deployment
+                            across remote teams</li>
+                        <li>Engineered data pipelines to source and aggregate diverse geospatial data for wildfire,
+                            flood, heat, and
+                            wind risk modeling, preparing it for cloud-based analysis</li>
+                        <li>Developed scalable data aggregation strategies for environmental risk parameters, optimizing
+                            data
+                            transfer to cloud platforms for advanced scenario modeling</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - 2024 (Hybrid)</div>
+                    <h3 class="timeline-title">Geospatial Analyst</h3>
+                    <h4 class="timeline-company">Milsat Technologies Limited, Abuja, Nigeria</h4>
+                    <ul class="timeline-description">
+                        <li>Performed advanced data analytics to uncover insights and trends, enhancing decision-making
+                            accuracy
+                        </li>
+                        <li>Led the design and management of geospatial and statistical dashboards for real-time
+                            monitoring and
+                            analysis</li>
+                        <li>Developed and optimized ETL processes for efficient data extraction, transformation, and
+                            loading</li>
+                        <li>Implemented and maintained databases to improve data storage and retrieval</li>
+                        <li>Designed unbiased survey questionnaires to enhance response accuracy and reliability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - Present</div>
+                    <h3 class="timeline-title">Training and Capacity Development Lead (Volunteer)</h3>
+                    <h4 class="timeline-company">Spatial and Data Science Society of Nigeria (SDSN) <a
+                            href="https://sdssn.org" target="_blank" rel="noopener noreferrer">(sdss.org)</a></h4>
+                    <ul class="timeline-description">
+                        <li>Delivered GeoAI and spatial data science workshops across multiple universities nationwide
+                        </li>
+                        <li>Coordinated online training programs reaching 500+ participants</li>
+                        <li>Led website development and content management, increasing engagement by 40%</li>
+                        <li>Mentored 50+ emerging geospatial professionals in technical skill development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - Present (Remote)</div>
+                    <h3 class="timeline-title">Geospatial Tutor and Mentor (Volunteer)</h3>
+                    <h4 class="timeline-company">Geoanalytec, Nigeria <a
+                            href="https://www.linkedin.com/company/geoanaltech" target="_blank"
+                            rel="noopener noreferrer">(LinkedIn)</a></h4>
+                    <ul class="timeline-description">
+                        <li>Trained 150+ students across Africa in GIS and remote sensing, achieving 80% course
+                            completion rate</li>
+                        <li>Delivered comprehensive basic and advanced training in Python, QGIS, ArcGIS, and Google
+                            Earth Engine
+                        </li>
+                        <li>Coordinated 10+ GIS events and 30+ structured weekend training sessions</li>
+                        <li>Provided ongoing mentorship to participants, supporting career development in geospatial
+                            fields</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline"></div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-date">2016 - 2023</div>
+                <h3 class="timeline-title">Bachelor of Technology in Remote Sensing and GIS</h3>
+                <h4 class="timeline-company">Federal University of Technology Akure, Nigeria</h4>
+                <p class="timeline-description">
+                    <strong>GPA: 4.25/5.0 (Top 10%) | WES Equivalent: 3.58/4.0</strong>
+                    <a href="https://www.credly.com/badges/8f2f6b52-2490-4215-865a-317ceec7ef76/public_url"
+                        target="_blank" rel="noopener noreferrer">(Verify WES)</a>
+                </p>
+                <ul class="timeline-description">
+                    <li>Specialized in Remote Sensing, GIS fundamentals, and Environmental Geography</li>
+                    <li>Completed coursework in Agriculture, Forestry, Geology, Urban Planning, and Cartography</li>
+                    <li>Conducted extensive fieldwork and geospatial analysis projects</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+
     <!-- Projects -->
     <section id="projects">
         <h2 class="section-title">Projects</h2>
@@ -806,7 +962,8 @@
                     <p class="project-description">A geospatial pipeline that monitors agricultural lands using
                         satellite imagery and OSM data.</p>
                     <a href="https://github.com/SammyGIS/geospatial-de-pipeline" class="project-link"
-                        target="_blank">View Project</a>
+                        target="_blank">View
+                        Project</a>
                 </div>
             </div>
 
@@ -862,97 +1019,6 @@
         <div class="show-more-container">
             <a href="projects/projects.html" class="project-link" target="_blank">Show More
                 Project</a>
-        </div>
-    </section>
-
-    <!-- Development & Skills -->
-    <section id="development">
-        <h2 class="section-title">Development & Skills</h2>
-        <div class="dev-grid">
-            <div class="dev-card">
-                <div class="dev-icon"><i class="fas fa-satellite"></i></div>
-                <h3 class="dev-title">Remote Sensing</h3>
-                <p class="dev-description">Google Earth Engine, QGIS, ArcGIS, Sentinel, Landsat</p>
-            </div>
-
-            <div class="dev-card">
-                <div class="dev-icon"><i class="fas fa-code"></i></div>
-                <h3 class="dev-title">Programming</h3>
-                <p class="dev-description">Python, R, JavaScript, SQL, PostgreSQL</p>
-            </div>
-
-            <div class="dev-card">
-                <div class="dev-icon"><i class="fas fa-database"></i></div>
-                <h3 class="dev-title">Data Engineering</h3>
-                <p class="dev-description">AWS, ETL Pipelines, Airflow, Docker</p>
-            </div>
-
-            <div class="dev-card">
-                <div class="dev-icon"><i class="fas fa-chart-line"></i></div>
-                <h3 class="dev-title">Data Analysis</h3>
-                <p class="dev-description">Tableau, Power BI, Pandas, Scikit-learn</p>
-            </div>
-
-            <div class="dev-card">
-                <div class="dev-icon"><i class="fas fa-brain"></i></div>
-                <h3 class="dev-title">Machine Learning</h3>
-                <p class="dev-description">Random Forest, TensorFlow, Computer Vision</p>
-            </div>
-
-            <div class="dev-card">
-                <div class="dev-icon"><i class="fas fa-globe"></i></div>
-                <h3 class="dev-title">Web Mapping</h3>
-                <p class="dev-description">Leaflet, Mapbox, ArcGIS API, Carto</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2 class="section-title">Relevant Professional Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2023 - Present</div>
-                    <h3 class="timeline-title">Senior Remote Sensing Analyst</h3>
-                    <p class="timeline-description">Leading geospatial analysis projects using satellite imagery and
-                        machine learning for environmental monitoring and land use planning.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2021 - 2023</div>
-                    <h3 class="timeline-title">Geospatial Data Scientist</h3>
-                    <p class="timeline-description">Developed automated data pipelines for processing large-scale remote
-                        sensing datasets and created interactive dashboards for stakeholders.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2019 - 2021</div>
-                    <h3 class="timeline-title">GIS Analyst</h3>
-                    <p class="timeline-description">Conducted spatial analysis, created maps, and supported
-                        decision-making processes with geospatial insights.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <h2 class="section-title">Education</h2>
-        <div class="timeline"></div>
-        <div class="timeline-item">
-            <div class="timeline-content">
-                <div class="timeline-date">2016 - 2023</div>
-                <h3 class="timeline-title">Bachelor of Technology in Remote Sensing and GIS</h3>
-                <p class="timeline-description">Federal University of Technology Akure - Focus on environmental
-                    geography, cartography, and
-                    GIS fundamentals.</p>
-            </div>
-        </div>
         </div>
     </section>
 
@@ -1036,12 +1102,12 @@
     <!-- Gallery Carousel -->
     <section id="gallery">
         <h2 class="section-title">Conference Gallery</h2>
-    
+
         <div class="carousel-container">
             <button class="carousel-btn carousel-btn-prev" onclick="moveSlide(-1)">
                 <i class="fas fa-chevron-left"></i>
             </button>
-    
+
             <div class="carousel-main">
                 <img id="carousel-main-img" src="images/spatial_stas_hiv.png" alt="Gallery Image">
                 <div class="carousel-caption" id="carousel-caption">
@@ -1049,12 +1115,12 @@
                 </div>
                 <div class="carousel-counter" id="carousel-counter">1 / 4</div>
             </div>
-    
+
             <button class="carousel-btn carousel-btn-next" onclick="moveSlide(1)">
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
-    
+
         <!-- Thumbnail Navigation -->
         <div class="carousel-thumbnails" id="carousel-thumbnails">
             <!-- Thumbnails will be generated by JavaScript -->
