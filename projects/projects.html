@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Samuel Portfolio - All Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --accent-2: #ec4899;
+            --bg-color: #0a0f1e;
+            --bg-gradient: linear-gradient(135deg, #0a0f1e 0%, #1a1f3a 100%);
+            --card-bg: #1e293b;
+            --card-hover: #2d3b52;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --glow-color: rgba(59, 130, 246, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .nav-wrapper {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 15px var(--glow-color);
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 7rem auto 2rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        .section-header {
+            font-size: 2.5rem;
+            margin: 4rem 0 2rem;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            padding-bottom: 1rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            left: 100%;
+        }
+
+        .project-image i {
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-date {
+            color: var(--accent-color);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-title {
+            font-size: 1.15rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            line-height: 1.4;
+            min-height: 2.8rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            min-height: 4.8rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .project-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px var(--glow-color);
+        }
+
+        .project-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover i {
+            transform: translateX(3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-header {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-wrapper">
+        <nav>
+            <a href="index.html" class="home-button">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('gis')">GIS & RS</a></li>
+                <li><a onclick="scrollToSection('engineering')">Data Engineering</a></li>
+                <li><a onclick="scrollToSection('analysis')">Data Analysis</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi-83b80914b/" title="LinkedIn"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/SammyGIS/" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <div class="page-header">
+            <h1>All Projects</h1>
+            <p>Explore my complete portfolio of data science, GIS, and engineering work</p>
+        </div>
+
+        <!-- GIS & RS Section -->
+        <section id="gis">
+            <h2 class="section-header">GIS & Remote Sensing Projects</h2>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-tree"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">April 1st, 2025</div>
+                        <h3 class="project-title">Nigeria Forest Watch</h3>
+                        <p class="project-description">Visualize and analyze forest data in Nigeria using remote sensing
+                            datasets and various forest-related indices.</p>
+                        <a href="https://ee-adedoyinsamuel25.projects.earthengine.app/view/nigeriaforestapp"
+                            target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-tractor"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 25th, 2024</div>
+                        <h3 class="project-title">FarmWatch: Agricultural Monitoring</h3>
+                        <p class="project-description">Monitor agricultural lands using satellite imagery, computing
+                            vegetation indices like NDVI and NDMI.</p>
+                        <a href="https://github.com/SammyGIS/geospatial-de-pipeline" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-chart-area"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">April 5th, 2025</div>
+                        <h3 class="project-title">HIV Prevalence Spatial Analysis</h3>
+                        <p class="project-description">Spatial statistical analysis of HIV prevalence patterns across
+                            the United States with socio-demographic factors.</p>
+                        <a href="https://docs.google.com/presentation/d/1sOqEiidAqjWKn75XwCAiiD-Ygq4nxqnJ/edit?slide=id.p1#slide=id.p1"
+                            target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-satellite"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">February 25th, 2025</div>
+                        <h3 class="project-title">Amazon Deforestation Monitor</h3>
+                        <p class="project-description">GEE app to visualize and analyze land use changes in the Amazon,
+                            exploring deforestation trends.</p>
+                        <a href="https://ee-adedoyinsamuel25.projects.earthengine.app/view/deforestation-app"
+                            target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-leaf"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">February 25th, 2025</div>
+                        <h3 class="project-title">Benin Mangrove Mapping</h3>
+                        <p class="project-description">Machine learning classification of mangroves and land use in
+                            Benin Republic achieving 90%+ accuracy.</p>
+                        <a href="https://code.earthengine.google.com/ee3c8b3cbaeaa651e99b92a94188a347" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-chart-line"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">March 29th, 2025</div>
+                        <h3 class="project-title">Tree Health Monitoring System</h3>
+                        <p class="project-description">Automated geospatial pipeline using ArcGIS and Earth Engine for
+                            tree health monitoring.</p>
+                        <a href="https://milsat.maps.arcgis.com/apps/dashboards/6af06d2657914369a3e774d3a9781a8b"
+                            target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-map-marked-alt"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">March 29th, 2025</div>
+                        <h3 class="project-title">Zamfara Infrastructure Analysis</h3>
+                        <p class="project-description">GIS analysis of education and healthcare accessibility in Zamfara
+                            State, Nigeria.</p>
+                        <a href="https://experience.arcgis.com/experience/0358e34412944eef8bc0c53664f09778/page/Health-Facilities"
+                            target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-wind"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 22, 2022</div>
+                        <h3 class="project-title">Air Quality Prediction</h3>
+                        <p class="project-description">EPA monitoring station data analysis to model Ozone, Nitrogen,
+                            and PM2.5 distribution using R Spatial.</p>
+                        <a href="https://github.com/SammyGIS/Air-Quality-Prediction-Analysis-in-R" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-water"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 14, 2023</div>
+                        <h3 class="project-title">Flood Modeling with ML</h3>
+                        <p class="project-description">Machine learning model predicting flood likelihood based on
+                            topographical and environmental factors.</p>
+                        <a href="https://github.com/SammyGIS/Flood-Modeeling-using-ML" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-mountain"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">March 22, 2025</div>
+                        <h3 class="project-title">Soil Carbon Prediction</h3>
+                        <p class="project-description">Spatial modeling framework for predicting SOC concentrations in
+                            Mato Grosso, Brazil using ML.</p>
+                        <a href="https://github.com/SammyGIS/matto-grosso-soc-prediction/tree/" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-home"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">August 22, 2024</div>
+                        <h3 class="project-title">Airbnb Housing Market Analysis</h3>
+                        <p class="project-description">Spatial analysis of Airbnb listings and housing market dynamics
+                            in London using advanced techniques.</p>
+                        <a href="https://github.com/SammyGIS/airbnb-spatial-analysis/blob/main/airbnb-spatial-analysis.ipynb"
+                            target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-fire"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 22, 2022</div>
+                        <h3 class="project-title">Wildfire Analysis</h3>
+                        <p class="project-description">Analysis of the 2022 Mosquito Fire in California using satellite
+                            imagery and Geemap.</p>
+                        <a href="https://colab.research.google.com/drive/1e4HVgA_XVOLj3YEz-m_yUombtJZE0ft7?usp=sharing"
+                            target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-hospital"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 12, 2022</div>
+                        <h3 class="project-title">Healthcare Facility Assessment</h3>
+                        <p class="project-description">WebGIS platform measuring healthcare accessibility and
+                            identifying optimal locations for new facilities.</p>
+                        <a href="https://github.com/SammyGIS/DSN_Geospatial_Hackaton" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-utensils"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">August 8th, 2023</div>
+                        <h3 class="project-title">Restaurant Location Intelligence</h3>
+                        <p class="project-description">Location intelligence analysis to find the perfect restaurant
+                            spot near Osun-Osogbo Sacred Grove.</p>
+                        <a href="https://drive.google.com/file/d/1b7q_nHPTBmLmV0yTqHUGrRJqRql1ICCn/view?usp=sharing"
+                            target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Data Engineering Section -->
+        <section id="engineering">
+            <h2 class="section-header">Data Engineering Projects</h2>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-plane"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">Oct 26, 2024</div>
+                        <h3 class="project-title">Travel Insights Data Pipeline</h3>
+                        <p class="project-description">Scalable data pipeline extracting country data from APIs,
+                            transforming and visualizing in Metabase.</p>
+                        <a href="https://github.com/SammyGIS/dec-hackathon-team-1-solution" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-video"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 26, 2023</div>
+                        <h3 class="project-title">YouTube Trending Scraper</h3>
+                        <p class="project-description">Automated scraping of YouTube trending videos using Selenium and
+                            AWS Lambda.</p>
+                        <a href="https://github.com/SammyGIS/selenium-youtube-scrapper-streaming" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-building"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 26, 2023</div>
+                        <h3 class="project-title">London Property Master List</h3>
+                        <p class="project-description">Extract and blend property datasets across Greater London into
+                            one comprehensive master list.</p>
+                        <a href="https://github.com/SammyGIS/Mappa-Master-Property-List-for-London" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-cloud"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 26, 2023</div>
+                        <h3 class="project-title">Weather Data Collection System</h3>
+                        <p class="project-description">AWS-based system using Lambda, S3, EventBridge, and DynamoDB to
+                            collect weather data for Lagos.</p>
+                        <a href="https://github.com/SammyGIS/cilAcademy/tree/main/Lambda%2CS3%26Nosql" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Data Analysis Section -->
+        <section id="analysis">
+            <h2 class="section-header">Data Analysis Projects</h2>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-plane-departure"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 22, 2022</div>
+                        <h3 class="project-title">Airline Analytics Dashboard</h3>
+                        <p class="project-description">Visual report analyzing airline passenger satisfaction feedback
+                            using Tableau.</p>
+                        <a href="https://github.com/SammyGIS/Maven_Airline_Challenge" target="_blank"
+                            class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image"><i class="fas fa-unicorn"></i></div>
+                    <div class="project-content">
+                        <div class="project-date">May 12, 2022</div>
+                        <h3 class="project-title">Unic
