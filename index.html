@@ -96,7 +96,7 @@
             min-height: 0vh;
             display: flex;
             align-items: center;
-            padding: 6rem 2rem 2rem;
+            padding: 4rem 2rem 2rem;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 64, 175, 0.9));
         }
 
@@ -170,15 +170,14 @@
 
         /* Section Styles - Reduced padding */
         section {
-            padding: 1rem 1rem;
-            /* Reduced from 4rem to 2rem */
+            padding: 2rem 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             font-size: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
             color: var(--white);
         }
@@ -359,7 +358,7 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             padding-left: 2rem;
         }
 
@@ -580,11 +579,13 @@
             background: #000;
         }
 
-        .carousel-main img {
+        .carousel-main img,
+        .carousel-main iframe {
             width: 100%;
             height: 100%;
             object-fit: contain;
             transition: opacity 0.3s ease;
+            border: none;
         }
 
         .carousel-caption {
@@ -723,10 +724,46 @@
                 height: 70px;
             }
         }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 
 <body>
+    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
     <!-- Navigation -->
     <div class="nav-wrapper">
         <nav>
@@ -1220,41 +1257,50 @@
 
             // Carousel Gallery - Can hold 50+ images
             let currentSlide = 0;
+            let isFirstLoad = true;
 
             // Add your images here - you can add up to 50+ images
             const galleryImages = [
                 {
+                    type: 'video',
+                    src: 'https://www.youtube.com/embed/gtbhQXlXEXw',
+                    caption: 'Nigeria_Geodata: Simplifying Access to Nigerian Geospatial Data'
+                },
+                {
+                    type: 'image',
                     src: 'images/sdssn_webinar.jpeg',
                     caption: 'Starter Pack: Spatial Stats Vs GeoStastistics'
                 },
-
                 {
+                    type: 'video',
+                    src: 'https://www.youtube.com/embed/S2C_P0X47wE',
+                    caption: 'Python for Geospatial Data Science'
+                },
+                {
+                    type: 'image',
                     src: 'images/pycon_ng.jpg',
                     caption: 'PyCON Nigeria 2025 Workshop - Unlocking Access to Spatial Data for Development'
                 },
-
                 {
+                    type: 'image',
                     src: 'images/spatial_stas_hiv.png',
                     caption: 'Spatial Statistics of HIV Prevalence in United States'
                 },
                 {
+                    type: 'image',
                     src: 'images/dashboard-1.jpg',
                     caption: 'GIS Day Nigeria Workshop 2024 - Led workshop on building geospatial data pipelines with open source tools'
                 },
                 {
+                    type: 'image',
                     src: 'images/benin-mangrove.png',
                     caption: 'Data Engineering Summit 2024 - Speaker session on integrating geospatial data in modern data warehouses'
                 },
                 {
+                    type: 'image',
                     src: 'images/housing_london.png',
                     caption: 'Earth Observation Symposium 2024 - Panel discussion on the future of forest monitoring using satellite technology'
                 }
-                // Add more images here - just copy the pattern:
-                // {
-                //     src: 'images/your-image-5.jpg',
-                //     caption: 'Your caption for image 5'
-                // },
-                // ... up to 50+ images
             ];
 
             // Initialize carousel
@@ -1262,11 +1308,22 @@
                 const thumbnailsContainer = document.getElementById('carousel-thumbnails');
                 thumbnailsContainer.innerHTML = '';
 
-                galleryImages.forEach((image, index) => {
+                galleryImages.forEach((item, index) => {
                     const thumbnail = document.createElement('div');
                     thumbnail.className = 'carousel-thumbnail' + (index === 0 ? ' active' : '');
                     thumbnail.onclick = () => goToSlide(index);
-                    thumbnail.innerHTML = `<img src="${image.src}" alt="Thumbnail ${index + 1}">`;
+
+                    if (item.type === 'video') {
+                        const videoId = item.src.split('/').pop();
+                        thumbnail.innerHTML = `
+                            <img src="https://img.youtube.com/vi/${videoId}/mqdefault.jpg" alt="Video Thumbnail">
+                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:white; font-size:1.5rem; opacity:0.8;">
+                                <i class="fas fa-play"></i>
+                            </div>`;
+                        thumbnail.style.position = 'relative';
+                    } else {
+                        thumbnail.innerHTML = `<img src="${item.src}" alt="Thumbnail ${index + 1}">`;
+                    }
                     thumbnailsContainer.appendChild(thumbnail);
                 });
 
@@ -1274,18 +1331,35 @@
             }
 
             function showSlide(index) {
-                const mainImg = document.getElementById('carousel-main-img');
+                const mainContainer = document.querySelector('.carousel-main');
                 const caption = document.getElementById('carousel-caption');
                 const counter = document.getElementById('carousel-counter');
 
-                mainImg.style.opacity = '0';
+                // Clear current content
+                const currentMedia = mainContainer.querySelector('img, iframe');
+                if (currentMedia) currentMedia.remove();
 
-                setTimeout(() => {
-                    mainImg.src = galleryImages[index].src;
-                    caption.textContent = galleryImages[index].caption;
-                    counter.textContent = `${index + 1} / ${galleryImages.length}`;
-                    mainImg.style.opacity = '1';
-                }, 150);
+                const item = galleryImages[index];
+
+                if (item.type === 'video') {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = item.src;
+                    iframe.allowFullscreen = true;
+                    iframe.style.opacity = '0';
+                    mainContainer.appendChild(iframe);
+                    setTimeout(() => iframe.style.opacity = '1', 50);
+                } else {
+                    const img = document.createElement('img');
+                    img.id = 'carousel-main-img';
+                    img.src = item.src;
+                    img.alt = item.caption;
+                    img.style.opacity = '0';
+                    mainContainer.appendChild(img);
+                    setTimeout(() => img.style.opacity = '1', 50);
+                }
+
+                caption.textContent = item.caption;
+                counter.textContent = `${index + 1} / ${galleryImages.length}`;
 
                 // Update thumbnail active state
                 document.querySelectorAll('.carousel-thumbnail').forEach((thumb, i) => {
@@ -1294,10 +1368,31 @@
 
                 // Scroll thumbnail into view
                 const activeThumbnail = document.querySelectorAll('.carousel-thumbnail')[index];
-                if (activeThumbnail) {
+                if (activeThumbnail && !isFirstLoad) {
                     activeThumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }
+
+                if (isFirstLoad) {
+                    isFirstLoad = false;
+                }
             }
+
+            // Back to Top functionality
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
 
             function moveSlide(direction) {
                 currentSlide += direction;
