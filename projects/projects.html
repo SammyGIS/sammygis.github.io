@@ -11,44 +11,57 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4a5568;
-            --secondary-color: #2d3748;
-            --accent-color: #5a67d8;
-            --accent-soft: #667eea;
-            --bg-color: #1a202c;
-            --bg-secondary: #2d3748;
-            --card-bg: #2d3748;
-            --card-hover: #374151;
-            --text-primary: #e2e8f0;
-            --text-secondary: #a0aec0;
-            --border-color: #4a5568;
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --accent-color: #60a5fa;
+            --text-color: #f8fafc;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --white: #ffffff;
+            --text-secondary: #94a3b8;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        [data-theme="light"] {
+            --primary-color: #2563eb;
+            --secondary-color: #1d4ed8;
+            --accent-color: #3b82f6;
+            --text-color: #1e293b;
+            --bg-color: #ffffff;
+            --card-bg: #f1f5f9;
+            --white: #0f172a;
+            --text-secondary: #475569;
+            --nav-bg: rgba(255, 255, 255, 0.95);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-primary);
+            color: var(--text-color);
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .nav-wrapper {
-            background: rgba(45, 55, 72, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
             position: fixed;
-            width: 100%;
-            z-index: 1000;
             top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+            transition: background 0.3s ease;
         }
 
         nav {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 1rem 2rem;
             display: flex;
@@ -60,29 +73,29 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.7rem 1.5rem;
-            background: var(--accent-color);
-            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #ffffff;
             text-decoration: none;
             border-radius: 0.5rem;
             transition: all 0.3s ease;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .home-button:hover {
-            background: var(--accent-soft);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--text-secondary);
+            color: var(--text-color);
             text-decoration: none;
             transition: color 0.3s ease;
             cursor: pointer;
@@ -91,68 +104,102 @@
         }
 
         .nav-links a:hover {
-            color: var(--text-primary);
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            color: var(--accent-color);
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
+            align-items: center;
         }
 
         .social-links a {
-            color: var(--text-secondary);
+            color: var(--text-color);
             font-size: 1.2rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .social-links a:hover {
             color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
         main {
-            max-width: 1400px;
-            margin: 7rem auto 2rem;
-            padding: 0 2rem;
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+            padding: 0 1.5rem;
         }
 
         .page-header {
             margin-bottom: 3rem;
+            text-align: center;
         }
 
         .page-header h1 {
-            font-size: 2.5rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            color: var(--text-color);
         }
 
         .page-header p {
-            color: var(--text-secondary);
+            color: var(--accent-color);
             font-size: 1.1rem;
         }
 
         .section-header {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin: 4rem 0 2rem;
-            color: var(--text-primary);
+            color: var(--text-color);
             font-weight: 600;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--border-color);
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
             margin-bottom: 3rem;
         }
 
         .project-card {
             background: var(--card-bg);
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             overflow: hidden;
             transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(96, 165, 250, 0.1);
         }
 
         .project-card:hover {
@@ -163,7 +210,7 @@
 
         .project-image {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
             display: block;
         }
@@ -176,33 +223,31 @@
             color: var(--accent-color);
             font-size: 0.85rem;
             margin-bottom: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .project-title {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             margin-bottom: 0.75rem;
-            color: var(--text-primary);
-            font-weight: 600;
+            color: var(--text-color);
+            font-weight: 700;
             line-height: 1.4;
-            min-height: 3rem;
         }
 
         .project-description {
             color: var(--text-secondary);
             margin-bottom: 1.25rem;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             line-height: 1.6;
-            min-height: 4.5rem;
         }
 
         .project-link {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.65rem 1.25rem;
-            background: var(--accent-color);
-            color: var(--text-primary);
+            padding: 0.7rem 1.4rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #ffffff;
             text-decoration: none;
             border-radius: 0.5rem;
             transition: all 0.3s ease;
@@ -211,48 +256,43 @@
         }
 
         .project-link:hover {
-            background: var(--accent-soft);
-            transform: translateX(3px);
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         footer {
             text-align: center;
-            padding: 2.5rem;
+            padding: 3rem;
             color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
+            background: var(--card-bg);
             margin-top: 4rem;
-            font-size: 0.9rem;
         }
 
-        @media (max-width: 1200px) {
-            .projects-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 900px) {
+        @media (max-width: 992px) {
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+        }
 
+        @media (max-width: 768px) {
             nav {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 1.5rem;
+                padding: 1.5rem;
             }
 
             .nav-links {
+                gap: 1rem;
                 flex-wrap: wrap;
                 justify-content: center;
             }
-        }
 
-        @media (max-width: 600px) {
             .projects-grid {
                 grid-template-columns: 1fr;
             }
 
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 2.25rem;
             }
         }
     </style>
@@ -273,6 +313,9 @@
 
             </ul>
             <div class="social-links">
+                <button id="themeToggle" class="theme-toggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
                 <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi-83b80914b/" title="LinkedIn"><i
                         class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/SammyGIS/" title="GitHub"><i class="fab fa-github"></i></a>
@@ -613,18 +656,53 @@
 
     <script>
         function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const element = document.getElementById(id);
+            const offset = 100; // Adjust for sticky header
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = element.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
             });
         }
 
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            if (theme === 'light') {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+
+        // Nav Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('.nav-wrapper');
             if (window.scrollY > 50) {
-                nav.style.background = 'rgba(45, 55, 72, 0.98)';
+                nav.style.background = 'var(--nav-bg)';
+                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
             } else {
-                nav.style.background = 'rgba(45, 55, 72, 0.95)';
+                nav.style.background = 'var(--nav-bg)';
+                nav.style.boxShadow = 'none';
             }
         });
     </script>
