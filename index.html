@@ -15,11 +15,24 @@
             --primary-color: #3b82f6;
             --secondary-color: #1e40af;
             --accent-color: #60a5fa;
-            --text-color: #1f2937;
+            --text-color: #f8fafc;
             --bg-color: #0f172a;
             --card-bg: #1e293b;
             --white: #ffffff;
             --text-secondary: #94a3b8;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        [data-theme="light"] {
+            --primary-color: #2563eb;
+            --secondary-color: #1d4ed8;
+            --accent-color: #3b82f6;
+            --text-color: #1e293b;
+            --bg-color: #ffffff;
+            --card-bg: #f1f5f9;
+            --white: #0f172a;
+            --text-secondary: #475569;
+            --nav-bg: rgba(255, 255, 255, 0.95);
         }
 
         * {
@@ -32,9 +45,10 @@
         body {
             font-family: 'Space Grotesk', sans-serif;
             background-color: var(--bg-color);
-            color: var(--white);
+            color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Navigation */
@@ -42,10 +56,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
+            background: var(--nav-bg);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+            transition: background 0.3s ease;
         }
 
         nav {
@@ -60,7 +75,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--white);
+            color: var(--text-color);
             text-decoration: none;
         }
 
@@ -71,7 +86,7 @@
         }
 
         .nav-links a {
-            color: var(--white);
+            color: var(--text-color);
             text-decoration: none;
             transition: color 0.3s ease;
             font-weight: 500;
@@ -86,9 +101,27 @@
             display: none;
             background: none;
             border: none;
-            color: var(--white);
+            color: var(--text-color);
             font-size: 1.5rem;
             cursor: pointer;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            color: var(--accent-color);
         }
 
         /* Hero Section - Reduced profile image */
@@ -113,6 +146,7 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             text-transform: uppercase;
+            color: #ffffff;
         }
 
         .hero-text .subtitle {
@@ -128,7 +162,7 @@
         }
 
         .social-links a {
-            color: var(--white);
+            color: #ffffff;
             font-size: 1.5rem;
             transition: all 0.3s ease;
         }
@@ -148,7 +182,7 @@
             padding: 0.75rem 1.5rem;
             border: 2px solid var(--accent-color);
             border-radius: 0.5rem;
-            color: var(--white);
+            color: #ffffff;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -179,7 +213,7 @@
             font-size: 2rem;
             margin-bottom: 1.5rem;
             text-align: center;
-            color: var(--white);
+            color: var(--text-color);
         }
 
         /* Projects Grid - Initially show 3 items */
@@ -223,7 +257,7 @@
         .project-title {
             font-size: 1.1rem;
             margin-bottom: 0.75rem;
-            color: var(--white);
+            color: var(--text-color);
         }
 
         .project-description {
@@ -768,9 +802,14 @@
     <div class="nav-wrapper">
         <nav>
             <a href="#home" class="logo">AAS</a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#development" class="nav-link">Skills</a></li>
@@ -1409,6 +1448,32 @@
             function goToSlide(index) {
                 currentSlide = index;
                 showSlide(currentSlide);
+            }
+
+            // Theme Toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+
+            // Check for saved theme
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+
+            function updateThemeIcon(theme) {
+                if (theme === 'light') {
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                }
             }
 
             // Keyboard navigation
