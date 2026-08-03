@@ -13,6 +13,7 @@ projects/projects.html              Full project catalogue, 4 categories
 projects/sub-projects/<category>/   Deep-dive case studies, grouped by the catalogue
                                     category they belong to (e.g. development/)
 images/                             Every image, single source of truth
+cv/                                 Hosted CV PDF (linked from the hero and share menu)
 favicon.svg                         Initials mark, linked from all pages
 ```
 
@@ -82,6 +83,17 @@ Paths from that depth: `../../../images/`, `../../projects.html`, `../../../inde
 
 **These pages lead with engineering decisions, not feature lists** — why a format, database, or
 framework was chosen. That is the point of them.
+
+### Sharing and the CV
+`index.html` carries Open Graph and Twitter card tags so the profile photo and description
+appear when the URL is pasted into WhatsApp, LinkedIn, Teams or X. **These need absolute URLs**
+(`https://sammygis.github.io/...`) — relative paths do not work for social previews. Update
+`og:image` if the profile photo is ever renamed.
+
+The Share button in the nav uses the native OS share sheet on phones and a dropdown elsewhere
+(WhatsApp, email, Teams, LinkedIn, X, copy link, download CV). The CV is a real PDF supplied by
+Samuel and served from `cv/` — do not regenerate or rewrite it; replace the file when he sends a
+new version, keeping the same filename so existing links survive.
 
 ### Experience or publications
 Both live in `index.html`. Experience uses `.timeline-item`; publications use `.pub-item` and are

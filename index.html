@@ -12,6 +12,23 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="theme-color" content="#0f766e">
+
+    <!-- Social sharing: WhatsApp, LinkedIn, Teams, X and friends read these -->
+    <meta name="description"
+        content="Ajeyomi Adedoyin Samuel - Geospatial Data Scientist, Data Engineer and Developer. Building geospatial data platforms, AI-driven intelligence systems and cloud-native pipelines.">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Ajeyomi Adedoyin Samuel">
+    <meta property="og:title" content="Ajeyomi Adedoyin Samuel - Geospatial Data Scientist & Data Engineer">
+    <meta property="og:description"
+        content="Geospatial data platforms, AI-driven intelligence systems and cloud-native pipelines. Portfolio, projects and publications.">
+    <meta property="og:url" content="https://sammygis.github.io/">
+    <meta property="og:image" content="https://sammygis.github.io/images/profile.jpg">
+    <meta property="og:image:alt" content="Ajeyomi Adedoyin Samuel">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ajeyomi Adedoyin Samuel - Geospatial Data Scientist & Data Engineer">
+    <meta name="twitter:description"
+        content="Geospatial data platforms, AI-driven intelligence systems and cloud-native pipelines.">
+    <meta name="twitter:image" content="https://sammygis.github.io/images/profile.jpg">
     <style>
         /* Light is the default theme (applies even before JS runs) */
         :root {
@@ -162,6 +179,90 @@
 
         .theme-toggle:hover {
             border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* Share menu */
+        .share-wrap {
+            position: relative;
+        }
+
+        .share-btn {
+            background: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            color: var(--on-accent);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.45rem 0.85rem;
+            border-radius: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s ease;
+        }
+
+        .share-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .share-menu {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            min-width: 232px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.6rem;
+            padding: 0.4rem;
+            display: none;
+            flex-direction: column;
+            z-index: 1200;
+        }
+
+        .share-menu.open {
+            display: flex;
+        }
+
+        .share-menu a,
+        .share-menu button {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.6rem 0.75rem;
+            border: none;
+            background: none;
+            border-radius: 0.4rem;
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-align: left;
+            text-decoration: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .share-menu a:hover,
+        .share-menu button:hover {
+            background: var(--card-bg);
+            color: var(--accent-color);
+        }
+
+        .share-menu i {
+            width: 1.1rem;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        .share-sep {
+            height: 1px;
+            background: var(--border-color);
+            margin: 0.35rem 0.25rem;
+        }
+
+        .share-menu .copied {
             color: var(--accent-color);
         }
 
@@ -1129,6 +1230,38 @@
                     <i class="fas fa-moon"></i>
                     <span id="themeLabel">Dark mode</span>
                 </button>
+                <div class="share-wrap">
+                    <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false"
+                        aria-label="Share this portfolio">
+                        <i class="fas fa-share-nodes"></i>
+                        <span>Share</span>
+                    </button>
+                    <div class="share-menu" id="shareMenu">
+                        <a id="shareWhatsApp" href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a id="shareEmail" href="#">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                        <a id="shareTeams" href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-users"></i> Microsoft Teams
+                        </a>
+                        <a id="shareLinkedIn" href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a id="shareX" href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i> X (Twitter)
+                        </a>
+                        <div class="share-sep"></div>
+                        <button id="copyLink" type="button">
+                            <i class="fas fa-link"></i> <span id="copyLabel">Copy link</span>
+                        </button>
+                        <a href="cv/Adedoyin-Samuel-Ajeyomi-CV.pdf" target="_blank" rel="noopener noreferrer"
+                            download>
+                            <i class="fas fa-file-arrow-down"></i> Download CV (PDF)
+                        </a>
+                    </div>
+                </div>
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -1172,8 +1305,8 @@
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="https://github.com/SammyGIS/sammyGIS/blob/main/Ajeyomi%20Adedoyin%20Samuel%20CV.pdf"
-                        class="btn" target="_blank">View CV</a>
+                    <a href="cv/Adedoyin-Samuel-Ajeyomi-CV.pdf" class="btn" target="_blank"
+                        rel="noopener noreferrer">View CV</a>
                     <a href="https://www.spatialnode.net/sammygis/articles" class="btn" target="_blank">Articles</a>
                     <a href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en" class="btn"
                         target="_blank">Publications</a>
@@ -2050,6 +2183,76 @@
                     themeLabel.textContent = 'Dark mode';
                 }
             }
+
+            // Share menu — native sheet on mobile, dropdown everywhere else
+            const shareBtn = document.getElementById('shareBtn');
+            const shareMenu = document.getElementById('shareMenu');
+            const shareUrl = 'https://sammygis.github.io/';
+            const shareText = 'Ajeyomi Adedoyin Samuel — Geospatial Data Scientist & Data Engineer';
+            const u = encodeURIComponent(shareUrl);
+            const t = encodeURIComponent(shareText);
+
+            document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${t}%20${u}`;
+            document.getElementById('shareEmail').href =
+                `mailto:?subject=${t}&body=${encodeURIComponent(shareText + '
+
+' + shareUrl)}`;
+            document.getElementById('shareTeams').href =
+                `https://teams.microsoft.com/share?href=${u}&msgText=${t}`;
+            document.getElementById('shareLinkedIn').href =
+                `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
+            document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
+
+            shareBtn.addEventListener('click', async (e) => {
+                e.stopPropagation();
+
+                // Phones get the OS share sheet, which includes apps we can't link to
+                if (navigator.share && window.matchMedia('(max-width: 768px)').matches) {
+                    try {
+                        await navigator.share({ title: shareText, text: shareText, url: shareUrl });
+                        return;
+                    } catch (err) {
+                        if (err.name === 'AbortError') return;
+                    }
+                }
+
+                const open = shareMenu.classList.toggle('open');
+                shareBtn.setAttribute('aria-expanded', open);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!shareMenu.contains(e.target) && e.target !== shareBtn) {
+                    shareMenu.classList.remove('open');
+                    shareBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    shareMenu.classList.remove('open');
+                    shareBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            document.getElementById('copyLink').addEventListener('click', async () => {
+                const label = document.getElementById('copyLabel');
+                try {
+                    await navigator.clipboard.writeText(shareUrl);
+                } catch (err) {
+                    const tmp = document.createElement('input');
+                    tmp.value = shareUrl;
+                    document.body.appendChild(tmp);
+                    tmp.select();
+                    document.execCommand('copy');
+                    tmp.remove();
+                }
+                label.textContent = 'Copied!';
+                label.classList.add('copied');
+                setTimeout(() => {
+                    label.textContent = 'Copy link';
+                    label.classList.remove('copied');
+                }, 1800);
+            });
 
             // "Home" goes to the very top of the page, not to the hero's offset
             document.querySelectorAll('a[href="#home"]').forEach(link => {
