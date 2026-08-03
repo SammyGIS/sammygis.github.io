@@ -372,13 +372,19 @@
         /* Projects Grid - Initially show 3 items */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
 
         @media (max-width: 992px) {
             .projects-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 680px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1639,7 +1645,7 @@
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card hidden">
                     <img src="images/tree-health-dashboard.png" alt="Tree Monitoring" class="project-image">
                     <div class="project-content">
                         <div class="project-date">March 29th, 2025</div>
