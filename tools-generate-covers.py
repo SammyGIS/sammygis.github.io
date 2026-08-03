@@ -154,11 +154,8 @@ PROJECTS = [
     ('Ground-Level NO2 Estimation', 'points', 'no2-estimation'),
     ('Tocantins Soil Carbon Prediction', 'hexbin', 'tocantins-soil-carbon'),
     ('Airflow Forex ETL Pipeline', 'flow', 'airflow-forex-etl'),
-    ('Uber Data Analytics ETL', 'flow', 'uber-analytics-etl'),
     ('ArcGIS Feature Service Connector', 'flow', 'arcgis-connector'),
     ('Perth POI Ingestion Pipeline', 'points', 'perth-poi-etl'),
-    ('Real-Time Data Streaming Pipeline', 'flow', 'realtime-streaming'),
-    ('Spatial Analysis with DuckDB', 'hexbin', 'duckdb-spatial'),
     ('Okomu Enterprise Farm Intelligence Platform', 'hexbin', 'okomu-farm-intelligence'),
 ]
 

@@ -46,7 +46,7 @@ Pages load **Font Awesome 6.0.0**. Icons added in 6.1+ (e.g. `fa-people-group`) 
 boxes. Verify an icon exists in 6.0 before using it, or bump the CDN version on every page.
 
 ### Navigation
-- The home nav holds ~10 links plus the "All Projects" call-out and collapses into the menu
+- The home nav holds ~10 links plus the "Projects" call-out and collapses into the menu
   button at **1000px**, because the row cannot fit below that. Adding another link risks
   wrapping — check it before you do.
 - The header bar is capped at `1280px` and content must use the **same** width so they align.
