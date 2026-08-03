@@ -165,15 +165,15 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-family: inherit;
-            font-weight: 500;
             cursor: pointer;
-            padding: 0.45rem 0.85rem;
-            border-radius: 2rem;
+            width: 2.35rem;
+            height: 2.35rem;
+            border-radius: 50%;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
             transition: all 0.3s ease;
         }
 
@@ -1232,9 +1232,9 @@
     <div class="nav-wrapper">
         <nav>
             <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode"
+                    title="Toggle light and dark mode">
                     <i class="fas fa-moon"></i>
-                    <span id="themeLabel">Dark mode</span>
                 </button>
                 <div class="share-wrap">
                     <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false"
@@ -2166,7 +2166,7 @@
             // Theme Toggle functionality — light is the default
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = themeToggle.querySelector('i');
-            const themeLabel = document.getElementById('themeLabel');
+            const themeLabel = document.getElementById('themeLabel'); // optional
 
             const savedTheme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
             applyTheme(savedTheme);
@@ -2181,13 +2181,10 @@
                 localStorage.setItem('theme', theme);
 
                 // The button advertises the mode you'll switch *to*
-                if (theme === 'dark') {
-                    themeIcon.className = 'fas fa-sun';
-                    themeLabel.textContent = 'Light mode';
-                } else {
-                    themeIcon.className = 'fas fa-moon';
-                    themeLabel.textContent = 'Dark mode';
-                }
+                const label = theme === 'dark' ? 'Light mode' : 'Dark mode';
+                themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                themeToggle.setAttribute('title', 'Switch to ' + label.toLowerCase());
+                if (themeLabel) themeLabel.textContent = label;
             }
 
             // Share menu — native sheet on mobile, dropdown everywhere else
@@ -2200,9 +2197,7 @@
 
             document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${t}%20${u}`;
             document.getElementById('shareEmail').href =
-                `mailto:?subject=${t}&body=${encodeURIComponent(shareText + '
-
-' + shareUrl)}`;
+                `mailto:?subject=${t}&body=${t}%0A%0A${u}`;
             document.getElementById('shareTeams').href =
                 `https://teams.microsoft.com/share?href=${u}&msgText=${t}`;
             document.getElementById('shareLinkedIn').href =

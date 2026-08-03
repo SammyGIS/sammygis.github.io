@@ -110,6 +110,11 @@ Google Scholar links for publications. Verify author lists against the actual re
 
 ```bash
 python -m http.server 8899          # then curl each page for a 200
+node --check <extracted script>     # syntax-check the inline <script> block
 ```
+
+**Always syntax-check the inline JavaScript.** Each page has a single `<script>` block, so one
+malformed line disables the theme toggle, the mobile menu, the carousel, scroll-spy and the share
+menu all at once — with no visible error unless you open the console. This has happened before.
 Check: markup tags balanced, CSS braces balanced, and **every local `src`/`href` resolves** —
 the folder has been reorganised more than once and relative paths break silently.

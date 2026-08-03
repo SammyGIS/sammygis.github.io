@@ -126,15 +126,15 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-family: inherit;
-            font-weight: 500;
             cursor: pointer;
-            padding: 0.45rem 0.85rem;
-            border-radius: 2rem;
+            width: 2.35rem;
+            height: 2.35rem;
+            border-radius: 50%;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
             transition: all 0.3s ease;
         }
 
@@ -397,9 +397,9 @@
 
             </ul>
             <div class="nav-actions">
-                <button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark mode">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark mode"
+                    title="Toggle light and dark mode">
                     <i class="fas fa-moon"></i>
-                    <span id="themeLabel">Dark mode</span>
                 </button>
                 <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi/" title="LinkedIn"
                     class="nav-social"><i class="fab fa-linkedin"></i></a>
@@ -805,13 +805,8 @@
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
 
-            if (theme === 'dark') {
-                themeIcon.className = 'fas fa-sun';
-                themeLabel.textContent = 'Light mode';
-            } else {
-                themeIcon.className = 'fas fa-moon';
-                themeLabel.textContent = 'Dark mode';
-            }
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (themeLabel) themeLabel.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
         }
 
         // Nav Scroll Effect
