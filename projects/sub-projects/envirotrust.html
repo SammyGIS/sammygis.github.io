@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Envirotrust Climate Risk Platform - Ajeyomi Adedoyin Samuel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta name="theme-color" content="#0f766e">
+    <style>
+        /* Light is the default theme (applies even before JS runs) */
+        :root {
+            --primary-color: #0f766e;
+            --secondary-color: #115e59;
+            --accent-color: #0d9488;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --card-bg: #f3f5f7;
+            --text-secondary: #4b5563;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --on-accent: #ffffff;
+            --border-color: rgba(15, 118, 110, 0.18);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #14b8a6;
+            --secondary-color: #0f766e;
+            --accent-color: #2dd4bf;
+            --text-color: #f1f5f9;
+            --bg-color: #0b1220;
+            --card-bg: #16202e;
+            --text-secondary: #94a3b8;
+            --nav-bg: rgba(11, 18, 32, 0.95);
+            --on-accent: #ffffff;
+            --border-color: rgba(45, 212, 191, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--primary-color);
+            color: var(--on-accent);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .home-button:hover {
+            background: var(--secondary-color);
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.45rem 0.85rem;
+            border-radius: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 6rem auto 2rem;
+            padding: 0 1.5rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .case-hero h1 {
+            font-size: 2.4rem;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+        }
+
+        .case-role {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .case-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 1.25rem 0 1.75rem;
+        }
+
+        .case-stack span {
+            font-size: 0.74rem;
+            font-weight: 600;
+            padding: 0.28rem 0.7rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .case-shot {
+            width: 100%;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            display: block;
+            margin-bottom: 2.5rem;
+        }
+
+        .case-body {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.75;
+            max-width: 78ch;
+        }
+
+        /* Flush on both edges; hyphenation keeps justification from opening
+           up rivers of whitespace between words */
+        .case-body p,
+        .case-lede {
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+
+        /* Short lines justify badly, so leave narrow screens ragged-right */
+        @media (max-width: 600px) {
+
+            .case-body p,
+            .case-lede {
+                text-align: left;
+                hyphens: manual;
+            }
+        }
+
+        .case-lede {
+            font-size: 1.12rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .case-body h2 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin: 2.25rem 0 0.5rem;
+        }
+
+        .case-body p {
+            margin-bottom: 0.85rem;
+        }
+
+        .case-body strong {
+            color: var(--text-color);
+        }
+
+        .case-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 2.5rem 0 1rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .case-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            background: var(--primary-color);
+            color: var(--on-accent);
+            font-weight: 700;
+            font-size: 0.92rem;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .case-link:hover {
+            background: var(--secondary-color);
+        }
+
+        .case-link.secondary {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--accent-color);
+        }
+
+        .case-link.secondary:hover {
+            background: var(--primary-color);
+            color: var(--on-accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            background: var(--card-bg);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 0.85rem 1.25rem;
+            }
+
+            .case-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .case-body {
+                font-size: 0.95rem;
+            }
+
+            .case-body h2 {
+                font-size: 1.08rem;
+            }
+
+            .case-lede {
+                font-size: 1rem;
+                padding-left: 0.75rem;
+            }
+
+            .case-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            main {
+                margin-top: 5.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-wrapper">
+        <nav>
+            <a href="../projects.html" class="home-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>All Projects</span>
+            </a>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark mode">
+                    <i class="fas fa-moon"></i>
+                    <span id="themeLabel">Dark mode</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <p class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../projects.html">Projects</a> / Envirotrust</p>
+
+        <div class="case-hero">
+            <h1>Envirotrust — Pan-European Climate Risk Platform</h1>
+            <p class="case-role">Geospatial Data Engineer &middot; Envirotrust, Germany &middot; June 2025 - Present</p>
+            <div class="case-stack">
+                <span>FastAPI</span><span>Zarr</span><span>COG</span><span>Parquet</span><span>Xarray</span>
+                <span>DuckDB</span><span>Titiler</span><span>Docker</span><span>AWS</span><span>GitHub Actions</span>
+            </div>
+        </div>
+
+        <img src="../../images/envirotrust-climate-risk-platform.png" alt="Envirotrust climate risk platform"
+            class="case-shot">
+
+        <div class="case-body">
+            <p class="case-lede">Envirotrust models wildfire, flood, heat, and wind risk across Europe. The product
+                people see is a map; the part that makes it possible is the data engineering underneath it. As the data
+                engineer on the project, these were mine to decide.</p>
+
+            <h2>Choosing the storage formats</h2>
+            <p>Climate and hazard data arrives as huge multi-dimensional rasters and long tabular histories, and loading
+                it into a conventional spatial database would have meant paying for a large always-on server just to
+                answer a map request. I standardised on cloud-native formats instead — <strong>Zarr</strong> for the
+                multi-dimensional climate cubes, <strong>COG</strong> for the imagery and hazard layers, and
+                <strong>Parquet</strong> for the tabular side. All three are readable directly from object storage by
+                byte range, so a request pulls only the chunk it needs rather than the whole file.
+            </p>
+
+            <h2>Query and processing layer</h2>
+            <p>On top of that I used <strong>Xarray</strong> for the gridded work and <strong>DuckDB</strong> for the
+                tabular analytics — DuckDB reads Parquet on S3 in place, which removed a whole database tier from the
+                architecture and kept aggregations fast without anything to provision or keep warm.</p>
+
+            <h2>The API</h2>
+            <p>I built the backend in <strong>FastAPI</strong>: async by default, which matters when most request time
+                is spent waiting on object storage, and typed request and response models that generate their own
+                OpenAPI docs, so the frontend team could work against a contract instead of against me.
+                <strong>Titiler</strong> sits alongside it to tile the COGs on the fly, so no pre-rendered tile pyramids
+                ever have to be generated or stored.
+            </p>
+            <p>The endpoint lets property owners and real estate professionals pass a location and instantly get back
+                the climate risk attached to that land or property — wildfire, flood, heat, and wind — turning the whole
+                pipeline into a single question a non-technical user can ask.</p>
+
+            <h2>Infrastructure and delivery</h2>
+            <p>Everything is containerised with <strong>Docker</strong> and runs on <strong>AWS</strong> — S3 for the
+                data lake, Lambda for spiky per-request work, EC2 for the sustained pipeline jobs. I set up the
+                <strong>GitHub Actions</strong> CI/CD so tests, image builds, and deployment run on every merge; with a
+                distributed remote team, making deployment boring was worth more than any individual optimisation.
+            </p>
+
+            <h2>Ingestion pipelines</h2>
+            <p>The pipelines source and harmonise hazard and climate data from many providers, each with its own
+                projection, resolution, and update cadence, and aggregate it to the risk parameters the scenario models
+                actually consume. The aggregation strategy was designed around minimising what has to move to the cloud
+                — reduce early, transfer little, model fast.</p>
+
+            <div class="case-links">
+                <a class="case-link" href="https://envirotrust.eu/" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-window-maximize"></i> View the frontend
+                </a>
+                <a class="case-link secondary" href="https://api.envirotrust.eu/docs" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fas fa-code"></i> View the backend / API docs
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Design: Claude AI | Enhanced by Samuel</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const themeLabel = document.getElementById('themeLabel');
+
+        applyTheme(localStorage.getItem('theme') === 'dark' ? 'dark' : 'light');
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+                themeLabel.textContent = 'Light mode';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                themeLabel.textContent = 'Dark mode';
+            }
+        }
+    </script>
+</body>
+
+</html>

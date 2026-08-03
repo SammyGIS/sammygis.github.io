@@ -10,29 +10,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta name="theme-color" content="#0f766e">
     <style>
+        /* Light is the default theme (applies even before JS runs) */
         :root {
-            --primary-color: #3b82f6;
-            --secondary-color: #1e40af;
-            --accent-color: #60a5fa;
-            --text-color: #f8fafc;
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --white: #ffffff;
-            --text-secondary: #94a3b8;
-            --nav-bg: rgba(15, 23, 42, 0.95);
+            --primary-color: #0f766e;
+            --secondary-color: #115e59;
+            --accent-color: #0d9488;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --card-bg: #f3f5f7;
+            --text-secondary: #4b5563;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --on-accent: #ffffff;
+            --border-color: rgba(15, 118, 110, 0.18);
         }
 
-        [data-theme="light"] {
-            --primary-color: #2563eb;
-            --secondary-color: #1d4ed8;
-            --accent-color: #3b82f6;
-            --text-color: #1e293b;
-            --bg-color: #ffffff;
-            --card-bg: #f1f5f9;
-            --white: #0f172a;
-            --text-secondary: #475569;
-            --nav-bg: rgba(255, 255, 255, 0.95);
+        [data-theme="dark"] {
+            --primary-color: #14b8a6;
+            --secondary-color: #0f766e;
+            --accent-color: #2dd4bf;
+            --text-color: #f1f5f9;
+            --bg-color: #0b1220;
+            --card-bg: #16202e;
+            --text-secondary: #94a3b8;
+            --nav-bg: rgba(11, 18, 32, 0.95);
+            --on-accent: #ffffff;
+            --border-color: rgba(45, 212, 191, 0.25);
         }
 
         * {
@@ -47,6 +52,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
@@ -57,17 +63,24 @@
             background: var(--nav-bg);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+            border-bottom: 1px solid var(--border-color);
             transition: background 0.3s ease;
         }
 
         nav {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.85rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .home-button {
@@ -75,18 +88,19 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.6rem 1.2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #ffffff;
+            background: var(--primary-color);
+            color: var(--on-accent);
             text-decoration: none;
             border-radius: 0.5rem;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 700;
             font-size: 0.9rem;
         }
 
         .home-button:hover {
+            background: var(--secondary-color);
+            color: var(--on-accent);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         .nav-links {
@@ -109,42 +123,38 @@
         }
 
         .theme-toggle {
-            background: none;
-            border: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             color: var(--text-color);
-            font-size: 1.2rem;
+            font-size: 0.9rem;
+            font-family: inherit;
+            font-weight: 500;
             cursor: pointer;
-            padding: 0.5rem;
-            display: flex;
+            padding: 0.45rem 0.85rem;
+            border-radius: 2rem;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
-            transform: scale(1.1);
+            border-color: var(--accent-color);
             color: var(--accent-color);
         }
 
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .social-links a {
+        .nav-social {
             color: var(--text-color);
             font-size: 1.2rem;
             transition: all 0.3s ease;
         }
 
-        .social-links a:hover {
+        .nav-social:hover {
             color: var(--accent-color);
-            transform: translateY(-2px);
         }
 
         main {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 6rem auto 2rem;
             padding: 0 1.5rem;
         }
@@ -195,18 +205,14 @@
             margin-bottom: 3rem;
         }
 
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(96, 165, 250, 0.1);
+        section[id] {
+            scroll-margin-top: 90px;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent-color);
+        /* Visible separation between project groups */
+        section[id]+section[id] {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
         }
 
         .project-image {
@@ -214,10 +220,52 @@
             height: 220px;
             object-fit: cover;
             display: block;
+            /* Separates the artwork from the text block below it */
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Stand-in cover for projects with no screenshot */
+        .project-cover {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: #ffffff;
+            font-size: 3rem;
+        }
+
+        /* Cards stretch to a uniform height and push the button to the bottom,
+           so "View Project" lands in the same place on every card */
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
         }
 
         .project-content {
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .project-description {
+            flex: 1;
+        }
+
+        .project-content .project-link {
+            margin-top: auto;
+            align-self: flex-start;
         }
 
         .project-date {
@@ -247,18 +295,19 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.7rem 1.4rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #ffffff;
+            background: var(--primary-color);
+            color: var(--on-accent);
             text-decoration: none;
             border-radius: 0.5rem;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 700;
             font-size: 0.9rem;
         }
 
         .project-link:hover {
+            background: var(--secondary-color);
+            color: var(--on-accent);
             transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         footer {
@@ -269,7 +318,7 @@
             margin-top: 4rem;
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1300px) {
             .projects-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -288,16 +337,33 @@
         }
 
         @media (max-width: 768px) {
+            /* Home button and mode toggle stay on one row; the category links
+               wrap onto a second row underneath */
             nav {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.5rem;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-actions {
+                margin-left: auto;
             }
 
             .nav-links {
-                gap: 1rem;
+                order: 3;
+                width: 100%;
+                gap: 0.85rem;
                 flex-wrap: wrap;
                 justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            /* Clear the now-taller fixed header */
+            main {
+                margin-top: 9rem;
             }
 
             .projects-grid {
@@ -306,6 +372,11 @@
 
             .page-header h1 {
                 font-size: 2.25rem;
+            }
+
+            .section-header {
+                font-size: 1.6rem;
+                margin: 2.5rem 0 1.5rem;
             }
         }
     </style>
@@ -320,18 +391,20 @@
             </a>
             <ul class="nav-links">
                 <li><a onclick="scrollToSection('gis')">GIS & RS</a></li>
-                <li><a onclick="scrollToSection('backend')">Geospatial Dev</a></li>
+                <li><a onclick="scrollToSection('backend')">Development</a></li>
                 <li><a onclick="scrollToSection('engineering')">Data Engineering</a></li>
                 <li><a onclick="scrollToSection('analysis')">Data Analysis</a></li>
 
             </ul>
-            <div class="social-links">
-                <button id="themeToggle" class="theme-toggle" title="Toggle Theme">
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark mode">
                     <i class="fas fa-moon"></i>
+                    <span id="themeLabel">Dark mode</span>
                 </button>
-                <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi-83b80914b/" title="LinkedIn"><i
-                        class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/SammyGIS/" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi/" title="LinkedIn"
+                    class="nav-social"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/SammyGIS/" title="GitHub" class="nav-social"><i
+                        class="fab fa-github"></i></a>
             </div>
         </nav>
     </div>
@@ -347,7 +420,7 @@
             <h2 class="section-header">GIS & Remote Sensing Projects</h2>
             <div class="projects-grid">
                 <article class="project-card">
-                    <img src="images/nigeria_forest.png" alt="Nigeria Forest Watch" class="project-image">
+                    <img src="../images/nigeria-forest-watch.png" alt="Nigeria Forest Watch" class="project-image">
                     <div class="project-content">
                         <div class="project-date">April 1st, 2025</div>
                         <h3 class="project-title">Nigeria Forest Watch</h3>
@@ -361,7 +434,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/farm-watch.png" alt="FarmWatch" class="project-image">
+                    <img src="../images/farmwatch-agric-monitoring.png" alt="FarmWatch" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 25th, 2024</div>
                         <h3 class="project-title">FarmWatch: Agricultural Monitoring</h3>
@@ -375,7 +448,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/spatial_stas_hiv.png" alt="HIV Spatial Analysis" class="project-image">
+                    <img src="../images/hiv-spatial-statistics.png" alt="HIV Spatial Analysis" class="project-image">
                     <div class="project-content">
                         <div class="project-date">April 5th, 2025</div>
                         <h3 class="project-title">HIV Prevalence Spatial Analysis</h3>
@@ -389,7 +462,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/gee-app.png" alt="Amazon Deforestation" class="project-image">
+                    <img src="../images/gee-deforestation-app.png" alt="Amazon Deforestation" class="project-image">
                     <div class="project-content">
                         <div class="project-date">February 25th, 2025</div>
                         <h3 class="project-title">Amazon Deforestation Monitor</h3>
@@ -403,7 +476,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/benin-mangrove.png" alt="Benin Mangrove" class="project-image">
+                    <img src="../images/benin-mangrove-mapping.png" alt="Benin Mangrove" class="project-image">
                     <div class="project-content">
                         <div class="project-date">February 25th, 2025</div>
                         <h3 class="project-title">Benin Mangrove Mapping</h3>
@@ -417,7 +490,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/tree-dash.png" alt="Tree Health" class="project-image">
+                    <img src="../images/tree-health-dashboard.png" alt="Tree Health" class="project-image">
                     <div class="project-content">
                         <div class="project-date">March 29th, 2025</div>
                         <h3 class="project-title">Tree Health Monitoring System</h3>
@@ -431,7 +504,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/dashboard-1.jpg" alt="Infrastructure Analysis" class="project-image">
+                    <img src="../images/infrastructure-analysis-dashboard.jpg" alt="Infrastructure Analysis" class="project-image">
                     <div class="project-content">
                         <div class="project-date">March 29th, 2025</div>
                         <h3 class="project-title">Zamfara Infrastructure Analysis</h3>
@@ -445,7 +518,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/r-spatial.jpg" alt="Air Quality" class="project-image">
+                    <img src="../images/air-quality-r-spatial.jpg" alt="Air Quality" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 22, 2022</div>
                         <h3 class="project-title">Air Quality Prediction</h3>
@@ -459,7 +532,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/flood-ml.jpeg" alt="Flood Modeling" class="project-image">
+                    <img src="../images/flood-risk-modeling.jpeg" alt="Flood Modeling" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 14, 2023</div>
                         <h3 class="project-title">Flood Modeling with ML</h3>
@@ -473,7 +546,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/Predicted_SOC.jpg" alt="Soil Carbon" class="project-image">
+                    <img src="../images/soil-organic-carbon-prediction.jpg" alt="Soil Carbon" class="project-image">
                     <div class="project-content">
                         <div class="project-date">March 22, 2025</div>
                         <h3 class="project-title">Soil Carbon Prediction</h3>
@@ -487,7 +560,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/housing_london.png" alt="Airbnb Analysis" class="project-image">
+                    <img src="../images/airbnb-london-analysis.png" alt="Airbnb Analysis" class="project-image">
                     <div class="project-content">
                         <div class="project-date">August 22, 2024</div>
                         <h3 class="project-title">Airbnb Housing Market Analysis</h3>
@@ -501,7 +574,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/forestfire.jpeg" alt="Wildfire" class="project-image">
+                    <img src="../images/wildfire-risk-prediction.jpeg" alt="Wildfire" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 22, 2022</div>
                         <h3 class="project-title">Wildfire Analysis</h3>
@@ -515,7 +588,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/zamfara.JPG" alt="Healthcare Facility" class="project-image">
+                    <img src="../images/zamfara-healthcare-facilities.jpg" alt="Healthcare Facility" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 12, 2022</div>
                         <h3 class="project-title">Healthcare Facility Assessment</h3>
@@ -529,7 +602,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/suit1.jpg" alt="Restaurant Location" class="project-image">
+                    <img src="../images/restaurant-location-suitability.jpg" alt="Restaurant Location" class="project-image">
                     <div class="project-content">
                         <div class="project-date">August 8th, 2023</div>
                         <h3 class="project-title">Restaurant Location Intelligence</h3>
@@ -546,19 +619,53 @@
 
         <!-- Geospatial Backend Development-->
         <section id="backend">
-            <h2 class="section-header">Geospatial Backend Development</h2>
+            <h2 class="section-header">Development (Geospatial, AI Apps, Backend &amp; More)</h2>
             <div class="projects-grid">
                 <article class="project-card">
-                    <img src="images/api.webp" alt="Envirotrust API" class="project-image">
+                    <div class="project-cover">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-date">Okomu Oil Palm &middot; Enterprise</div>
+                        <h3 class="project-title">Okomu Enterprise Farm Intelligence Platform</h3>
+                        <p class="project-description">Bespoke end-to-end platform: React dashboards with in-browser
+                            GIS, a FastAPI + PostGIS backend, MinIO storage, and a YOLO bunch-detection model
+                            integrated into a field mobile app — including core GIS built to detect fraud in field
+                            reporting. I owned the frontend, backend, data engineering, ML, and infrastructure.
+                        </p>
+                        <a href="sub-projects/okomu.html" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <img src="../images/demand-signal-explorer.png" alt="Demand Signal Explorer" class="project-image">
+                    <div class="project-content">
+                        <div class="project-date">2025 &middot; IWMI</div>
+                        <h3 class="project-title">Demand Signal Explorer</h3>
+                        <p class="project-description">Demand intelligence platform for the CGIAR Science Program
+                            Accelerator. Mines policy documents and secondary data from governments, NGOs, and
+                            international organisations into 380+ evidence-backed demand signals, explorable by country
+                            on an interactive map and filterable by domain and CGIAR impact area.</p>
+                        <a href="sub-projects/demand-signal-explorer.html" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <img src="../images/envirotrust-climate-risk-platform.png" alt="Envirotrust climate risk platform"
+                        class="project-image">
                     <div class="project-content">
                         <div class="project-date">August 25, 2025</div>
-                        <h3 class="project-title">Envirotrust API</h3>
+                        <h3 class="project-title">Envirotrust Climate Risk Platform &amp; API</h3>
                         <p class="project-description">I designed, built, and deployed a complete API endpoint that
-                            allows
-                            Property Owners and Real Estate Professionals to instantly understand the Climate Risk
-                            associated with the land or properties they are considering purchasing.
+                            allows Property Owners and Real Estate Professionals to instantly understand the Climate
+                            Risk associated with the land or properties they are considering purchasing — plus the
+                            cloud-native data architecture behind it.
                         </p>
-                        <a href="https:///api.envirotrust.eu/docs" target="_blank" class="project-link">
+                        <a href="sub-projects/envirotrust.html" class="project-link">
                             View Project <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -571,7 +678,7 @@
             <h2 class="section-header">Data Engineering Projects</h2>
             <div class="projects-grid">
                 <article class="project-card">
-                    <img src="images/de-hack.png" alt="Travel Pipeline" class="project-image">
+                    <img src="../images/travel-insights-pipeline.png" alt="Travel Pipeline" class="project-image">
                     <div class="project-content">
                         <div class="project-date">Oct 26, 2024</div>
                         <h3 class="project-title">Travel Insights Data Pipeline</h3>
@@ -585,7 +692,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/web-scrapping.png" alt="YouTube Scraper" class="project-image">
+                    <img src="../images/youtube-trending-scraper.png" alt="YouTube Scraper" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 26, 2023</div>
                         <h3 class="project-title">YouTube Trending Scraper</h3>
@@ -599,7 +706,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/DataArchitecture_Mappa.jpg" alt="London Property" class="project-image">
+                    <img src="../images/london-property-architecture.jpg" alt="London Property" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 26, 2023</div>
                         <h3 class="project-title">London Property Master List</h3>
@@ -613,7 +720,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/Data-architecture.JPG" alt="Weather Data" class="project-image">
+                    <img src="../images/weather-data-architecture.jpg" alt="Weather Data" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 26, 2023</div>
                         <h3 class="project-title">Weather Data Collection System</h3>
@@ -633,7 +740,7 @@
             <h2 class="section-header">Data Analysis Projects</h2>
             <div class="projects-grid">
                 <article class="project-card">
-                    <img src="images/airline_analytics.png" alt="Airline Analytics" class="project-image">
+                    <img src="../images/airline-analytics-dashboard.png" alt="Airline Analytics" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 22, 2022</div>
                         <h3 class="project-title">Airline Analytics Dashboard</h3>
@@ -647,7 +754,7 @@
                 </article>
 
                 <article class="project-card">
-                    <img src="images/unicon.png" alt="Unicorn Companies" class="project-image">
+                    <img src="../images/unicorn-companies-analysis.png" alt="Unicorn Companies" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 12, 2022</div>
                         <h3 class="project-title">Unicorn Companies Dashboard</h3>
@@ -682,28 +789,28 @@
             });
         }
 
-        // Theme Toggle
+        // Theme Toggle — light is the default
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
+        const themeLabel = document.getElementById('themeLabel');
 
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
+        applyTheme(localStorage.getItem('theme') === 'dark' ? 'dark' : 'light');
 
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
+            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
         });
 
-        function updateThemeIcon(theme) {
-            if (theme === 'light') {
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+                themeLabel.textContent = 'Light mode';
             } else {
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeIcon.className = 'fas fa-moon';
+                themeLabel.textContent = 'Dark mode';
             }
         }
 
@@ -712,7 +819,7 @@
             const nav = document.querySelector('.nav-wrapper');
             if (window.scrollY > 50) {
                 nav.style.background = 'var(--nav-bg)';
-                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+                nav.style.boxShadow = 'none';
             } else {
                 nav.style.background = 'var(--nav-bg)';
                 nav.style.boxShadow = 'none';

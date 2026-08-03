@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Demand Signal Explorer - Ajeyomi Adedoyin Samuel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta name="theme-color" content="#0f766e">
+    <style>
+        /* Light is the default theme (applies even before JS runs) */
+        :root {
+            --primary-color: #0f766e;
+            --secondary-color: #115e59;
+            --accent-color: #0d9488;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --card-bg: #f3f5f7;
+            --text-secondary: #4b5563;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --on-accent: #ffffff;
+            --border-color: rgba(15, 118, 110, 0.18);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #14b8a6;
+            --secondary-color: #0f766e;
+            --accent-color: #2dd4bf;
+            --text-color: #f1f5f9;
+            --bg-color: #0b1220;
+            --card-bg: #16202e;
+            --text-secondary: #94a3b8;
+            --nav-bg: rgba(11, 18, 32, 0.95);
+            --on-accent: #ffffff;
+            --border-color: rgba(45, 212, 191, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--primary-color);
+            color: var(--on-accent);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .home-button:hover {
+            background: var(--secondary-color);
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.45rem 0.85rem;
+            border-radius: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 6rem auto 2rem;
+            padding: 0 1.5rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .case-hero h1 {
+            font-size: 2.4rem;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+        }
+
+        .case-role {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .case-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 1.25rem 0 1.75rem;
+        }
+
+        .case-stack span {
+            font-size: 0.74rem;
+            font-weight: 600;
+            padding: 0.28rem 0.7rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .case-shot {
+            width: 100%;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            display: block;
+            margin-bottom: 2.5rem;
+        }
+
+        .case-body {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.75;
+            max-width: 78ch;
+        }
+
+        /* Flush on both edges; hyphenation keeps justification from opening
+           up rivers of whitespace between words */
+        .case-body p,
+        .case-lede {
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+
+        /* Short lines justify badly, so leave narrow screens ragged-right */
+        @media (max-width: 600px) {
+
+            .case-body p,
+            .case-lede {
+                text-align: left;
+                hyphens: manual;
+            }
+        }
+
+        .case-lede {
+            font-size: 1.12rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .case-body h2 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin: 2.25rem 0 0.5rem;
+        }
+
+        .case-body p {
+            margin-bottom: 0.85rem;
+        }
+
+        .case-body strong {
+            color: var(--text-color);
+        }
+
+        .case-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 2.5rem 0 1rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .case-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            background: var(--primary-color);
+            color: var(--on-accent);
+            font-weight: 700;
+            font-size: 0.92rem;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .case-link:hover {
+            background: var(--secondary-color);
+        }
+
+        .case-link.secondary {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--accent-color);
+        }
+
+        .case-link.secondary:hover {
+            background: var(--primary-color);
+            color: var(--on-accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            background: var(--card-bg);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 0.85rem 1.25rem;
+            }
+
+            .case-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .case-body {
+                font-size: 0.95rem;
+            }
+
+            .case-body h2 {
+                font-size: 1.08rem;
+            }
+
+            .case-lede {
+                font-size: 1rem;
+                padding-left: 0.75rem;
+            }
+
+            .case-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            main {
+                margin-top: 5.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-wrapper">
+        <nav>
+            <a href="../projects.html" class="home-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>All Projects</span>
+            </a>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark mode">
+                    <i class="fas fa-moon"></i>
+                    <span id="themeLabel">Dark mode</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <p class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../projects.html">Projects</a> / Demand Signal
+            Explorer</p>
+
+        <div class="case-hero">
+            <h1>Demand Signal Explorer — Catalyst Lab Portal</h1>
+            <p class="case-role">Data Engineer &middot; International Water Management Institute (IWMI)
+                &middot; 2025</p>
+            <div class="case-stack">
+                <span>Python</span><span>AI / LLM extraction</span><span>Leaflet</span><span>ETL</span>
+                <span>Policy NLP</span><span>Geospatial</span><span>Data harmonisation</span>
+            </div>
+        </div>
+
+        <img src="../../images/demand-signal-explorer.png" alt="Demand Signal Explorer interactive map and signal counts"
+            class="case-shot">
+
+        <div class="case-body">
+            <p class="case-lede">The Catalyst Lab Portal turns scattered policy documents and secondary data into
+                evidence-backed demand signals that CGIAR Centers and the Science Program Accelerator can actually act
+                on. I built the data engineering and AI layer that produces those signals, and the explorer that makes
+                them navigable.</p>
+
+            <h2>The problem</h2>
+            <p>Demand for agricultural research doesn't arrive as a dataset. It's buried in national policy documents,
+                strategy papers, government reports, NGO assessments, and publications from international
+                organisations — thousands of pages, in different formats, across many countries. Someone deciding where
+                to direct a research programme had no way to see that demand as evidence, only as anecdote.</p>
+
+            <h2>Harvesting the sources</h2>
+            <p>I built the ingestion layer that harvests secondary data from across that landscape — governments, NGOs,
+                and international organisations — and normalises wildly different document and data formats into one
+                consistent structure. Each source keeps its provenance, so every signal downstream can be traced back
+                to the document it came from.</p>
+
+            <h2>Extracting demand signals with AI</h2>
+            <p>The core of the system is the extraction pipeline. Rather than keyword search, it uses AI to read policy
+                and programme documents and pull out <strong>demand signals</strong> — concrete statements of need —
+                then enriches each one with the country, domain, and CGIAR impact area it belongs to, and scores it by
+                priority. That turns unstructured text into a queryable evidence base of
+                <strong>380+ signals across the covered countries</strong>, classified into high, medium, and low
+                priority.
+            </p>
+
+            <h2>Making it explorable</h2>
+            <p>Evidence nobody can navigate is evidence nobody uses. The explorer puts the signals on an interactive
+                map where each country is scaled by signal volume, so the geography of demand is visible at a glance,
+                with filtering by domain and CGIAR impact area underneath. Click a country and you drill from the
+                continental view into that country's specific signals, each one linked back to its source.</p>
+
+            <h2>The wider portal</h2>
+            <p>The explorer sits inside the Catalyst Lab Portal alongside country profiles, innovations, briefs and
+                reports, a data explorer, and a data library — with a submission route so the evidence base keeps
+                growing rather than going stale after launch.</p>
+
+            <div class="case-links">
+                <a class="case-link" href="https://catalyst-lab-prototype.lovable.app" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fas fa-window-maximize"></i> Open the Demand Signal Explorer
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Design: Claude AI | Enhanced by Samuel</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const themeLabel = document.getElementById('themeLabel');
+
+        applyTheme(localStorage.getItem('theme') === 'dark' ? 'dark' : 'light');
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+                themeLabel.textContent = 'Light mode';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                themeLabel.textContent = 'Dark mode';
+            }
+        }
+    </script>
+</body>
+
+</html>
