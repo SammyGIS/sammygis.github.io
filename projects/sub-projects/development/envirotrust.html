@@ -328,7 +328,7 @@
             <h1>Envirotrust — Pan-European Climate Risk Platform</h1>
             <p class="case-role">Geospatial Data Engineer &middot; Envirotrust, Germany &middot; June 2025 - Present</p>
             <div class="case-stack">
-                <span>FastAPI</span><span>Zarr</span><span>COG</span><span>Parquet</span><span>Xarray</span>
+                <span>FastAPI</span><span>Zarr</span><span>COG</span><span>Parquet</span><span>NetCDF</span><span>GDAL/OGR</span><span>Xarray</span>
                 <span>DuckDB</span><span>Titiler</span><span>Docker</span><span>AWS</span><span>GitHub Actions</span>
             </div>
         </div>
@@ -341,6 +341,22 @@
                 people see is a map; the part that makes it possible is the data engineering underneath it. As the data
                 engineer on the project, these were mine to decide.</p>
 
+            <h2>What the raw data actually looks like</h2>
+            <p>The inputs are nothing like a clean dataset. Climate variables arrive as long
+                <strong>NetCDF</strong> time series; regional flood and hazard data comes from separate authorities
+                across the German federal states, each publishing on its own schedule; and individual sources run to
+                <strong>20, 30, 40 GB</strong> apiece. Every provider uses its own projection, its own spatial
+                resolution, and its own conventions, and the climate data multiplies again across
+                <strong>RCP scenarios</strong>, so the same variable exists several times over for different emissions
+                pathways.
+            </p>
+            <p>Before any of it can be modelled it has to be made comparable. I built the harmonisation layer that
+                reprojects and resamples every source onto one common grid using <strong>GDAL/OGR</strong>, aligns the
+                time axes, and rewrites the lot into a single standardised format the rest of the system can assume.
+                Getting this right is most of the job &mdash; a risk model that silently mixes projections produces
+                confident, wrong answers.
+            </p>
+
             <h2>Choosing the storage formats</h2>
             <p>Climate and hazard data arrives as huge multi-dimensional rasters and long tabular histories, and loading
                 it into a conventional spatial database would have meant paying for a large always-on server just to
@@ -348,6 +364,15 @@
                 multi-dimensional climate cubes, <strong>COG</strong> for the imagery and hazard layers, and
                 <strong>Parquet</strong> for the tabular side. All three are readable directly from object storage by
                 byte range, so a request pulls only the chunk it needs rather than the whole file.
+            </p>
+            <p>That meant a conversion pass over everything. The NetCDF time series were rewritten to
+                <strong>Zarr</strong> and deliberately <strong>chunked</strong> along the axes the API actually queries,
+                so a request for one location over one time window reads a handful of chunks instead of opening a
+                40 GB file. Rasters became COGs with overviews, and the vector side &mdash; including some very large
+                shapefiles &mdash; was converted to <strong>Parquet</strong>. Everything is then read
+                <strong>lazily</strong>: the pipeline describes the computation first and only pulls the bytes it needs
+                when the result is actually requested, which is what makes 40 GB sources workable without a 40 GB
+                machine.
             </p>
 
             <h2>Query and processing layer</h2>
@@ -365,6 +390,8 @@
             <p>The endpoint lets property owners and real estate professionals pass a location and instantly get back
                 the climate risk attached to that land or property — wildfire, flood, heat, and wind — turning the whole
                 pipeline into a single question a non-technical user can ask.</p>
+            <p>I also built the <strong>authentication</strong> layer around it, so access is controlled and requests
+                are attributable rather than the API sitting open to anyone who finds the URL.</p>
 
             <h2>Infrastructure and delivery</h2>
             <p>Everything is containerised with <strong>Docker</strong> and runs on <strong>AWS</strong> — S3 for the
@@ -378,6 +405,9 @@
                 projection, resolution, and update cadence, and aggregate it to the risk parameters the scenario models
                 actually consume. The aggregation strategy was designed around minimising what has to move to the cloud
                 — reduce early, transfer little, model fast.</p>
+            <p>Run end to end, that turns tens of gigabytes of mismatched NetCDF, shapefiles, and rasters from separate
+                authorities into one queryable, analysis-ready layer that answers a location request in the time it
+                takes a map to pan.</p>
 
             <div class="case-links">
                 <a class="case-link" href="https://envirotrust.eu/" target="_blank" rel="noopener noreferrer">
@@ -392,7 +422,7 @@
     </main>
 
     <footer>
-        <p>Design: Claude AI | Enhanced by Samuel</p>
+        <p>Design and Content: Ajeyomi Adedoyin Samuel | Enhanced: Claude AI</p>
     </footer>
 
     <script>
