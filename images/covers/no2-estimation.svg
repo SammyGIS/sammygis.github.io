@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" width="640" height="440" role="img" aria-label="Ground-Level NO2 Estimation">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b3b39"/><stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <clipPath id="c"><rect width="640" height="440"/></clipPath>
+  </defs>
+  <rect width="640" height="440" fill="url(#bg)"/>
+  <g clip-path="url(#c)">
+<circle cx="505" cy="296" r="20" fill="#fff" opacity="0.12" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="100" cy="66" r="18" fill="#fff" opacity="0.10" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="607" cy="393" r="10" fill="#fff" opacity="0.22" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="228" cy="80" r="9" fill="#fff" opacity="0.13" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="392" cy="264" r="14" fill="#fff" opacity="0.23" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="597" cy="112" r="6" fill="#fff" opacity="0.19" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="39" cy="126" r="9" fill="#fff" opacity="0.15" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="250" cy="118" r="5" fill="#fff" opacity="0.14" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="189" cy="321" r="13" fill="#fff" opacity="0.28" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="231" cy="227" r="22" fill="#fff" opacity="0.11" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="78" cy="298" r="25" fill="#fff" opacity="0.21" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="537" cy="238" r="8" fill="#fff" opacity="0.22" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="404" cy="161" r="21" fill="#fff" opacity="0.15" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="435" cy="162" r="15" fill="#fff" opacity="0.23" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="41" cy="220" r="8" fill="#fff" opacity="0.20" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="220" cy="55" r="20" fill="#fff" opacity="0.30" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="213" cy="66" r="24" fill="#fff" opacity="0.22" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="432" cy="148" r="15" fill="#fff" opacity="0.09" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="73" cy="307" r="19" fill="#fff" opacity="0.22" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="350" cy="366" r="6" fill="#fff" opacity="0.25" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="166" cy="97" r="25" fill="#fff" opacity="0.23" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="135" cy="193" r="25" fill="#fff" opacity="0.23" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="226" cy="381" r="21" fill="#fff" opacity="0.16" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="429" cy="227" r="12" fill="#fff" opacity="0.27" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="296" cy="221" r="4" fill="#fff" opacity="0.13" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="249" cy="359" r="14" fill="#fff" opacity="0.26" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="464" cy="216" r="18" fill="#fff" opacity="0.17" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="168" cy="341" r="16" fill="#fff" opacity="0.26" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="581" cy="136" r="10" fill="#fff" opacity="0.27" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="101" cy="72" r="18" fill="#fff" opacity="0.17" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="363" cy="298" r="11" fill="#fff" opacity="0.28" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="566" cy="359" r="24" fill="#fff" opacity="0.09" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="497" cy="77" r="21" fill="#fff" opacity="0.14" stroke="#fff" stroke-opacity="0.25"/>
+<circle cx="54" cy="92" r="8" fill="#fff" opacity="0.25" stroke="#fff" stroke-opacity="0.25"/>
+  </g>
+</svg>

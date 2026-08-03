@@ -13,6 +13,8 @@ projects/projects.html              Full project catalogue, 4 categories
 projects/sub-projects/<category>/   Deep-dive case studies, grouped by the catalogue
                                     category they belong to (e.g. development/)
 images/                             Every image, single source of truth
+images/covers/                      Generated SVG cover art for projects with no screenshot
+tools-generate-covers.py            Regenerates that cover art
 cv/                                 Hosted CV PDF (linked from the hero and share menu)
 favicon.svg                         Initials mark, linked from all pages
 ```
@@ -66,8 +68,12 @@ boxes. Verify an icon exists in 6.0 before using it, or bump the CDN version on 
    (`nigeria-forest-watch.png`, not `img_04.png`).
 2. Add an `<article class="project-card">` to the right section of
    `projects/projects.html`: `gis`, `backend` (titled "Development"), `engineering`, `analysis`.
-3. If there is no screenshot, use `<div class="project-cover"><i class="fas fa-..."></i></div>`
-   instead of `<img>` — never leave a broken image or a dead `#` link.
+3. If there is no screenshot, generate cover art instead of shipping a bare icon: add an entry to
+   `PROJECTS` in `tools-generate-covers.py`, run it, and point the card at
+   `../images/covers/<slug>.svg`. Motifs available: `contours`, `raster`, `basin`, `hexbin`,
+   `flow`, `points` — pick one that matches what the project actually does. Artwork is
+   deterministic, so the same title always regenerates identically.
+   Never leave a broken image or a dead `#` link.
 4. Optionally mirror it into the Projects grid on `index.html` (that grid shows highlights only).
 
 ### A case study page
