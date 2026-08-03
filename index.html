@@ -10,29 +10,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="theme-color" content="#0f766e">
     <style>
+        /* Light is the default theme (applies even before JS runs) */
         :root {
-            --primary-color: #3b82f6;
-            --secondary-color: #1e40af;
-            --accent-color: #60a5fa;
-            --text-color: #f8fafc;
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --white: #ffffff;
-            --text-secondary: #94a3b8;
-            --nav-bg: rgba(15, 23, 42, 0.95);
+            --primary-color: #0f766e;
+            --secondary-color: #115e59;
+            --accent-color: #0d9488;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --card-bg: #f3f5f7;
+            --text-secondary: #4b5563;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            /* Text that sits on top of a filled/coloured surface — always light */
+            --on-accent: #ffffff;
+            --border-color: rgba(15, 118, 110, 0.18);
+            --hero-gradient: linear-gradient(135deg, #0b3b39, #0f766e);
         }
 
-        [data-theme="light"] {
-            --primary-color: #2563eb;
-            --secondary-color: #1d4ed8;
-            --accent-color: #3b82f6;
-            --text-color: #1e293b;
-            --bg-color: #ffffff;
-            --card-bg: #f1f5f9;
-            --white: #0f172a;
-            --text-secondary: #475569;
-            --nav-bg: rgba(255, 255, 255, 0.95);
+        [data-theme="dark"] {
+            --primary-color: #14b8a6;
+            --secondary-color: #0f766e;
+            --accent-color: #2dd4bf;
+            --text-color: #f1f5f9;
+            --bg-color: #0b1220;
+            --card-bg: #16202e;
+            --text-secondary: #94a3b8;
+            --nav-bg: rgba(11, 18, 32, 0.95);
+            --on-accent: #ffffff;
+            --border-color: rgba(45, 212, 191, 0.25);
+            --hero-gradient: linear-gradient(135deg, #08201f, #0f766e);
         }
 
         * {
@@ -59,42 +67,70 @@
             background: var(--nav-bg);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+            border-bottom: 1px solid var(--border-color);
             transition: background 0.3s ease;
         }
 
         nav {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.85rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-color);
-            text-decoration: none;
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.1rem;
             list-style: none;
+            align-items: center;
+            /* Stay on a single header line on desktop */
+            flex-wrap: nowrap;
+            justify-content: flex-end;
         }
 
         .nav-links a {
             color: var(--text-color);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease, background 0.2s ease;
             font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.35rem 0.15rem;
+            border-bottom: 2px solid transparent;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
             color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        /* "All Projects" call-out in the nav */
+        .nav-links a.nav-cta {
+            background: var(--primary-color);
+            color: var(--on-accent);
+            padding: 0.45rem 0.9rem;
+            border-radius: 0.5rem;
+            border-bottom: none;
+        }
+
+        .nav-links a.nav-cta:hover {
+            background: var(--secondary-color);
+            color: var(--on-accent);
+        }
+
+        /* Anchor targets clear the fixed navbar */
+        section[id] {
+            scroll-margin-top: 90px;
         }
 
         .mobile-menu-btn {
@@ -103,24 +139,29 @@
             border: none;
             color: var(--text-color);
             font-size: 1.5rem;
+            line-height: 1;
+            padding: 0.35rem 0.5rem;
             cursor: pointer;
         }
 
         .theme-toggle {
-            background: none;
-            border: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             color: var(--text-color);
-            font-size: 1.2rem;
+            font-size: 0.9rem;
+            font-family: inherit;
+            font-weight: 500;
             cursor: pointer;
-            padding: 0.5rem;
-            display: flex;
+            padding: 0.45rem 0.85rem;
+            border-radius: 2rem;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
-            transform: scale(1.1);
+            border-color: var(--accent-color);
             color: var(--accent-color);
         }
 
@@ -129,16 +170,17 @@
             min-height: 0vh;
             display: flex;
             align-items: center;
-            padding: 4rem 2rem 2rem;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 64, 175, 0.9));
+            padding: 6rem 2rem 3rem;
+            background: var(--hero-gradient);
         }
 
         .hero-content {
-            max-width: 1200px;
+            max-width: 1280px;
+            width: 100%;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
             align-items: center;
         }
 
@@ -149,9 +191,13 @@
             color: #ffffff;
         }
 
+        .hero-text .greeting,
+        .hero-text .subtitle {
+            color: #a7f3ea;
+        }
+
         .hero-text .subtitle {
             font-size: 1.1rem;
-            color: var(--accent-color);
             margin-bottom: 1.5rem;
         }
 
@@ -168,7 +214,7 @@
         }
 
         .social-links a:hover {
-            color: var(--accent-color);
+            color: #a7f3ea;
             transform: translateY(-3px);
         }
 
@@ -180,32 +226,38 @@
 
         .btn {
             padding: 0.75rem 1.5rem;
-            border: 2px solid var(--accent-color);
+            border: 2px solid #ffffff;
             border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.08);
             color: #ffffff;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
             transition: all 0.3s ease;
             display: inline-block;
         }
 
         .btn:hover {
-            background-color: var(--accent-color);
+            background-color: #ffffff;
+            color: var(--secondary-color);
             transform: translateY(-2px);
         }
 
-        /* Reduced profile image size */
+        /* Profile image sits flush to the right, no shadow or glow */
+        .hero-image {
+            justify-self: end;
+        }
+
         .hero-image img {
+            display: block;
             width: 100%;
             max-width: 280px;
             border-radius: 1rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
         /* Section Styles - Reduced padding */
         section {
             padding: 2rem 1.5rem;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
         }
 
@@ -277,10 +329,16 @@
             display: inline-block;
             padding: 0.5rem 1rem;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--white);
+            color: var(--on-accent);
             text-decoration: none;
             border-radius: 0.5rem;
             font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .project-link:hover {
+            background: var(--secondary-color);
+            color: var(--on-accent);
         }
 
         /* Show More Button */
@@ -291,17 +349,20 @@
 
         .show-more-btn {
             padding: 0.75rem 2rem;
-            background: var(--accent-color);
-            color: var(--white);
+            background: var(--primary-color);
+            color: var(--on-accent);
             border: none;
             border-radius: 0.5rem;
             font-size: 1rem;
+            font-family: inherit;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .show-more-btn:hover {
-            background: var(--primary-color);
+            background: var(--secondary-color);
+            color: var(--on-accent);
             transform: translateY(-2px);
         }
 
@@ -371,7 +432,7 @@
         .gallery-title {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
-            color: var(--white);
+            color: var(--text-color);
         }
 
         .gallery-description {
@@ -432,9 +493,130 @@
             margin-bottom: 0.5rem;
         }
 
+        .timeline-company {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 0.6rem;
+        }
+
+        .timeline-company a {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
         .timeline-description {
             color: var(--text-secondary);
             font-size: 0.9rem;
+        }
+
+        /* The global reset strips list padding — put it back so bullets
+           line up under the heading instead of hanging outside the card */
+        ul.timeline-description {
+            list-style: disc outside;
+            padding-left: 1.15rem;
+            margin: 0;
+        }
+
+        ul.timeline-description li {
+            margin-bottom: 0.4rem;
+            padding-left: 0.15rem;
+        }
+
+        ul.timeline-description li::marker {
+            color: var(--accent-color);
+        }
+
+        ul.timeline-description li:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-description a {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .timeline-description a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Publications */
+        .section-intro {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            max-width: 70ch;
+            margin: -0.75rem auto 1.75rem;
+        }
+
+        .section-intro a {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .pub-list {
+            list-style: none;
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        .pub-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--primary-color);
+            border-radius: 0.5rem;
+            padding: 1rem 1.25rem;
+        }
+
+        .pub-title {
+            display: block;
+            font-weight: 600;
+            font-size: 1rem;
+            line-height: 1.45;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .pub-title:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .pub-authors {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 0.35rem;
+        }
+
+        .pub-authors strong {
+            color: var(--accent-color);
+        }
+
+        .pub-meta {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .pub-venue {
+            font-style: italic;
+        }
+
+        .pub-cites {
+            margin-left: auto;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 2rem;
+            background: var(--primary-color);
+            color: var(--on-accent);
         }
 
         /* Footer */
@@ -446,7 +628,47 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 1400px) {
+            nav {
+                padding: 0.85rem 1.25rem;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            .nav-links a.nav-cta {
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        @media (max-width: 1150px) {
+            .nav-links {
+                gap: 0.6rem;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Below this width the full link row can no longer fit on one line,
+           so it collapses into the menu button */
+        @media (max-width: 1000px) {
+            .theme-toggle span {
+                display: inline;
+            }
+
+            /* Toggle on the left, menu button on the right, on one tidy row */
+            .nav-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
             .nav-links {
                 opacity: 0;
                 visibility: hidden;
@@ -456,11 +678,29 @@
                 right: 0;
                 background: var(--nav-bg);
                 flex-direction: column;
-                padding: 2rem;
+                padding: 1.5rem 2rem 2rem;
+                gap: 0.25rem;
                 text-align: center;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
                 transition: all 0.3s ease;
                 transform: translateY(-10px);
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.75rem 0;
+                font-size: 1rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links a.nav-cta {
+                margin-top: 0.75rem;
+                border-bottom: none;
             }
 
             .nav-links.active {
@@ -472,7 +712,9 @@
             .mobile-menu-btn {
                 display: block;
             }
+        }
 
+        @media (max-width: 768px) {
             .hero {
                 padding: 6rem 1.5rem 3rem;
             }
@@ -491,6 +733,7 @@
                 order: -1;
                 display: flex;
                 justify-content: center;
+                justify-self: center;
             }
 
             .hero-image img {
@@ -519,6 +762,35 @@
 
             .timeline-item::before {
                 left: -2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            /* Citation pill drops below the venue line instead of being
+               squeezed against it */
+            .pub-cites {
+                margin-left: 0;
+            }
+
+            .pub-title {
+                font-size: 0.95rem;
+            }
+
+            .pub-item {
+                padding: 0.9rem 1rem;
+            }
+
+            .section-intro {
+                font-size: 0.86rem;
+            }
+
+            .timeline-content {
+                padding: 1rem;
+            }
+
+            ul.timeline-description {
+                padding-left: 1rem;
             }
         }
 
@@ -653,7 +925,6 @@
             background: var(--card-bg);
             border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .carousel-main {
@@ -681,7 +952,7 @@
             left: 0;
             right: 0;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-            color: var(--white);
+            color: #ffffff;
             padding: 2rem 1.5rem 1rem;
             font-size: 1rem;
             line-height: 1.5;
@@ -692,7 +963,7 @@
             top: 20px;
             right: 20px;
             background: rgba(0, 0, 0, 0.7);
-            color: var(--white);
+            color: #ffffff;
             padding: 0.5rem 1rem;
             border-radius: 2rem;
             font-size: 0.9rem;
@@ -704,7 +975,7 @@
             top: 50%;
             transform: translateY(-50%);
             background: rgba(0, 0, 0, 0.6);
-            color: var(--white);
+            color: #ffffff;
             border: none;
             width: 50px;
             height: 50px;
@@ -832,7 +1103,6 @@
             transition: all 0.3s ease;
             z-index: 999;
             border: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .back-to-top.show {
@@ -854,22 +1124,27 @@
     <!-- Navigation -->
     <div class="nav-wrapper">
         <nav>
-            <a href="#home" class="logo">AAS</a>
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
                     <i class="fas fa-moon"></i>
+                    <span id="themeLabel">Dark mode</span>
                 </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#development" class="nav-link">Skills</a></li>
-                <li><a href="#experience" class="nav-link">Experiences</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#conferences" class="nav-link">Conferences</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#conferences" class="nav-link">Talks</a></li>
                 <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#awards" class="nav-link">Awards</a></li>
+                <li><a href="projects/projects.html" class="nav-link nav-cta">All Projects</a></li>
             </ul>
         </nav>
     </div>
@@ -883,7 +1158,7 @@
                 <p class="subtitle">Geospatial Data Scientist | Developer</p>
 
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi-83b80914b/" target="_blank"
+                    <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi/" target="_blank"
                         aria-label="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
@@ -905,7 +1180,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="img/profile.jpg" alt="Ajeyomi Adedoyin Samuel">
+                <img src="images/profile.jpg" alt="Ajeyomi Adedoyin Samuel">
             </div>
         </div>
     </section>
@@ -918,32 +1193,128 @@
             <div class="dev-card">
                 <div class="dev-icon"><i class="fas fa-satellite"></i></div>
                 <h3 class="dev-title">GIS & Remote Sensing</h3>
-                <p class="dev-description">Google Earth Engine, QGIS, ArcGIS, Sentinel, Landsat, Leaflet, Mapbox</p>
+                <p class="dev-description">Google Earth Engine, QGIS, ArcGIS, PostGIS, Sentinel, Landsat, UAV imagery,
+                    Leaflet, Mapbox, Titiler, spatial statistics &amp; geostatistics</p>
             </div>
 
             <div class="dev-card">
                 <div class="dev-icon"><i class="fas fa-code"></i></div>
-                <h3 class="dev-title">Developer</h3>
-                <p class="dev-description">Python, R, JavaScript, SQL, PostgreSQL, Docker</p>
+                <h3 class="dev-title">Software Development</h3>
+                <p class="dev-description">Python, R, JavaScript, SQL, FastAPI, React, REST API design, PostgreSQL,
+                    Docker, Git &amp; GitHub</p>
             </div>
 
             <div class="dev-card">
                 <div class="dev-icon"><i class="fas fa-brain"></i></div>
-                <h3 class="dev-title">ML, Analytics & Engineering</h3>
-                <p class="dev-description">Random Forest, TensorFlow, Tableau, Power BI, AWS, ETL Pipelines, Airflow</p>
+                <h3 class="dev-title">ML & AI</h3>
+                <p class="dev-description">Deep learning, YOLO object detection, computer vision, TensorFlow, Random
+                    Forest, LLM-based extraction, AI-assisted development (Claude, Antigravity)</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-database"></i></div>
+                <h3 class="dev-title">Data Engineering</h3>
+                <p class="dev-description">ETL &amp; ELT pipelines, Airflow, Xarray, DuckDB, cloud-native formats
+                    (Zarr, COG, Parquet), web scraping, data harmonisation</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-server"></i></div>
+                <h3 class="dev-title">Cloud & Infrastructure</h3>
+                <p class="dev-description">AWS (S3, Lambda, EC2), MinIO object storage, Docker, CI/CD with GitHub
+                    Actions, infrastructure management</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-chart-column"></i></div>
+                <h3 class="dev-title">Analytics & Visualisation</h3>
+                <p class="dev-description">Dashboard design, Tableau, Power BI, Metabase, spatial dashboards,
+                    reporting for non-technical stakeholders</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-diagram-project"></i></div>
+                <h3 class="dev-title">Technical Project Management</h3>
+                <p class="dev-description">End-to-end delivery ownership, technical direction &amp; architecture
+                    decisions, tool and framework selection, agile iteration, cross-functional and remote team
+                    leadership, stakeholder management, AI-accelerated delivery</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-users"></i></div>
+                <h3 class="dev-title">Soft Skills</h3>
+                <p class="dev-description">Team player, presentation &amp; public speaking, technical communication,
+                    problem solving, stakeholder management, remote &amp; cross-cultural collaboration, mentoring,
+                    continuous learning</p>
             </div>
         </div>
+    </section>
 
-        <!-- Experience Section -->
-        <section id="experience">
+    <!-- Experience Section -->
+    <section id="experience">
             <h2 class="section-title">Relevant Experiences</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
+                        <div class="timeline-date">March 2025 - Present (Remote)</div>
+                        <h3 class="timeline-title">Data Engineer</h3>
+                        <h4 class="timeline-company">International Water Management Institute (IWMI) <a
+                                href="https://www.iwmi.cgiar.org/" target="_blank"
+                                rel="noopener noreferrer">(iwmi.cgiar.org)</a></h4>
+                        <ul class="timeline-description">
+                            <li>Data engineer on IWMI's Market Intelligence work, delivering intelligence support
+                                across CGIAR Centers and the CGIAR Science Program Accelerator</li>
+                            <li>Own the data harvesting layer end to end — sourcing secondary data from governments,
+                                NGOs, and international organisations, and bringing it into a single analysis-ready
+                                foundation</li>
+                            <li>Built the policy and document ingestion pipeline that mines policy documents and
+                                unstructured text for demand signals, turning scattered publications into structured,
+                                queryable evidence</li>
+                            <li>Designed and built the <strong><a href="https://catalyst-lab-prototype.lovable.app"
+                                        target="_blank" rel="noopener noreferrer">Demand Signal Explorer</a></strong>
+                                for the Accelerator, an
+                                AI-integrated tool that surfaces and interrogates extracted demand signals for
+                                decision makers</li>
+                            <li>Engineered the AI components — extraction, enrichment, and retrieval — that convert raw
+                                multi-source data into usable market and policy intelligence</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 2025 - September 2025 (Contract)</div>
+                        <h3 class="timeline-title">Technical Project Manager - MSDAT GIS</h3>
+                        <h4 class="timeline-company">eHealth4everyone, Abuja, Nigeria <a
+                                href="https://ehealth4everyone.com/" target="_blank"
+                                rel="noopener noreferrer">(ehealth4everyone.com)</a></h4>
+                        <ul class="timeline-description">
+                            <li>Technical lead for <strong>MSDAT GIS</strong>, the geospatial arm of Nigeria's
+                                Multi-Source Data Analytics and Triangulation platform — a national-scale system for
+                                health planning, programme targeting, and spatial decision support</li>
+                            <li>Owned the technical direction across the full stack: tool selection, framework,
+                                architecture, backend, frontend, design system, and styling — driving the decisions
+                                while building consensus with the team</li>
+                            <li>Designed and integrated a suite of <strong>10+ analysis tools</strong> into a single
+                                interface, covering heat maps, clustering and hotspot detection, choropleth and
+                                thematic mapping, buffer and proximity analysis, spatial querying, layer overlay, and
+                                on-the-fly indicator visualisation</li>
+                            <li>Connected the GIS layer to MSDAT's multi-source health indicator data, so users can move
+                                from national figures down to state and LGA-level spatial analysis in one workflow</li>
+                            <li>Personally built the bulk of the frontend GIS and visualisation layer, from map
+                                interactions and legends to the analysis panels</li>
+                            <li>Used Claude and Anthropic's AI tooling throughout implementation, driving roughly 70% of
+                                the design and frontend build and compressing delivery from months to weeks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
                         <div class="timeline-date">June 2025 - Present (Remote)</div>
                         <h3 class="timeline-title">Geospatial Data Engineer</h3>
-                        <h4 class="timeline-company">Envirotrust, Germany <a href="https://envirotrust.eu/"
-                                target="_blank" rel="noopener noreferrer">(envirotrust.eu)</a></h4>
+                        <h4 class="timeline-company">Envirotrust, Germany <a
+                                href="projects/projects.html#envirotrust">(read the engineering decisions)</a></h4>
                         <ul class="timeline-description">
                             <li>Built scalable ETL pipelines and RESTful APIs to process and serve large geospatial
                                 datasets
@@ -966,6 +1337,42 @@
                                 optimizing
                                 data
                                 transfer to cloud platforms for advanced scenario modeling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">August 2025 - Present (Remote)</div>
+                        <h3 class="timeline-title">Geospatial | Data Engineer | Data Analyst</h3>
+                        <h4 class="timeline-company">Spatialnode (Freelance), Delaware, United States <a
+                                href="https://www.spatialnode.net/" target="_blank"
+                                rel="noopener noreferrer">(spatialnode.net)</a></h4>
+                        <ul class="timeline-description">
+                            <li>Project-based freelance engagements — brought in as data engineer, data analyst, or
+                                data scientist depending on what each project needs</li>
+                            <li>Projects delivered: <strong>IWMI Demand Intelligence Information System (DIIS)</strong>,
+                                <strong><a href="https://mdii.iwmi.org/" target="_blank" rel="noopener noreferrer">IWMI
+                                        Multidimensional Digital Inclusiveness Index (MDII)</a></strong> — including
+                                its <a href="https://mdii.iwmi.org/#dashboard" target="_blank"
+                                    rel="noopener noreferrer">scoring dashboard</a> — and currently the
+                                <strong>SFL Location Intelligence</strong> project
+                            </li>
+                            <li>Delivered end-to-end data and analytics solutions for decision support across each
+                                engagement</li>
+                            <li>Handled the full data lifecycle across both projects, including data ingestion,
+                                cleaning, preprocessing, transformation, validation, and storage using DAX, Python, and
+                                Azure Functions</li>
+                            <li>Built and maintained CI/CD pipelines to automate data processing workflows, dashboard
+                                updates, and report refreshes, ensuring reliability and reproducibility</li>
+                            <li>Developed interactive Power BI dashboards and analytical reports, enabling
+                                evidence-based decision-making across Nigeria, Bangladesh, Ethiopia, and other
+                                countries</li>
+                            <li>Processed, standardized, and analyzed 10,000+ records from multi-source, unstructured,
+                                and semi-structured datasets, improving data quality and usability</li>
+                            <li>Extracted and structured critical indicators and insights from documents, and
+                                collaborated with stakeholders to define metrics, reporting requirements, and
+                                analytical outputs</li>
                         </ul>
                     </div>
                 </div>
@@ -1034,8 +1441,8 @@
         <!-- Education Section -->
         <section id="education">
             <h2 class="section-title">Education</h2>
-            <div class="timeline"></div>
-            <div class="timeline-item">
+            <div class="timeline">
+                <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-date">2016 - 2023</div>
                     <h3 class="timeline-title">Bachelor of Technology in Remote Sensing and GIS</h3>
@@ -1061,7 +1468,7 @@
             <div class="projects-grid" id="gisProjectsGrid">
                 <!-- Visible projects (first 3) -->
                 <div class="project-card">
-                    <img src="images/nigeria_forest.png" alt="Nigeria Forest Watch" class="project-image">
+                    <img src="images/nigeria-forest-watch.png" alt="Nigeria Forest Watch" class="project-image">
                     <div class="project-content">
                         <div class="project-date">April 1st, 2025</div>
                         <h3 class="project-title">Nigeria Forest Watch</h3>
@@ -1074,7 +1481,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="images/farm-watch.png" alt="FarmWatch" class="project-image">
+                    <img src="images/farmwatch-agric-monitoring.png" alt="FarmWatch" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 25th, 2024</div>
                         <h3 class="project-title">FarmWatch: Monitoring Agricultural Lands</h3>
@@ -1087,7 +1494,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="images/gee-app.png" alt="GEE Deforestation App" class="project-image">
+                    <img src="images/gee-deforestation-app.png" alt="GEE Deforestation App" class="project-image">
                     <div class="project-content">
                         <div class="project-date">February 25th, 2025</div>
                         <h3 class="project-title">GEE App for Monitoring Deforestation</h3>
@@ -1100,7 +1507,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="images/tree-dash.png" alt="Tree Monitoring" class="project-image">
+                    <img src="images/tree-health-dashboard.png" alt="Tree Monitoring" class="project-image">
                     <div class="project-content">
                         <div class="project-date">March 29th, 2025</div>
                         <h3 class="project-title">Monitoring Tree Health with Geospatial Technology</h3>
@@ -1114,7 +1521,7 @@
 
                 <!-- Hidden projects (initially) -->
                 <div class="project-card hidden">
-                    <img src="images/Predicted_SOC.jpg" alt="SOC Prediction" class="project-image">
+                    <img src="images/soil-organic-carbon-prediction.jpg" alt="SOC Prediction" class="project-image">
                     <div class="project-content">
                         <div class="project-date">March 22, 2025</div>
                         <h3 class="project-title">Soil Organic Carbon Prediction</h3>
@@ -1127,7 +1534,7 @@
                 </div>
 
                 <div class="project-card hidden">
-                    <img src="images/r-spatial.jpg" alt="Air Quality" class="project-image">
+                    <img src="images/air-quality-r-spatial.jpg" alt="Air Quality" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 22, 2022</div>
                         <h3 class="project-title">Air Quality Prediction Analysis</h3>
@@ -1142,6 +1549,123 @@
                 <a href="projects/projects.html" class="project-link" target="_blank">Show More
                     Project</a>
             </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications">
+            <h2 class="section-title">Publications</h2>
+            <p class="section-intro">Peer-reviewed research in remote sensing, soil carbon, land use change, and
+                geospatial statistics. <a href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en"
+                    target="_blank" rel="noopener noreferrer">Full profile on Google Scholar &rarr;</a></p>
+
+            <ol class="pub-list">
+                <li class="pub-item">
+                    <a class="pub-title" href="https://doi.org/10.1016/j.indic.2023.100248" target="_blank"
+                        rel="noopener noreferrer">Monitoring and predicting the influences of land use/land cover change
+                        on cropland characteristics and drought severity using remote sensing techniques</a>
+                    <p class="pub-authors">B.E. Taiwo, A.A. Kafy, <strong>A.A. Samuel</strong>, Z.A. Rahaman, O.E.
+                        Ayowole, M. Shahrier, et al.</p>
+                    <p class="pub-meta"><span class="pub-venue">Environmental and Sustainability Indicators</span>
+                        &middot; 18, 100248 &middot; 2023 <span class="pub-cites">105 citations</span></p>
+                </li>
+
+                <li class="pub-item">
+                    <a class="pub-title" href="https://doi.org/10.1007/s43621-024-00592-w" target="_blank"
+                        rel="noopener noreferrer">Soil organic carbon stocks as driven by land use in Mato Grosso State:
+                        the Brazilian Cerrado agricultural frontier</a>
+                    <p class="pub-authors">C. Nwaogu, B.E. Diagi, C.V. Ekweogu, <strong>A.S. Ajeyomi</strong>, C.C.
+                        Ejiogu, et al.</p>
+                    <p class="pub-meta"><span class="pub-venue">Discover Sustainability</span> &middot; 5(1), 382
+                        &middot; 2024 <span class="pub-cites">8 citations</span></p>
+                </li>
+
+                <li class="pub-item">
+                    <a class="pub-title"
+                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:9yKSN-GCB0IC"
+                        target="_blank" rel="noopener noreferrer">A geoinformation-based analysis of site suitability
+                        for dams in a rain-fed agricultural system in Nasarawa State, Nigeria</a>
+                    <p class="pub-authors">M.O. Ibitoye, <strong>A.S. Ajeyomi</strong></p>
+                    <p class="pub-meta"><span class="pub-venue">Journal of Sustainable Technology</span> &middot; 13(1),
+                        129-146 &middot; 2024 <span class="pub-cites">3 citations</span></p>
+                </li>
+
+                <li class="pub-item">
+                    <a class="pub-title"
+                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:qjMakFHDy7sC"
+                        target="_blank" rel="noopener noreferrer">Geostatistical modelling of urban heat island effect:
+                        analysing the relationship between land use patterns and land surface temperature in Lagos,
+                        Nigeria</a>
+                    <p class="pub-authors">J.O. Onyedikachi, O.A. Saheed, <strong>J.A. Samuel</strong>, A.F. Olufisayo,
+                        F.I. Adedamola</p>
+                    <p class="pub-meta"><span class="pub-venue">International Multidisciplinary Scientific GeoConference
+                            SGEM</span> &middot; 2024 <span class="pub-cites">3 citations</span></p>
+                </li>
+
+                <li class="pub-item">
+                    <a class="pub-title" href="https://arxiv.org/abs/2510.11048" target="_blank"
+                        rel="noopener noreferrer">Assessing the influence of locational suitability on the spatial
+                        distribution of household wealth in Bernalillo County, NM</a>
+                    <p class="pub-authors">O.J. Okeke, U.E. Nelson, C. Nwaogu, O.O. Oladoyin, E. Kubuafor, D. Baidoo,
+                        et al.</p>
+                    <p class="pub-meta"><span class="pub-venue">arXiv preprint arXiv:2510.11048</span> &middot; 2025
+                        <span class="pub-cites">1 citation</span>
+                    </p>
+                </li>
+
+                <li class="pub-item">
+                    <a class="pub-title"
+                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:d1gkVwhDpl0C"
+                        target="_blank" rel="noopener noreferrer">Soil carbon and land use dynamics in the greater part
+                        of Cerrado biome, Brazil</a>
+                    <p class="pub-authors">C. Nwaogu, E.R. Nwaiwu, B.E. Diagi, N.A. Umar, C.C. Uche, C. Ulor, et al.
+                    </p>
+                    <p class="pub-meta"><span class="pub-venue">E3S Web of Conferences</span> &middot; 557, 1-7 &middot;
+                        2024 <span class="pub-cites">1 citation</span></p>
+                </li>
+
+                <li class="pub-item">
+                    <a class="pub-title" href="https://cgspace.cgiar.org/items/71b3dcaa-c003-4d05-9ead-401a9d414bb9"
+                        target="_blank" rel="noopener noreferrer">The Multidimensional Digital Inclusiveness Index
+                        Scoring Dashboard (Version 2.0): A Tool for Visualizing Digital Inclusiveness and Innovation
+                        Performance within the CGIAR Framework</a>
+                    <p class="pub-authors">E.A. Jolaiya, B.O. Nejo, <strong>A.S. Ajeyomi</strong>, D. Olufemi, C.I.
+                        Martins, M. Garcia Andarcia</p>
+                    <p class="pub-meta"><span class="pub-venue">International Water Management Institute (IWMI)</span>
+                        &middot; Report &middot; 2026</p>
+                </li>
+
+                <li class="pub-item">
+                    <a class="pub-title"
+                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:W7OEmFMy1HYC"
+                        target="_blank" rel="noopener noreferrer">Differential impacts of nDSM fusion on pixel-based
+                        LULC classification using UAV RGB imagery in flood-prone Nigerian urban landscapes</a>
+                    <p class="pub-authors">B. Joshua, G.K. James, I.E. Bello, <strong>A.S. Ajeyomi</strong>, R.A. Idris,
+                        O.J. Okeke</p>
+                    <p class="pub-meta"><span class="pub-venue">International Journal of Advances in Signal and Image
+                            Sciences</span> &middot; 165-182 &middot; 2026</p>
+                </li>
+
+                <li class="pub-item">
+                    <a class="pub-title"
+                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:Y0pCki6q_DkC"
+                        target="_blank" rel="noopener noreferrer">A reclassification-based framework for vegetation
+                        greenness assessment across mixed landscapes and spatial extents</a>
+                    <p class="pub-authors"><strong>A.S. Ajeyomi</strong>, F.O. Abiala</p>
+                    <p class="pub-meta"><span class="pub-venue">Journal of Geography, Environment and Earth Science
+                            International</span> &middot; 30(2), 45-62 &middot; 2026</p>
+                </li>
+
+                <li class="pub-item">
+                    <a class="pub-title"
+                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:UeHWp8X0CEIC"
+                        target="_blank" rel="noopener noreferrer">The role of agriculture and environmental drivers on
+                        soil carbon in Brazil: a remote sensing, GIS, MLA, and geostatistical approach</a>
+                    <p class="pub-authors">C. Nwaogu, <strong>S.A. Ajeyomi</strong>, B.E. Diagi, E.R. Nwaiwu, C.J.
+                        Anyalewechi, B. Alabi, et al.</p>
+                    <p class="pub-meta"><span class="pub-venue">IEEE International Conference on Agrosystem Engineering
+                            &amp; Technology</span> &middot; 2024</p>
+                </li>
+            </ol>
         </section>
 
         <!-- Certifications Section -->
@@ -1215,7 +1739,7 @@
                 </button>
 
                 <div class="carousel-main">
-                    <img id="carousel-main-img" src="images/sdssn_webinar.jpeg" alt="Gallery Image">
+                    <img id="carousel-main-img" src="images/sdsn-webinar-spatial-stats.jpeg" alt="Gallery Image">
                     <div class="carousel-caption" id="carousel-caption">
                         Starter Pack: Spatial Stats Vs GeoStastistics
                     </div>
@@ -1242,7 +1766,7 @@
                 <article class="project-card">
                     <a href="https://docs.google.com/presentation/d/1bClXoH4JIaPFLSfEJd5eNfsJsEyf28iK/edit?slide=id.p2#slide=id.p2"
                         target="_blank" style="text-decoration: none; color: inherit;">
-                        <img src="images/emerging_hotspot.jpg" alt="HIV Spatial Analysis Presentation"
+                        <img src="images/hiv-emerging-hotspot-analysis.jpg" alt="HIV Spatial Analysis Presentation"
                             class="project-image">
                         <div class="project-content">
                             <div class="project-date">September 9th, 2025</div>
@@ -1262,7 +1786,7 @@
                 <article class="project-card">
                     <a href="https://docs.google.com/presentation/d/112LIzD-dVhk9BxHHsMVZ9byNUw8XqSnA/edit?usp=sharing&ouid=101881905014358549147&rtpof=true&sd=true"
                         target="_blank" style="text-decoration: none; color: inherit;">
-                        <img src="images/esri-uc-2023.jpg" alt="Young Scholar Poster" class="project-image">
+                        <img src="images/esri-uc-2023-young-scholar-poster.jpg" alt="Young Scholar Poster" class="project-image">
                         <div class="project-content">
                             <div class="project-date">June 2023</div>
                             <h3 class="project-title">ESRI UC Conference 2023 San Francisco (Virtual Attendee)</h3>
@@ -1282,7 +1806,7 @@
                 <article class="project-card">
                     <a href="https://code.earthengine.google.com/ee3c8b3cbaeaa651e99b92a94188a347" target="_blank"
                         style="text-decoration: none; color: inherit;">
-                        <img src="images/benin-mangrove.png" alt="Mangrove Mapping Poster" class="project-image">
+                        <img src="images/benin-mangrove-mapping.png" alt="Mangrove Mapping Poster" class="project-image">
                         <div class="project-content">
                             <div class="project-date">February 25th, 2025</div>
                             <h3 class="project-title">Machine Learning for Mangrove Mapping</h3>
@@ -1323,8 +1847,6 @@
             </div>
         </section>
 
-        </main>
-
         <footer>
             <p>Design: Claude AI | Enhanced by Samuel</p>
         </footer>
@@ -1336,7 +1858,9 @@
 
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
+                    const open = navLinks.classList.toggle('active');
+                    mobileMenuBtn.setAttribute('aria-expanded', open);
+                    mobileMenuBtn.querySelector('i').className = open ? 'fas fa-times' : 'fas fa-bars';
                 });
             }
 
@@ -1344,6 +1868,8 @@
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
                 });
             });
 
@@ -1360,32 +1886,32 @@
                 },
                 {
                     type: 'image',
-                    src: 'images/sdssn_webinar.jpeg',
+                    src: 'images/sdsn-webinar-spatial-stats.jpeg',
                     caption: 'Starter Pack: Spatial Stats Vs GeoStastistics'
                 },
                 {
                     type: 'image',
-                    src: 'images/pycon_ng.jpg',
+                    src: 'images/pycon-nigeria-2025-workshop.jpg',
                     caption: 'PyCON Nigeria 2025 Workshop - Unlocking Access to Spatial Data for Development'
                 },
                 {
                     type: 'image',
-                    src: 'images/spatial_stas_hiv.png',
+                    src: 'images/hiv-spatial-statistics.png',
                     caption: 'Spatial Statistics of HIV Prevalence in United States'
                 },
                 {
                     type: 'image',
-                    src: 'images/dashboard-1.jpg',
+                    src: 'images/infrastructure-analysis-dashboard.jpg',
                     caption: 'GIS Day Nigeria Workshop 2024 - Led workshop on building geospatial data pipelines with open source tools'
                 },
                 {
                     type: 'image',
-                    src: 'images/benin-mangrove.png',
+                    src: 'images/benin-mangrove-mapping.png',
                     caption: 'Data Engineering Summit 2024 - Speaker session on integrating geospatial data in modern data warehouses'
                 },
                 {
                     type: 'image',
-                    src: 'images/housing_london.png',
+                    src: 'images/airbnb-london-analysis.png',
                     caption: 'Earth Observation Symposium 2024 - Panel discussion on the future of forest monitoring using satellite technology'
                 }
             ];
@@ -1498,31 +2024,61 @@
                 showSlide(currentSlide);
             }
 
-            // Theme Toggle functionality
+            // Theme Toggle functionality — light is the default
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = themeToggle.querySelector('i');
+            const themeLabel = document.getElementById('themeLabel');
 
-            // Check for saved theme
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            updateThemeIcon(savedTheme);
+            const savedTheme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+            applyTheme(savedTheme);
 
             themeToggle.addEventListener('click', () => {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                updateThemeIcon(newTheme);
+                applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
             });
 
-            function updateThemeIcon(theme) {
-                if (theme === 'light') {
-                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+
+                // The button advertises the mode you'll switch *to*
+                if (theme === 'dark') {
+                    themeIcon.className = 'fas fa-sun';
+                    themeLabel.textContent = 'Light mode';
                 } else {
-                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                    themeIcon.className = 'fas fa-moon';
+                    themeLabel.textContent = 'Dark mode';
                 }
             }
+
+            // "Home" goes to the very top of the page, not to the hero's offset
+            document.querySelectorAll('a[href="#home"]').forEach(link => {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    history.replaceState(null, '', window.location.pathname);
+                });
+            });
+
+            // Highlight the nav link for the section currently on screen
+            const spySections = document.querySelectorAll('section[id]');
+            const spyLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+            function updateActiveLink() {
+                let current = '';
+                spySections.forEach(section => {
+                    if (window.scrollY >= section.offsetTop - 120) {
+                        current = section.id;
+                    }
+                });
+
+                spyLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink, { passive: true });
+            updateActiveLink();
 
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
