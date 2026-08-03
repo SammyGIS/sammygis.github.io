@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Demand Signal Explorer - Ajeyomi Adedoyin Samuel</title>
+    <title>Okomu Palm Bunch Counting System - Ajeyomi Adedoyin Samuel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
     <meta name="theme-color" content="#0f766e">
     <style>
         /* Light is the default theme (applies even before JS runs) */
@@ -308,7 +308,7 @@
 <body>
     <div class="nav-wrapper">
         <nav>
-            <a href="../projects.html" class="home-button">
+            <a href="../../projects.html" class="home-button">
                 <i class="fas fa-arrow-left"></i>
                 <span>All Projects</span>
             </a>
@@ -322,66 +322,72 @@
     </div>
 
     <main>
-        <p class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../projects.html">Projects</a> / Demand Signal
-            Explorer</p>
+        <p class="breadcrumb"><a href="../../../index.html">Home</a> / <a href="../../projects.html">Projects</a> / Okomu
+            Enterprise Farm Intelligence</p>
 
         <div class="case-hero">
-            <h1>Demand Signal Explorer — Catalyst Lab Portal</h1>
-            <p class="case-role">Data Engineer &middot; International Water Management Institute (IWMI)
-                &middot; 2025</p>
+            <h1>Okomu — Enterprise Farm Intelligence &amp; Bunch Counting Platform</h1>
+            <p class="case-role">Frontend &middot; Backend &middot; Data Engineering &middot; ML &middot;
+                Infrastructure — delivered for Okomu Oil Palm</p>
             <div class="case-stack">
-                <span>Python</span><span>AI / LLM extraction</span><span>Leaflet</span><span>ETL</span>
-                <span>Policy NLP</span><span>Geospatial</span><span>Data harmonisation</span>
+                <span>React</span><span>FastAPI</span><span>PostgreSQL</span><span>PostGIS</span><span>MinIO</span>
+                <span>YOLO Object Detection</span><span>Computer Vision</span><span>Mobile
+                    integration</span><span>GIS</span>
             </div>
         </div>
 
-        <img src="../../images/demand-signal-explorer.png" alt="Demand Signal Explorer interactive map and signal counts"
-            class="case-shot">
-
         <div class="case-body">
-            <p class="case-lede">The Catalyst Lab Portal turns scattered policy documents and secondary data into
-                evidence-backed demand signals that CGIAR Centers and the Science Program Accelerator can actually act
-                on. I built the data engineering and AI layer that produces those signals, and the explorer that makes
-                them navigable.</p>
+            <p class="case-lede">A bespoke, end-to-end enterprise system for oil palm operations — not a demo or a
+                single model, but a production platform spanning a web dashboard, a spatial backend, an object
+                detection model running inside a field mobile app, and the infrastructure holding it together. I owned
+                the frontend, the backend, the data engineering, the data flow between every component, and the
+                infrastructure.</p>
 
-            <h2>The problem</h2>
-            <p>Demand for agricultural research doesn't arrive as a dataset. It's buried in national policy documents,
-                strategy papers, government reports, NGO assessments, and publications from international
-                organisations — thousands of pages, in different formats, across many countries. Someone deciding where
-                to direct a research programme had no way to see that demand as evidence, only as anecdote.</p>
+            <h2>What the system does</h2>
+            <p>It brings the whole harvest operation into one place: field data captured on mobile, fruit bunches
+                detected and counted automatically from imagery, everything georeferenced, and the results surfaced as
+                dashboards and maps management can act on. Because every count carries a location and an image behind
+                it, the platform doubles as a control system — the core GIS includes functionality built specifically
+                to <strong>detect fraud in field reporting</strong>, catching counts and captures that don't hold up
+                against where and when they claim to have happened.</p>
 
-            <h2>Harvesting the sources</h2>
-            <p>I built the ingestion layer that harvests secondary data from across that landscape — governments, NGOs,
-                and international organisations — and normalises wildly different document and data formats into one
-                consistent structure. Each source keeps its provenance, so every signal downstream can be traced back
-                to the document it came from.</p>
+            <h2>Frontend — dashboard and spatial visualisation</h2>
+            <p>I built the web application in <strong>React</strong>: the operational dashboards, the analytics views,
+                and the in-browser GIS visualisation that puts field activity, harvest volumes, and spatial patterns on
+                a map rather than in a table. I used <strong>Antigravity AI</strong> as a development accelerator
+                throughout the frontend build.</p>
 
-            <h2>Extracting demand signals with AI</h2>
-            <p>The core of the system is the extraction pipeline. Rather than keyword search, it uses AI to read policy
-                and programme documents and pull out <strong>demand signals</strong> — concrete statements of need —
-                then enriches each one with the country, domain, and CGIAR impact area it belongs to, and scores it by
-                priority. That turns unstructured text into a queryable evidence base of
-                <strong>380+ signals across the covered countries</strong>, classified into high, medium, and low
-                priority.
+            <h2>Backend — FastAPI and PostGIS</h2>
+            <p>The backend is <strong>FastAPI</strong>, backed by <strong>PostgreSQL</strong> with
+                <strong>PostGIS</strong> handling all the spatial processing. Pushing the GIS work down into the
+                database — rather than into an application layer or a separate geoprocessing service — keeps the
+                spatial queries next to the data and lets the whole system run on one storage engine instead of a stack
+                of specialised ones.
             </p>
 
-            <h2>Making it explorable</h2>
-            <p>Evidence nobody can navigate is evidence nobody uses. The explorer puts the signals on an interactive
-                map where each country is scaled by signal volume, so the geography of demand is visible at a glance,
-                with filtering by domain and CGIAR impact area underneath. Click a country and you drill from the
-                continental view into that country's specific signals, each one linked back to its source.</p>
+            <h2>The bunch detection model</h2>
+            <p>I built the machine learning side end to end: assembling the training data from multiple sources —
+                online imagery plus field campaigns where images were captured directly at the sites — through
+                modelling and training a <strong>YOLO object detection model</strong> for palm bunch detection and
+                counting. Dense, overlapping bunches and variable field lighting are what make this hard; a clean
+                photo is the easy case, and almost nothing in the field is a clean photo.</p>
 
-            <h2>The wider portal</h2>
-            <p>The explorer sits inside the Catalyst Lab Portal alongside country profiles, innovations, briefs and
-                reports, a data explorer, and a data library — with a submission route so the evidence base keeps
-                growing rather than going stale after launch.</p>
+            <h2>Mobile integration</h2>
+            <p>The platform connects to a field mobile app, and my detection model is integrated into it so counting
+                happens where the work happens — an operator captures a bunch and gets a count on the spot, which then
+                flows back into the platform. I did not build the mobile app itself; I built the model inside it and
+                the data pipeline it talks to.</p>
 
-            <div class="case-links">
-                <a class="case-link" href="https://catalyst-lab-prototype.lovable.app" target="_blank"
-                    rel="noopener noreferrer">
-                    <i class="fas fa-window-maximize"></i> Open the Demand Signal Explorer
-                </a>
-            </div>
+            <h2>Storage and infrastructure</h2>
+            <p>Field imagery is object data and a lot of it, so we self-hosted <strong>MinIO</strong> for image and
+                file storage, keeping the large binary assets out of the database and addressable by the rest of the
+                system. I handled the infrastructure management across the platform along with the data engineering —
+                the ingestion, the flow between mobile, model, database, and dashboard, and the connections that make
+                the separate pieces behave as one system.</p>
+
+            <h2>Delivery</h2>
+            <p>This is a bespoke enterprise deployment rather than a public product, so there's no live demo to link.
+                Screenshots of the system will be added here as they become available for release.</p>
         </div>
     </main>
 
