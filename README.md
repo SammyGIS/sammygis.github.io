@@ -28,7 +28,7 @@ projects/
       okomu.html                        Okomu enterprise farm intelligence platform
 images/                                 Every image, named after the project it belongs to
 favicon.svg                             Initials mark
-CLAUDE.md                               Conventions for anyone (human or agent) editing the site
+INSTRUCTION.md                          Conventions for anyone (human or agent) editing the site
 ```
 
 ## How it's built
@@ -52,6 +52,6 @@ fill.
 
 ## Editing
 
-See **[CLAUDE.md](CLAUDE.md)** for the full conventions: how to add a project card or a case
+See **[INSTRUCTION.md](INSTRUCTION.md)** for the full conventions: how to add a project card or a case
 study page, image naming, the layout rules that are easy to break, and the checks to run before
 committing.

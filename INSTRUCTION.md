@@ -91,9 +91,15 @@ appear when the URL is pasted into WhatsApp, LinkedIn, Teams or X. **These need 
 `og:image` if the profile photo is ever renamed.
 
 The Share button in the nav uses the native OS share sheet on phones and a dropdown elsewhere
-(WhatsApp, email, Teams, LinkedIn, X, copy link, download CV). The CV is a real PDF supplied by
-Samuel and served from `cv/` — do not regenerate or rewrite it; replace the file when he sends a
-new version, keeping the same filename so existing links survive.
+(WhatsApp, email, Teams, LinkedIn, X, copy link, download CV).
+
+There are two CVs and they serve different purposes:
+- `cv/Adedoyin-Samuel-Ajeyomi-CV.pdf` — Samuel's own PDF, opened by the hero "View CV" button.
+  Replace the file when he sends a new version; keep the filename so links survive.
+- `cv.html` — a print-optimised CV **generated from the portfolio content**, reached from the
+  share menu's "Download CV". Its toolbar button calls `window.print()`, and the browser's
+  "Save as PDF" produces an A4 PDF. **When experience, skills or publications change on
+  `index.html`, update `cv.html` to match** — they are not linked automatically.
 
 ### Experience or publications
 Both live in `index.html`. Experience uses `.timeline-item`; publications use `.pub-item` and are

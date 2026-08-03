@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ajeyomi Adedoyin Samuel - Curriculum Vitae</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="theme-color" content="#0f766e">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --muted: #4b5563;
+            --rule: #d8dee3;
+            --accent: #0f766e;
+            --page: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: #e9edf0;
+            color: var(--ink);
+            line-height: 1.5;
+            font-size: 10.5pt;
+        }
+
+        /* Screen-only toolbar */
+        .toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .toolbar p {
+            margin-right: auto;
+            font-weight: 500;
+        }
+
+        .toolbar a,
+        .toolbar button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: #fff;
+            color: var(--accent);
+            border: none;
+            border-radius: 0.4rem;
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .toolbar .ghost {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* The page itself */
+        .sheet {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 1.5rem auto;
+            padding: 14mm 15mm;
+            background: var(--page);
+        }
+
+        header {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.6rem;
+            margin-bottom: 0.9rem;
+        }
+
+        h1 {
+            font-size: 21pt;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            line-height: 1.15;
+        }
+
+        .role {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 11pt;
+            margin-top: 0.15rem;
+        }
+
+        .contact {
+            margin-top: 0.5rem;
+            font-size: 9pt;
+            color: var(--muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem 0.9rem;
+        }
+
+        .contact a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .contact i {
+            color: var(--accent);
+            margin-right: 0.25rem;
+        }
+
+        h2 {
+            font-size: 10.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: var(--accent);
+            border-bottom: 1px solid var(--rule);
+            padding-bottom: 0.15rem;
+            margin: 0.95rem 0 0.45rem;
+        }
+
+        .entry {
+            margin-bottom: 0.7rem;
+        }
+
+        .entry-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .entry-title {
+            font-size: 10.5pt;
+            font-weight: 700;
+        }
+
+        .entry-meta {
+            font-size: 9pt;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .entry-org {
+            font-size: 9.5pt;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        ul.bullets {
+            margin: 0.2rem 0 0 1.05rem;
+        }
+
+        ul.bullets li {
+            margin-bottom: 0.12rem;
+            color: var(--muted);
+        }
+
+        .skills-row {
+            display: grid;
+            grid-template-columns: 145px 1fr;
+            gap: 0.5rem;
+            margin-bottom: 0.28rem;
+            font-size: 9.5pt;
+        }
+
+        .skills-row dt {
+            font-weight: 700;
+        }
+
+        .skills-row dd {
+            color: var(--muted);
+        }
+
+        ol.pubs {
+            margin-left: 1.05rem;
+            font-size: 9.5pt;
+        }
+
+        ol.pubs li {
+            margin-bottom: 0.35rem;
+            color: var(--muted);
+        }
+
+        ol.pubs a {
+            color: var(--ink);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        ol.pubs em {
+            font-style: italic;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 1.5rem;
+        }
+
+        .summary {
+            color: var(--muted);
+            text-align: justify;
+        }
+
+        @media (max-width: 800px) {
+            .sheet {
+                width: 100%;
+                min-height: 0;
+                margin: 0;
+                padding: 1.25rem;
+            }
+
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+
+            .entry-head {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .entry-meta {
+                white-space: normal;
+            }
+
+            .skills-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* Print / Save as PDF */
+        @page {
+            size: A4;
+            margin: 12mm 13mm;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                font-size: 9.6pt;
+            }
+
+            .toolbar {
+                display: none !important;
+            }
+
+            .sheet {
+                width: auto;
+                min-height: 0;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Never split an entry across a page break */
+            .entry,
+            ol.pubs li,
+            .skills-row {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            h2 {
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            a {
+                color: inherit;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbar">
+        <p>Curriculum Vitae &mdash; generated from the portfolio</p>
+        <button type="button" id="printBtn"><i class="fas fa-file-arrow-down"></i> Download as PDF</button>
+        <a class="ghost" href="index.html"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+    </div>
+
+    <div class="sheet">
+        <header>
+            <h1>Ajeyomi Adedoyin Samuel</h1>
+            <p class="role">Geospatial (Data + Engineering + Earth Observation + Climate Risk + GeoAI)</p>
+            <div class="contact">
+                <span><i class="fas fa-location-dot"></i>Abuja FCT, Nigeria</span>
+                <span><i class="fas fa-envelope"></i><a
+                        href="mailto:adedoyinsamuel25@gmail.com">adedoyinsamuel25@gmail.com</a></span>
+                <span><i class="fas fa-globe"></i><a href="https://sammygis.github.io/">sammygis.github.io</a></span>
+                <span><i class="fab fa-linkedin"></i><a
+                        href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi/">linkedin.com/in/adedoyin-samuel-ajeyomi</a></span>
+                <span><i class="fab fa-github"></i><a href="https://github.com/SammyGIS/">github.com/SammyGIS</a></span>
+                <span><i class="fas fa-graduation-cap"></i><a
+                        href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en">Google Scholar</a></span>
+            </div>
+        </header>
+
+        <h2>Profile</h2>
+        <p class="summary">Geospatial data scientist and data engineer who builds and deploys end-to-end data solutions
+            that turn raw, complex datasets into reliable decision-making tools &mdash; covering the full lifecycle from
+            collection and engineering through modelling, analytics, and visualisation. Experience spans cloud-native
+            geospatial platforms, AI-driven intelligence systems, national-scale GIS for health planning, and enterprise
+            computer-vision deployments, delivered for research institutions, government programmes, and private
+            industry across Africa, Europe, and international organisations. Published researcher with 120+ citations.
+        </p>
+
+        <h2>Core Skills</h2>
+        <dl>
+            <div class="skills-row">
+                <dt>GIS &amp; Remote Sensing</dt>
+                <dd>Google Earth Engine, QGIS, ArcGIS Pro, PostGIS, Sentinel, Landsat, UAV imagery, Leaflet, Mapbox,
+                    Titiler, spatial statistics &amp; geostatistics</dd>
+            </div>
+            <div class="skills-row">
+                <dt>Software Development</dt>
+                <dd>Python, R, JavaScript, SQL, FastAPI, React, REST API design, PostgreSQL, Docker, Git &amp; GitHub
+                </dd>
+            </div>
+            <div class="skills-row">
+                <dt>ML &amp; AI</dt>
+                <dd>Deep learning, YOLO object detection, computer vision, TensorFlow, Random Forest, LLM-based
+                    extraction, AI-assisted development</dd>
+            </div>
+            <div class="skills-row">
+                <dt>Data Engineering</dt>
+                <dd>ETL/ELT pipelines, Airflow, Xarray, DuckDB, cloud-native formats (Zarr, COG, Parquet), DAX, web
+                    scraping, data harmonisation</dd>
+            </div>
+            <div class="skills-row">
+                <dt>Cloud &amp; Infrastructure</dt>
+                <dd>AWS (S3, Lambda, EC2), Azure Functions, MinIO object storage, Docker, CI/CD with GitHub Actions,
+                    infrastructure management</dd>
+            </div>
+            <div class="skills-row">
+                <dt>Analytics &amp; Delivery</dt>
+                <dd>Power BI, Tableau, Metabase, dashboard design, technical project management, stakeholder and remote
+                    team leadership</dd>
+            </div>
+        </dl>
+
+        <h2>Professional Experience</h2>
+
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Data Engineer</span>
+                <span class="entry-meta">March 2025 &ndash; Present &middot; Remote</span>
+            </div>
+            <div class="entry-org">International Water Management Institute (IWMI)</div>
+            <ul class="bullets">
+                <li>Data engineer on IWMI's Market Intelligence work, delivering intelligence support across CGIAR
+                    Centers and the CGIAR Science Program Accelerator.</li>
+                <li>Own the data harvesting layer end to end, sourcing secondary data from governments, NGOs, and
+                    international organisations into a single analysis-ready foundation.</li>
+                <li>Built the policy and document ingestion pipeline that mines policy documents and unstructured text
+                    for demand signals, turning scattered publications into structured, queryable evidence.</li>
+                <li>Designed and built the Demand Signal Explorer for the Accelerator, an AI-integrated tool surfacing
+                    380+ evidence-backed demand signals for decision makers.</li>
+                <li>Engineered the AI extraction, enrichment, and retrieval components converting raw multi-source data
+                    into usable market and policy intelligence.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Geospatial | Data Engineer | Data Analyst</span>
+                <span class="entry-meta">August 2025 &ndash; Present &middot; Remote</span>
+            </div>
+            <div class="entry-org">Spatialnode (Freelance) &middot; Delaware, United States</div>
+            <ul class="bullets">
+                <li>Project-based engagements as data engineer, analyst, or scientist: IWMI Demand Intelligence
+                    Information System (DIIS), IWMI Multidimensional Digital Inclusiveness Index (MDII), and the SFL
+                    Location Intelligence project.</li>
+                <li>Handled the full data lifecycle &mdash; ingestion, cleaning, preprocessing, transformation,
+                    validation, and storage &mdash; using DAX, Python, and Azure Functions.</li>
+                <li>Built and maintained CI/CD pipelines automating data processing workflows, dashboard updates, and
+                    report refreshes for reliability and reproducibility.</li>
+                <li>Developed interactive Power BI dashboards and analytical reports enabling evidence-based decisions
+                    across Nigeria, Bangladesh, Ethiopia, and other countries.</li>
+                <li>Processed, standardised, and analysed 10,000+ records from multi-source, unstructured, and
+                    semi-structured datasets, improving data quality and usability.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Geospatial Data Engineer</span>
+                <span class="entry-meta">June 2025 &ndash; Present &middot; Remote</span>
+            </div>
+            <div class="entry-org">Envirotrust &middot; Germany</div>
+            <ul class="bullets">
+                <li>Built scalable ETL pipelines and RESTful APIs serving large geospatial datasets (Zarr, COG, Parquet)
+                    using Xarray, DuckDB, FastAPI, and Titiler for real-time visualisation and analysis.</li>
+                <li>Deployed cloud-native infrastructure on AWS (S3, Lambda, EC2) with Docker and GitHub Actions CI/CD
+                    to automate, scale, and maintain geospatial workflows.</li>
+                <li>Engineered pipelines sourcing and aggregating diverse geospatial data for wildfire, flood, heat, and
+                    wind risk modelling across Europe.</li>
+                <li>Developed scalable aggregation strategies for environmental risk parameters, optimising data
+                    transfer to cloud platforms for scenario modelling.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Technical Project Manager &mdash; MSDAT GIS</span>
+                <span class="entry-meta">May 2025 &ndash; September 2025 &middot; Contract</span>
+            </div>
+            <div class="entry-org">eHealth4everyone &middot; Abuja, Nigeria</div>
+            <ul class="bullets">
+                <li>Technical lead for MSDAT GIS, the geospatial arm of Nigeria's Multi-Source Data Analytics and
+                    Triangulation platform &mdash; a national-scale system for health planning and spatial decision
+                    support.</li>
+                <li>Owned technical direction across the full stack: tool selection, framework, architecture, backend,
+                    frontend, and design system, building consensus with the team.</li>
+                <li>Designed and integrated 10+ analysis tools into a single interface: heat maps, clustering and
+                    hotspot detection, choropleth mapping, buffer and proximity analysis, spatial querying, and layer
+                    overlay.</li>
+                <li>Connected the GIS layer to multi-source health indicator data, enabling analysis from national
+                    figures down to state and LGA level in one workflow.</li>
+                <li>Built the bulk of the frontend GIS and visualisation layer, using AI tooling for roughly 70% of the
+                    design and frontend build and compressing delivery from months to weeks.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Geospatial Analyst</span>
+                <span class="entry-meta">2023 &ndash; 2024 &middot; Hybrid</span>
+            </div>
+            <div class="entry-org">Milsat Technologies Limited &middot; Abuja, Nigeria</div>
+            <ul class="bullets">
+                <li>Performed advanced data analytics to uncover insights and trends, improving decision-making
+                    accuracy.</li>
+                <li>Led the design and management of geospatial and statistical dashboards for real-time monitoring.
+                </li>
+                <li>Developed and optimised ETL processes and maintained databases for efficient data storage and
+                    retrieval.</li>
+            </ul>
+        </div>
+
+        <h2>Volunteering &amp; Community</h2>
+
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Training and Capacity Development Lead</span>
+                <span class="entry-meta">2023 &ndash; Present</span>
+            </div>
+            <div class="entry-org">Spatial and Data Science Society of Nigeria (SDSN)</div>
+            <ul class="bullets">
+                <li>Delivered GeoAI and spatial data science workshops across multiple universities nationwide and
+                    coordinated online programmes reaching 500+ participants.</li>
+                <li>Led website development and content management, increasing engagement by 40%; mentored 50+ emerging
+                    geospatial professionals.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Geospatial Tutor and Mentor</span>
+                <span class="entry-meta">2023 &ndash; Present &middot; Remote</span>
+            </div>
+            <div class="entry-org">Geoanalytec &middot; Nigeria</div>
+            <ul class="bullets">
+                <li>Trained 150+ students across Africa in GIS and remote sensing with an 80% course completion rate.
+                </li>
+                <li>Delivered basic and advanced training in Python, QGIS, ArcGIS, and Google Earth Engine; coordinated
+                    10+ GIS events and 30+ weekend training sessions.</li>
+            </ul>
+        </div>
+
+        <h2>Education</h2>
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">B.Tech, Remote Sensing and GIS</span>
+                <span class="entry-meta">2016 &ndash; 2023</span>
+            </div>
+            <div class="entry-org">Federal University of Technology Akure, Nigeria</div>
+            <ul class="bullets">
+                <li>GPA 4.25/5.0 (Top 10%) &middot; WES equivalent 3.58/4.0.</li>
+                <li>Specialised in remote sensing, GIS fundamentals, and environmental geography, with coursework in
+                    agriculture, forestry, geology, urban planning, and cartography.</li>
+            </ul>
+        </div>
+
+        <h2>Selected Publications</h2>
+        <ol class="pubs">
+            <li><a href="https://doi.org/10.1016/j.indic.2023.100248">Monitoring and predicting the influences of land
+                    use/land cover change on cropland characteristics and drought severity using remote sensing
+                    techniques</a> &mdash; Taiwo, Kafy, <strong>Samuel</strong>, et al. <em>Environmental and
+                    Sustainability Indicators</em> 18, 100248 (2023). <strong>105 citations</strong>.</li>
+            <li><a href="https://doi.org/10.1007/s43621-024-00592-w">Soil organic carbon stocks as driven by land use in
+                    Mato Grosso State: the Brazilian Cerrado agricultural frontier</a> &mdash; Nwaogu, Diagi, Ekweogu,
+                <strong>Ajeyomi</strong>, et al. <em>Discover Sustainability</em> 5(1), 382 (2024). 8 citations.
+            </li>
+            <li><a href="https://cgspace.cgiar.org/items/71b3dcaa-c003-4d05-9ead-401a9d414bb9">The Multidimensional
+                    Digital Inclusiveness Index Scoring Dashboard (Version 2.0)</a> &mdash; Jolaiya, Nejo,
+                <strong>Ajeyomi</strong>, et al. <em>International Water Management Institute</em>, Report (2026).
+            </li>
+            <li><a
+                    href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:9yKSN-GCB0IC">A
+                    geoinformation-based analysis of site suitability for dams in a rain-fed agricultural system in
+                    Nasarawa State, Nigeria</a> &mdash; Ibitoye, <strong>Ajeyomi</strong>. <em>Journal of Sustainable
+                    Technology</em> 13(1), 129&ndash;146 (2024).</li>
+            <li><a
+                    href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:qjMakFHDy7sC">Geostatistical
+                    modelling of urban heat island effect in Lagos, Nigeria</a> &mdash; Onyedikachi, Saheed,
+                <strong>Samuel</strong>, et al. <em>SGEM GeoConference</em> (2024).
+            </li>
+            <li><a
+                    href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:Y0pCki6q_DkC">A
+                    reclassification-based framework for vegetation greenness assessment across mixed landscapes and
+                    spatial extents</a> &mdash; <strong>Ajeyomi</strong>, Abiala. <em>Journal of Geography, Environment
+                    and Earth Science International</em> 30(2), 45&ndash;62 (2026).</li>
+            <li><a
+                    href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:W7OEmFMy1HYC">Differential
+                    impacts of nDSM fusion on pixel-based LULC classification using UAV RGB imagery</a> &mdash; Joshua,
+                James, Bello, <strong>Ajeyomi</strong>, et al. <em>Int. Journal of Advances in Signal and Image
+                    Sciences</em> (2026).</li>
+            <li><a href="https://arxiv.org/abs/2510.11048">Assessing the influence of locational suitability on the
+                    spatial distribution of household wealth in Bernalillo County, NM</a> &mdash; Okeke, Nelson, Nwaogu,
+                et al. <em>arXiv:2510.11048</em> (2025).</li>
+        </ol>
+        <p class="summary" style="font-size:9pt; margin-top:0.2rem;">Full list of 10 publications on <a
+                href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en"
+                style="color:var(--accent); font-weight:600; text-decoration:none;">Google Scholar</a>.</p>
+
+        <div class="two-col">
+            <div>
+                <h2>Certifications</h2>
+                <div class="entry">
+                    <div class="entry-title">AWS Certified Cloud Practitioner</div>
+                    <div class="entry-org">Amazon Web Services &middot; 2023&ndash;2026</div>
+                </div>
+                <div class="entry">
+                    <div class="entry-title">Applied Data Science Lab</div>
+                    <div class="entry-org">WorldQuant University &middot; 2025</div>
+                </div>
+            </div>
+            <div>
+                <h2>Awards</h2>
+                <div class="entry">
+                    <div class="entry-title">ESRI Young Scholar Africa</div>
+                    <div class="entry-org">ESRI &middot; 2023</div>
+                </div>
+                <div class="entry">
+                    <div class="entry-title">Winner &mdash; Nigeria Meta Geospatial &amp; Mobility Data Health
+                        Hackathon</div>
+                    <div class="entry-org">Meta / DSN &middot; 2023</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Talks &amp; Workshops</h2>
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Spatiotemporal Analysis and Forecasting of Population Growth Hotspots in
+                    Nigeria</span>
+                <span class="entry-meta">Sept 2025</span>
+            </div>
+            <div class="entry-org">ESRI User Conference 2025</div>
+        </div>
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Building Geospatial Data Pipelines with Open Source Tools (workshop)</span>
+                <span class="entry-meta">Oct 2025</span>
+            </div>
+            <div class="entry-org">PyCon Nigeria 2025</div>
+        </div>
+        <div class="entry">
+            <div class="entry-head">
+                <span class="entry-title">Nigeria_Geodata: Simplifying Access to Nigerian Geospatial Data &middot;
+                    Spatial Stats vs Geostatistics (SDSN webinar)</span>
+                <span class="entry-meta">2024&ndash;2025</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('printBtn').addEventListener('click', () => window.print());
+    </script>
+</body>
+
+</html>
