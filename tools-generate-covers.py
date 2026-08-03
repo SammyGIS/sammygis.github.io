@@ -145,7 +145,6 @@ def build(title, motif, slug):
 
 
 PROJECTS = [
-    ('GeoAI Drought Modelling Framework', 'contours', 'geoai-drought-framework'),
     ('Basin Geomorphology & Hydrological Drought', 'basin', 'basin-geomorphology-drought'),
     ('GeoAI Flood Prediction', 'contours', 'geoai-flood-prediction'),
     ('GeoAI Orthophoto LULC Classification', 'raster', 'geoai-orthophoto-lulc'),

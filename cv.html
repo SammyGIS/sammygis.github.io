@@ -12,6 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="theme-color" content="#0f766e">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --ink: #1a1a1a;
@@ -312,7 +313,7 @@
                         href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi/">linkedin.com/in/adedoyin-samuel-ajeyomi</a></span>
                 <span><i class="fab fa-github"></i><a href="https://github.com/SammyGIS/">github.com/SammyGIS</a></span>
                 <span><i class="fas fa-graduation-cap"></i><a
-                        href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en">Google Scholar</a></span>
+                        href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en">scholar.google.com/citations?user=O8znj2oAAAAJ</a></span>
             </div>
         </header>
 
@@ -596,7 +597,31 @@
     </div>
 
     <script>
-        document.getElementById('printBtn').addEventListener('click', () => window.print());
+        const btn = document.getElementById('printBtn');
+
+        btn.addEventListener('click', () => {
+            const sheet = document.querySelector('.sheet');
+            const original = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Building PDF...';
+
+            html2pdf().set({
+                margin: [10, 11, 10, 11],
+                filename: 'Ajeyomi-Adedoyin-Samuel-CV.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['css', 'legacy'], avoid: ['.entry', 'ol.pubs li', '.skills-row'] }
+            }).from(sheet).save().then(() => {
+                btn.disabled = false;
+                btn.innerHTML = original;
+            }).catch(() => {
+                // if the library fails for any reason, fall back to the print dialog
+                btn.disabled = false;
+                btn.innerHTML = original;
+                window.print();
+            });
+        });
     </script>
 </body>
 
