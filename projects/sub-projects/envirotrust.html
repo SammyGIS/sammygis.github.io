@@ -179,7 +179,9 @@
             color: var(--text-secondary);
             font-size: 1rem;
             line-height: 1.75;
-            max-width: 78ch;
+            /* Full column width, so the text runs edge to edge with the
+               image above it */
+            max-width: 100%;
         }
 
         /* Flush on both edges; hyphenation keeps justification from opening
@@ -187,8 +189,9 @@
         .case-body p,
         .case-lede {
             text-align: justify;
-            hyphens: auto;
-            -webkit-hyphens: auto;
+            /* No hyphenation - never break a word across lines */
+            hyphens: none;
+            -webkit-hyphens: none;
         }
 
         /* Short lines justify badly, so leave narrow screens ragged-right */
@@ -197,7 +200,6 @@
             .case-body p,
             .case-lede {
                 text-align: left;
-                hyphens: manual;
             }
         }
 
