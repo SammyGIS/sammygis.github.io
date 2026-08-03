@@ -17,6 +17,7 @@ push — that's the pipeline.
 index.html                              Landing page: hero, skills, experience, education,
                                         projects, publications, certifications, talks,
                                         gallery, awards
+publications.html                       Full publication list with an overview of each paper
 projects/
   projects.html                         Full project catalogue in four categories —
                                         GIS & Remote Sensing, Development, Data Engineering,

@@ -376,6 +376,67 @@
                 margin: 2.5rem 0 1.5rem;
             }
         }
+
+        /* --- Mobile legibility -------------------------------------------
+           The desktop layout is deliberately kept on phones; these rules only
+           raise type sizes so nothing drops below a comfortable reading size.
+           Nothing here changes the layout on laptops. */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+            }
+
+            p,
+            li,
+            .project-description,
+            .timeline-description,
+            .dev-description,
+            .pub-authors,
+            .pub-meta,
+            .pub-overview,
+            .gallery-description,
+            .section-intro,
+            .case-body,
+            .case-body p {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .project-date,
+            .timeline-date,
+            .pub-meta,
+            .case-role {
+                font-size: 0.92rem;
+            }
+
+            .project-title,
+            .timeline-title,
+            .dev-title,
+            .pub-title,
+            .gallery-title {
+                font-size: 1.15rem;
+            }
+
+            .section-title,
+            .section-header,
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            /* Comfortable tap targets */
+            .project-link,
+            .btn,
+            .case-link,
+            .home-button,
+            .show-more-btn,
+            .nav-links a {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 

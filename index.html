@@ -1206,6 +1206,67 @@
         .back-to-top:hover {
             background: var(--accent-color);
         }
+
+        /* --- Mobile legibility -------------------------------------------
+           The desktop layout is deliberately kept on phones; these rules only
+           raise type sizes so nothing drops below a comfortable reading size.
+           Nothing here changes the layout on laptops. */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+            }
+
+            p,
+            li,
+            .project-description,
+            .timeline-description,
+            .dev-description,
+            .pub-authors,
+            .pub-meta,
+            .pub-overview,
+            .gallery-description,
+            .section-intro,
+            .case-body,
+            .case-body p {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .project-date,
+            .timeline-date,
+            .pub-meta,
+            .case-role {
+                font-size: 0.92rem;
+            }
+
+            .project-title,
+            .timeline-title,
+            .dev-title,
+            .pub-title,
+            .gallery-title {
+                font-size: 1.15rem;
+            }
+
+            .section-title,
+            .section-header,
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            /* Comfortable tap targets */
+            .project-link,
+            .btn,
+            .case-link,
+            .home-button,
+            .show-more-btn,
+            .nav-links a {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 
@@ -1677,9 +1738,8 @@
         <!-- Publications Section -->
         <section id="publications">
             <h2 class="section-title">Publications</h2>
-            <p class="section-intro">Peer-reviewed research in remote sensing, soil carbon, land use change, and
-                geospatial statistics. <a href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en"
-                    target="_blank" rel="noopener noreferrer">Full profile on Google Scholar &rarr;</a></p>
+            <p class="section-intro">Peer-reviewed research in remote sensing, soil carbon, land use change, drought
+                and geospatial statistics.</p>
 
             <ol class="pub-list">
                 <li class="pub-item">
@@ -1711,84 +1771,11 @@
                     <p class="pub-meta"><span class="pub-venue">Journal of Sustainable Technology</span> &middot; 13(1),
                         129-146 &middot; 2024 <span class="pub-cites">3 citations</span></p>
                 </li>
-
-                <li class="pub-item">
-                    <a class="pub-title"
-                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:qjMakFHDy7sC"
-                        target="_blank" rel="noopener noreferrer">Geostatistical modelling of urban heat island effect:
-                        analysing the relationship between land use patterns and land surface temperature in Lagos,
-                        Nigeria</a>
-                    <p class="pub-authors">J.O. Onyedikachi, O.A. Saheed, <strong>J.A. Samuel</strong>, A.F. Olufisayo,
-                        F.I. Adedamola</p>
-                    <p class="pub-meta"><span class="pub-venue">International Multidisciplinary Scientific GeoConference
-                            SGEM</span> &middot; 2024 <span class="pub-cites">3 citations</span></p>
-                </li>
-
-                <li class="pub-item">
-                    <a class="pub-title" href="https://arxiv.org/abs/2510.11048" target="_blank"
-                        rel="noopener noreferrer">Assessing the influence of locational suitability on the spatial
-                        distribution of household wealth in Bernalillo County, NM</a>
-                    <p class="pub-authors">O.J. Okeke, U.E. Nelson, C. Nwaogu, O.O. Oladoyin, E. Kubuafor, D. Baidoo,
-                        et al.</p>
-                    <p class="pub-meta"><span class="pub-venue">arXiv preprint arXiv:2510.11048</span> &middot; 2025
-                        <span class="pub-cites">1 citation</span>
-                    </p>
-                </li>
-
-                <li class="pub-item">
-                    <a class="pub-title"
-                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:d1gkVwhDpl0C"
-                        target="_blank" rel="noopener noreferrer">Soil carbon and land use dynamics in the greater part
-                        of Cerrado biome, Brazil</a>
-                    <p class="pub-authors">C. Nwaogu, E.R. Nwaiwu, B.E. Diagi, N.A. Umar, C.C. Uche, C. Ulor, et al.
-                    </p>
-                    <p class="pub-meta"><span class="pub-venue">E3S Web of Conferences</span> &middot; 557, 1-7 &middot;
-                        2024 <span class="pub-cites">1 citation</span></p>
-                </li>
-
-                <li class="pub-item">
-                    <a class="pub-title" href="https://cgspace.cgiar.org/items/71b3dcaa-c003-4d05-9ead-401a9d414bb9"
-                        target="_blank" rel="noopener noreferrer">The Multidimensional Digital Inclusiveness Index
-                        Scoring Dashboard (Version 2.0): A Tool for Visualizing Digital Inclusiveness and Innovation
-                        Performance within the CGIAR Framework</a>
-                    <p class="pub-authors">E.A. Jolaiya, B.O. Nejo, <strong>A.S. Ajeyomi</strong>, D. Olufemi, C.I.
-                        Martins, M. Garcia Andarcia</p>
-                    <p class="pub-meta"><span class="pub-venue">International Water Management Institute (IWMI)</span>
-                        &middot; Report &middot; 2026</p>
-                </li>
-
-                <li class="pub-item">
-                    <a class="pub-title"
-                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:W7OEmFMy1HYC"
-                        target="_blank" rel="noopener noreferrer">Differential impacts of nDSM fusion on pixel-based
-                        LULC classification using UAV RGB imagery in flood-prone Nigerian urban landscapes</a>
-                    <p class="pub-authors">B. Joshua, G.K. James, I.E. Bello, <strong>A.S. Ajeyomi</strong>, R.A. Idris,
-                        O.J. Okeke</p>
-                    <p class="pub-meta"><span class="pub-venue">International Journal of Advances in Signal and Image
-                            Sciences</span> &middot; 165-182 &middot; 2026</p>
-                </li>
-
-                <li class="pub-item">
-                    <a class="pub-title"
-                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:Y0pCki6q_DkC"
-                        target="_blank" rel="noopener noreferrer">A reclassification-based framework for vegetation
-                        greenness assessment across mixed landscapes and spatial extents</a>
-                    <p class="pub-authors"><strong>A.S. Ajeyomi</strong>, F.O. Abiala</p>
-                    <p class="pub-meta"><span class="pub-venue">Journal of Geography, Environment and Earth Science
-                            International</span> &middot; 30(2), 45-62 &middot; 2026</p>
-                </li>
-
-                <li class="pub-item">
-                    <a class="pub-title"
-                        href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:UeHWp8X0CEIC"
-                        target="_blank" rel="noopener noreferrer">The role of agriculture and environmental drivers on
-                        soil carbon in Brazil: a remote sensing, GIS, MLA, and geostatistical approach</a>
-                    <p class="pub-authors">C. Nwaogu, <strong>S.A. Ajeyomi</strong>, B.E. Diagi, E.R. Nwaiwu, C.J.
-                        Anyalewechi, B. Alabi, et al.</p>
-                    <p class="pub-meta"><span class="pub-venue">IEEE International Conference on Agrosystem Engineering
-                            &amp; Technology</span> &middot; 2024</p>
-                </li>
             </ol>
+
+            <div class="show-more-container">
+                <a href="publications.html" class="project-link">View More Publications</a>
+            </div>
         </section>
 
         <!-- Certifications Section -->

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Publications - Ajeyomi Adedoyin Samuel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="theme-color" content="#0f766e">
+    <style>
+        /* Light is the default theme (applies even before JS runs) */
+        :root {
+            --primary-color: #0f766e;
+            --secondary-color: #115e59;
+            --accent-color: #0d9488;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --card-bg: #f3f5f7;
+            --text-secondary: #4b5563;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --on-accent: #ffffff;
+            --border-color: rgba(15, 118, 110, 0.18);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #14b8a6;
+            --secondary-color: #0f766e;
+            --accent-color: #2dd4bf;
+            --text-color: #f1f5f9;
+            --bg-color: #0b1220;
+            --card-bg: #16202e;
+            --text-secondary: #94a3b8;
+            --nav-bg: rgba(11, 18, 32, 0.95);
+            --on-accent: #ffffff;
+            --border-color: rgba(45, 212, 191, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--primary-color);
+            color: var(--on-accent);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .home-button:hover {
+            background: var(--secondary-color);
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: 0.95rem;
+            font-family: inherit;
+            cursor: pointer;
+            width: 2.35rem;
+            height: 2.35rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 6rem auto 2rem;
+            padding: 0 1.5rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .case-hero h1 {
+            font-size: 2.4rem;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+        }
+
+        .case-role {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .case-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 1.25rem 0 1.75rem;
+        }
+
+        .case-stack span {
+            font-size: 0.74rem;
+            font-weight: 600;
+            padding: 0.28rem 0.7rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .case-shot {
+            width: 100%;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            display: block;
+            margin-bottom: 2.5rem;
+        }
+
+        .case-body {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.75;
+            /* Full column width, so the text runs edge to edge with the
+               image above it */
+            max-width: 100%;
+        }
+
+        /* Flush on both edges; hyphenation keeps justification from opening
+           up rivers of whitespace between words */
+        .case-body p,
+        .case-lede {
+            text-align: justify;
+            /* No hyphenation - never break a word across lines */
+            hyphens: none;
+            -webkit-hyphens: none;
+        }
+
+        /* Short lines justify badly, so leave narrow screens ragged-right */
+        @media (max-width: 600px) {
+
+            .case-body p,
+            .case-lede {
+                text-align: left;
+            }
+        }
+
+        .case-lede {
+            font-size: 1.12rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .case-body h2 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin: 2.25rem 0 0.5rem;
+        }
+
+        .case-body p {
+            margin-bottom: 0.85rem;
+        }
+
+        .case-body strong {
+            color: var(--text-color);
+        }
+
+        .case-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 2.5rem 0 1rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .case-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            background: var(--primary-color);
+            color: var(--on-accent);
+            font-weight: 700;
+            font-size: 0.92rem;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .case-link:hover {
+            background: var(--secondary-color);
+        }
+
+        .case-link.secondary {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--accent-color);
+        }
+
+        .case-link.secondary:hover {
+            background: var(--primary-color);
+            color: var(--on-accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            background: var(--card-bg);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 0.85rem 1.25rem;
+            }
+
+            .case-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .case-body {
+                font-size: 0.95rem;
+            }
+
+            .case-body h2 {
+                font-size: 1.08rem;
+            }
+
+            .case-lede {
+                font-size: 1rem;
+                padding-left: 0.75rem;
+            }
+
+            .case-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            main {
+                margin-top: 5.5rem;
+            }
+        }
+
+        main {
+            max-width: 900px;
+            margin: 6rem auto 2rem;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.4rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            max-width: 70ch;
+        }
+
+        .pub-list {
+            list-style: none;
+            counter-reset: pub;
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .pub-item {
+            counter-increment: pub;
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--primary-color);
+            border-radius: 0.6rem;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .pub-item::before {
+            content: counter(pub);
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--border-color);
+            line-height: 1;
+        }
+
+        .pub-title {
+            display: block;
+            font-weight: 700;
+            font-size: 1.05rem;
+            line-height: 1.45;
+            color: var(--text-color);
+            text-decoration: none;
+            padding-right: 2.5rem;
+        }
+
+        .pub-title:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .pub-authors {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin-top: 0.4rem;
+        }
+
+        .pub-authors strong {
+            color: var(--accent-color);
+        }
+
+        .pub-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pub-venue {
+            font-style: italic;
+        }
+
+        .pub-cites {
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 2rem;
+            background: var(--primary-color);
+            color: var(--on-accent);
+        }
+
+        .pub-overview {
+            margin-top: 0.85rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            text-align: justify;
+            hyphens: none;
+        }
+
+        .scholar-note {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .scholar-note a {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .pub-item {
+                padding: 1rem 1.1rem;
+            }
+
+            .pub-item::before {
+                display: none;
+            }
+
+            .pub-title {
+                padding-right: 0;
+            }
+
+            .pub-overview {
+                text-align: left;
+            }
+        }
+
+        /* --- Mobile legibility -------------------------------------------
+           The desktop layout is deliberately kept on phones; these rules only
+           raise type sizes so nothing drops below a comfortable reading size.
+           Nothing here changes the layout on laptops. */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+            }
+
+            p,
+            li,
+            .project-description,
+            .timeline-description,
+            .dev-description,
+            .pub-authors,
+            .pub-meta,
+            .pub-overview,
+            .gallery-description,
+            .section-intro,
+            .case-body,
+            .case-body p {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .project-date,
+            .timeline-date,
+            .pub-meta,
+            .case-role {
+                font-size: 0.92rem;
+            }
+
+            .project-title,
+            .timeline-title,
+            .dev-title,
+            .pub-title,
+            .gallery-title {
+                font-size: 1.15rem;
+            }
+
+            .section-title,
+            .section-header,
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            /* Comfortable tap targets */
+            .project-link,
+            .btn,
+            .case-link,
+            .home-button,
+            .show-more-btn,
+            .nav-links a {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="nav-wrapper">
+        <nav>
+            <a href="index.html" class="home-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to portfolio</span>
+            </a>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark mode"
+                    title="Toggle light and dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <div class="page-header">
+            <h1>Publications</h1>
+            <p>Peer-reviewed research in remote sensing, soil carbon, land use change, drought and geospatial
+                statistics &mdash; each with a short overview. Sorted by citation count.</p>
+        </div>
+
+        <ol class="pub-list">
+            <li class="pub-item">
+                <a class="pub-title" href="https://doi.org/10.1016/j.indic.2023.100248" target="_blank" rel="noopener noreferrer">Monitoring and predicting the influences of land use/land cover change on cropland characteristics and drought severity using remote sensing techniques</a>
+                <p class="pub-authors">B.E. Taiwo, A.A. Kafy, <strong>A.A. Samuel</strong>, Z.A. Rahaman, O.E. Ayowole, M. Shahrier, et al.</p>
+                <p class="pub-meta"><span class="pub-venue">Environmental and Sustainability Indicators</span> &middot; 18, 100248 &middot; 2023 <span class="pub-cites">105 citations</span></p>
+                <p class="pub-overview">Land use and land cover change reshapes the land surface faster than most monitoring programmes can track, and cropland is usually the first thing to be lost. This study uses remote sensing to assess and predict those changes around the Federal University of Technology Akure in Nigeria, following cropland characteristics and drought severity across a long observation window that extends into forecast years. By pairing satellite-derived land cover with drought indicators, it links land conversion directly to agricultural vulnerability rather than treating them as separate problems. It is the most cited paper in this list, with over 100 citations.</p>
+            </li>
+            <li class="pub-item">
+                <a class="pub-title" href="https://doi.org/10.1007/s43621-024-00592-w" target="_blank" rel="noopener noreferrer">Soil organic carbon stocks as driven by land use in Mato Grosso State: the Brazilian Cerrado agricultural frontier</a>
+                <p class="pub-authors">C. Nwaogu, B.E. Diagi, C.V. Ekweogu, <strong>A.S. Ajeyomi</strong>, C.C. Ejiogu, et al.</p>
+                <p class="pub-meta"><span class="pub-venue">Discover Sustainability</span> &middot; 5(1), 382 &middot; 2024 <span class="pub-cites">8 citations</span></p>
+                <p class="pub-overview">Mato Grosso sits on the agricultural frontier of the Brazilian Cerrado, where conversion to cropland and pasture has been rapid enough to matter for the global carbon balance. This work sets out to establish the link between long-term land use change and soil organic carbon stocks, hybridising machine learning with the InVEST model to estimate both the land use transitions and the carbon consequences between 1990 and 2020, then projecting forward to 2050. The results point to climate-smart systems &mdash; crop-livestock-forest integration and conservation practices &mdash; as having real potential to raise carbon levels in agricultural soils.</p>
+            </li>
+            <li class="pub-item">
+                <a class="pub-title" href="https://arxiv.org/abs/2510.11048" target="_blank" rel="noopener noreferrer">Assessing the influence of locational suitability on the spatial distribution of household wealth in Bernalillo County, NM</a>
+                <p class="pub-authors">O.J. Okeke, U.E. Nelson, C. Nwaogu, O.O. Oladoyin, E. Kubuafor, D. Baidoo, T. Akinyemi, <strong>A.S. Ajeyomi</strong>, et al.</p>
+                <p class="pub-meta"><span class="pub-venue">arXiv preprint arXiv:2510.11048</span> &middot; 2025 <span class="pub-cites">1 citation</span></p>
+                <p class="pub-overview">Where you live shapes what you are worth, but not uniformly across a city. This study applies Multiscale Geographically Weighted Regression to household wealth in Bernalillo County, New Mexico, combining sociodemographic, environmental and proximity variables &mdash; income, home value, elevation, PM2.5, and distance to schools, markets and hospitals. The model explains roughly 63% of the variation in household wealth. Proximity to markets, schools and parks raises wealth in over 40% of neighbourhoods, while closeness to hospitals and bus stops is negatively associated with it, suggesting nearby disamenities depress desirability. Strong clustering (Moran&rsquo;s I = 0.53, p &lt; 0.001) confirms the relationship is spatially variable rather than county-wide.</p>
+            </li>
+            <li class="pub-item">
+                <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:9yKSN-GCB0IC" target="_blank" rel="noopener noreferrer">A geoinformation-based analysis of site suitability for dams in a rain-fed agricultural system in Nasarawa State, Nigeria</a>
+                <p class="pub-authors">M.O. Ibitoye, <strong>A.S. Ajeyomi</strong></p>
+                <p class="pub-meta"><span class="pub-venue">Journal of Sustainable Technology</span> &middot; 13(1), 129&ndash;146 &middot; 2024 <span class="pub-cites">3 citations</span></p>
+                <p class="pub-overview">Rain-fed agriculture leaves farmers exposed to whatever the season delivers, and water storage is the standard mitigation &mdash; but only if it is sited well. This paper applies geoinformation techniques to identify suitable dam sites across Nasarawa State, Nigeria, weighing the terrain, hydrological and land use criteria that determine whether a site will actually hold and serve water. The output is a spatial suitability assessment intended to support planning decisions in a rain-fed system rather than a purely theoretical exercise.</p>
+            </li>
+            <li class="pub-item">
+                <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:qjMakFHDy7sC" target="_blank" rel="noopener noreferrer">Geostatistical modelling of urban heat island effect: analysing the relationship between land use patterns and land surface temperature in Lagos, Nigeria</a>
+                <p class="pub-authors">J.O. Onyedikachi, O.A. Saheed, <strong>J.A. Samuel</strong>, A.F. Olufisayo, F.I. Adedamola</p>
+                <p class="pub-meta"><span class="pub-venue">International Multidisciplinary Scientific GeoConference SGEM</span> &middot; 2024 <span class="pub-cites">3 citations</span></p>
+                <p class="pub-overview">Lagos is one of the fastest-growing cities in the world, and its built surfaces retain heat in ways that are measurable from orbit. This study applies geostatistical modelling to the relationship between land use pattern and land surface temperature across the city, treating the urban heat island as a spatial process rather than a citywide average. Framing it geostatistically captures how the effect varies from district to district, which matters for anyone deciding where cooling interventions would do most good.</p>
+            </li>
+            <li class="pub-item">
+                <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:d1gkVwhDpl0C" target="_blank" rel="noopener noreferrer">Soil carbon and land use dynamics in the greater part of Cerrado biome, Brazil</a>
+                <p class="pub-authors">C. Nwaogu, E.R. Nwaiwu, B.E. Diagi, N.A. Umar, C.C. Uche, C. Ulor, et al.</p>
+                <p class="pub-meta"><span class="pub-venue">E3S Web of Conferences</span> &middot; 557, 1&ndash;7 &middot; 2024 <span class="pub-cites">1 citation</span></p>
+                <p class="pub-overview">A companion to the Mato Grosso work, widening the lens from a single state to the greater part of the Cerrado biome. The Cerrado is the most biodiverse savanna on earth and also Brazil&rsquo;s most rapidly converted agricultural landscape, which makes its soil carbon both large and vulnerable. This paper tracks how land use dynamics across the biome relate to soil carbon, extending the same question to a scale where the results carry national significance.</p>
+            </li>
+            <li class="pub-item">
+                <a class="pub-title" href="https://cgspace.cgiar.org/items/71b3dcaa-c003-4d05-9ead-401a9d414bb9" target="_blank" rel="noopener noreferrer">The Multidimensional Digital Inclusiveness Index Scoring Dashboard (Version 2.0): A Tool for Visualizing Digital Inclusiveness and Innovation Performance within the CGIAR Framework</a>
+                <p class="pub-authors">E.A. Jolaiya, B.O. Nejo, <strong>A.S. Ajeyomi</strong>, D. Olufemi, C.I. Martins, M. Garcia Andarcia</p>
+                <p class="pub-meta"><span class="pub-venue">International Water Management Institute (IWMI)</span> &middot; Report &middot; 2026 </p>
+                <p class="pub-overview">Digital inclusiveness is easy to declare and hard to measure. This report documents version 2.0 of the MDII scoring dashboard, the tool that turns the Multidimensional Digital Inclusiveness Index into something a decision maker can actually read &mdash; visualising inclusiveness and innovation performance across the CGIAR framework. It is the applied counterpart to the index itself: rather than proposing a metric and stopping, it delivers the instrument that puts the metric in front of the people who set research priorities.</p>
+            </li>
+            <li class="pub-item">
+                <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:W7OEmFMy1HYC" target="_blank" rel="noopener noreferrer">Differential impacts of nDSM fusion on pixel-based LULC classification using UAV RGB imagery in flood-prone Nigerian urban landscapes</a>
+                <p class="pub-authors">B. Joshua, G.K. James, I.E. Bello, <strong>A.S. Ajeyomi</strong>, R.A. Idris, O.J. Okeke</p>
+                <p class="pub-meta"><span class="pub-venue">International Journal of Advances in Signal and Image Sciences</span> &middot; 165&ndash;182 &middot; 2026 </p>
+                <p class="pub-overview">Drones give you centimetre-resolution colour imagery cheaply, but three visible bands are thin input for distinguishing a rooftop from a paved yard. This study tests what happens when a normalised digital surface model &mdash; height above ground &mdash; is fused with UAV RGB imagery for pixel-based land use and land cover classification in flood-prone Nigerian urban areas. The framing is deliberately comparative: rather than assuming elevation helps, it quantifies where the fusion improves classification and where it does not, which is the question anyone planning a UAV survey budget actually needs answered.</p>
+            </li>
+            <li class="pub-item">
+                <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:Y0pCki6q_DkC" target="_blank" rel="noopener noreferrer">A reclassification-based framework for vegetation greenness assessment across mixed landscapes and spatial extents</a>
+                <p class="pub-authors"><strong>A.S. Ajeyomi</strong>, F.O. Abiala</p>
+                <p class="pub-meta"><span class="pub-venue">Journal of Geography, Environment and Earth Science International</span> &middot; 30(2), 45&ndash;62 &middot; 2026 </p>
+                <p class="pub-overview">Vegetation indices behave differently depending on what else is in the frame and how much of the landscape you are looking at, which makes greenness assessments hard to compare between studies. This paper proposes a reclassification-based framework for assessing vegetation greenness that holds up across mixed landscapes and across different spatial extents. First-authored, it is a methods contribution rather than a case study: the goal is a procedure other analysts can reuse, not a single result.</p>
+            </li>
+            <li class="pub-item">
+                <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O8znj2oAAAAJ&citation_for_view=O8znj2oAAAAJ:UeHWp8X0CEIC" target="_blank" rel="noopener noreferrer">The role of agriculture and environmental drivers on soil carbon in Brazil: a remote sensing, GIS, MLA, and geostatistical approach</a>
+                <p class="pub-authors">C. Nwaogu, <strong>S.A. Ajeyomi</strong>, B.E. Diagi, E.R. Nwaiwu, C.J. Anyalewechi, B. Alabi, et al.</p>
+                <p class="pub-meta"><span class="pub-venue">IEEE International Conference on Agrosystem Engineering &amp; Technology</span> &middot; 2024 </p>
+                <p class="pub-overview">The third paper in the Brazilian soil carbon series, this one focused on attribution: separating what agriculture does to soil carbon from what the wider environment does. It combines remote sensing, GIS, machine learning algorithms and geostatistics in a single workflow, which is the practical argument of the paper &mdash; no one of those methods answers the question alone, and the combination is what makes the drivers separable.</p>
+            </li>
+        </ol>
+
+        <p class="scholar-note">Citation counts and the complete list are maintained on
+            <a href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en" target="_blank"
+                rel="noopener noreferrer">Google Scholar</a>.</p>
+    </main>
+
+    <footer>
+        <p>Design and Content: Ajeyomi Adedoyin Samuel | Enhanced: Claude AI</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+
+        applyTheme(localStorage.getItem('theme') === 'dark' ? 'dark' : 'light');
+
+        themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    </script>
+</body>
+
+</html>

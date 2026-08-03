@@ -9,6 +9,7 @@ is the whole pipeline.
 
 ```
 index.html                          Landing page — every section lives here
+publications.html                   Full publication list, one overview paragraph each
 projects/projects.html              Full project catalogue, 4 categories
 projects/sub-projects/<category>/   Deep-dive case studies, grouped by the catalogue
                                     category they belong to (e.g. development/)
@@ -52,6 +53,12 @@ boxes. Verify an icon exists in 6.0 before using it, or bump the CDN version on 
 - The header bar is capped at `1280px` and content must use the **same** width so they align.
 - Sections need `scroll-margin-top` to clear the fixed header. "Home" is handled in JS
   (`scrollTo(0)`), not by the `#home` anchor.
+
+### Mobile
+The desktop layout is deliberately kept on phones — the same structure, not a stripped-down
+version. Each page ends with a `Mobile legibility` block under `@media (max-width: 768px)` that
+only raises type sizes and tap-target heights; it must not change layout. If you add a new text
+class, add it there too so it does not fall below comfortable reading size on a phone.
 
 ### Layout
 - Project cards are flex columns with `margin-top: auto` on the link, so **"View Project" sits at
@@ -107,10 +114,24 @@ There are two CVs and they serve different purposes:
   "Save as PDF" produces an A4 PDF. **When experience, skills or publications change on
   `index.html`, update `cv.html` to match** — they are not linked automatically.
 
-### Experience or publications
-Both live in `index.html`. Experience uses `.timeline-item`; publications use `.pub-item` and are
-**sorted by citation count descending**, ties broken by newest year. Bold Samuel's name in the
-author list with `<strong>`.
+### Experience
+Lives in `index.html` as `.timeline-item` entries.
+
+### Publications
+Two places, and both must be updated together:
+- `index.html` shows the **top three only**, followed by a "View More Publications" button.
+- `publications.html` holds the **full list**, each entry with a short (~5 line) overview
+  paragraph in `.pub-overview` explaining what the paper does and why it matters.
+
+Both are **sorted by citation count descending**, ties broken by newest year. Bold Samuel's name in
+the author list with `<strong>`. Prefer a publisher DOI over a Google Scholar link, and verify the
+author list against the actual record before adding anything.
+
+Write overviews from the real abstract wherever you can reach it — Crossref
+(`api.crossref.org/works/<doi>`), arXiv and CGSpace are usually fetchable; ScienceDirect and
+Springer block automated access. **Never invent findings, figures or conclusions.** If the abstract
+is unreachable, describe what the paper sets out to do based on its title, venue and the
+methods named in it, and keep it free of specific numeric claims.
 
 ## Accuracy
 
