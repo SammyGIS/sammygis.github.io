@@ -15,19 +15,19 @@
 
     <!-- Social sharing: WhatsApp, LinkedIn, Teams, X and friends read these -->
     <meta name="description"
-        content="Ajeyomi Adedoyin Samuel - Geospatial Data Scientist, Data Engineer and Developer. Building geospatial data platforms, AI-driven intelligence systems and cloud-native pipelines.">
+        content="Ajeyomi Adedoyin Samuel - Lead Geospatial Data Engineer & GeoAI Specialist. Building high-throughput cloud data pipelines, GeoAI intelligence systems, and decision-support platforms for global organizations.">
     <meta property="og:type" content="profile">
     <meta property="og:site_name" content="Ajeyomi Adedoyin Samuel">
-    <meta property="og:title" content="Ajeyomi Adedoyin Samuel - Geospatial Data Scientist & Data Engineer">
+    <meta property="og:title" content="Ajeyomi Adedoyin Samuel - Lead Geospatial Data Engineer & GeoAI Specialist">
     <meta property="og:description"
-        content="Geospatial data platforms, AI-driven intelligence systems and cloud-native pipelines. Portfolio, projects and publications.">
+        content="High-throughput cloud data pipelines, GeoAI intelligence systems, and scalable decision-support platforms. Portfolio, projects, publications, and verified impact.">
     <meta property="og:url" content="https://sammygis.github.io/">
     <meta property="og:image" content="https://sammygis.github.io/images/profile.jpg">
     <meta property="og:image:alt" content="Ajeyomi Adedoyin Samuel">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ajeyomi Adedoyin Samuel - Geospatial Data Scientist & Data Engineer">
+    <meta name="twitter:title" content="Ajeyomi Adedoyin Samuel - Lead Geospatial Data Engineer & GeoAI Specialist">
     <meta name="twitter:description"
-        content="Geospatial data platforms, AI-driven intelligence systems and cloud-native pipelines.">
+        content="High-throughput cloud data pipelines, GeoAI intelligence systems, and scalable decision-support platforms.">
     <meta name="twitter:image" content="https://sammygis.github.io/images/profile.jpg">
     <style>
         /* Light is the default theme (applies even before JS runs) */
@@ -287,25 +287,37 @@
 
         .hero-text h1 {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             text-transform: uppercase;
             color: #ffffff;
         }
 
-        .hero-text .greeting,
-        .hero-text .subtitle {
+        .hero-text .greeting {
             color: #a7f3ea;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
         }
 
         .hero-text .subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            color: #a7f3ea;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .hero-text .hero-tagline {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            max-width: 68ch;
         }
 
         .social-links {
             display: flex;
             gap: 1.5rem;
-            margin: 1.5rem 0;
+            margin: 1.25rem 0;
         }
 
         .social-links a {
@@ -320,12 +332,12 @@
 
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.85rem;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1.35rem;
             border: 2px solid #ffffff;
             border-radius: 0.5rem;
             background: rgba(255, 255, 255, 0.08);
@@ -351,6 +363,59 @@
             width: 100%;
             max-width: 280px;
             border-radius: 1rem;
+        }
+
+        /* Executive Impact Highlights Strip */
+        .impact-container {
+            max-width: 1280px;
+            margin: -1.75rem auto 1.5rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .impact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .impact-number {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            line-height: 1.2;
+        }
+
+        .impact-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 900px) {
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 540px) {
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Section Styles - Reduced padding */
@@ -1339,7 +1404,8 @@
             <div class="hero-text">
                 <p class="greeting">Hello, I'm</p>
                 <h1>Ajeyomi Adedoyin Samuel</h1>
-                <p class="subtitle">Geospatial (Data + Engineering + Earth Observation + Climate Risk + GeoAI)</p>
+                <p class="subtitle">Lead Geospatial Data Engineer &amp; GeoAI Specialist</p>
+                <p class="hero-tagline">Architecting enterprise data pipelines, GeoAI intelligence systems, and decision-support platforms that convert complex multi-source data into actionable outcomes for global organizations, governments, and research institutions.</p>
 
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/adedoyin-samuel-ajeyomi/" target="_blank"
@@ -1358,6 +1424,7 @@
                 <div class="cta-buttons">
                     <a href="cv/Adedoyin-Samuel-Ajeyomi-CV.pdf" class="btn" target="_blank"
                         rel="noopener noreferrer">View CV</a>
+                    <a href="cv.html" class="btn" target="_blank">Download CV</a>
                     <a href="https://www.spatialnode.net/sammygis/articles" class="btn" target="_blank">Articles</a>
                     <a href="https://scholar.google.com/citations?user=O8znj2oAAAAJ&hl=en" class="btn"
                         target="_blank">Publications</a>
@@ -1369,258 +1436,205 @@
         </div>
     </section>
 
+    <!-- Executive Impact Highlights -->
+    <div class="impact-container">
+        <div class="impact-grid">
+            <div class="impact-item">
+                <span class="impact-number">4+ Years</span>
+                <span class="impact-label">Production Data &amp; AI Engineering</span>
+            </div>
+            <div class="impact-item">
+                <span class="impact-number">10K+</span>
+                <span class="impact-label">Spatial &amp; Multi-Source Records Standardized</span>
+            </div>
+            <div class="impact-item">
+                <span class="impact-number">120+</span>
+                <span class="impact-label">Research Citations (Top 10% Academic Standing)</span>
+            </div>
+            <div class="impact-item">
+                <span class="impact-number">650+</span>
+                <span class="impact-label">Professionals Trained &amp; Mentored Globally</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Development & Skills -->
     <section id="development">
-        <h2 class="section-title">Development & Skills</h2>
+        <h2 class="section-title">Core Competencies &amp; Technical Capabilities</h2>
         <div class="dev-grid">
             <div class="dev-card">
-                <div class="dev-icon"><i class="fas fa-satellite"></i></div>
-                <h3 class="dev-title">GIS & Remote Sensing</h3>
-                <p class="dev-description">Google Earth Engine, QGIS, ArcGIS, PostGIS, Sentinel, Landsat, UAV imagery,
-                    Leaflet, Mapbox, Titiler, spatial statistics &amp; geostatistics</p>
-            </div>
-
-            <div class="dev-card">
-                <div class="dev-icon"><i class="fas fa-code"></i></div>
-                <h3 class="dev-title">Software Development</h3>
-                <p class="dev-description">Python, R, JavaScript, SQL, FastAPI, React, REST API design, PostgreSQL,
-                    Docker, Git &amp; GitHub</p>
-            </div>
-
-            <div class="dev-card">
-                <div class="dev-icon"><i class="fas fa-brain"></i></div>
-                <h3 class="dev-title">ML & AI</h3>
-                <p class="dev-description">Deep learning, YOLO object detection, computer vision, TensorFlow, Random
-                    Forest, LLM-based extraction, AI-assisted development (Claude, Antigravity)</p>
-            </div>
-
-            <div class="dev-card">
                 <div class="dev-icon"><i class="fas fa-database"></i></div>
-                <h3 class="dev-title">Data Engineering</h3>
-                <p class="dev-description">ETL &amp; ELT pipelines, Airflow, Xarray, DuckDB, cloud-native formats
-                    (Zarr, COG, Parquet), web scraping, data harmonisation</p>
+                <h3 class="dev-title">Data Engineering &amp; Cloud Pipelines</h3>
+                <p class="dev-description">High-throughput ETL/ELT pipelines, Airflow, Xarray, DuckDB, cloud-native formats
+                    (Zarr, COG, Parquet), automated web scraping &amp; multi-source data harmonisation</p>
             </div>
 
             <div class="dev-card">
                 <div class="dev-icon"><i class="fas fa-server"></i></div>
-                <h3 class="dev-title">Cloud & Infrastructure</h3>
-                <p class="dev-description">AWS (S3, Lambda, EC2), MinIO object storage, Docker, CI/CD with GitHub
-                    Actions, infrastructure management</p>
+                <h3 class="dev-title">Cloud Infrastructure &amp; DevOps</h3>
+                <p class="dev-description">AWS (S3, Lambda, EC2), Azure Functions, MinIO object storage, Docker containerization,
+                    CI/CD with GitHub Actions, scalable production deployments</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-satellite"></i></div>
+                <h3 class="dev-title">Geospatial Intelligence &amp; Remote Sensing</h3>
+                <p class="dev-description">Google Earth Engine, QGIS, ArcGIS Pro, PostGIS, Sentinel, Landsat, UAV imagery,
+                    Leaflet, Mapbox, TiTiler, spatial pattern mining &amp; geostatistics</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-brain"></i></div>
+                <h3 class="dev-title">GeoAI, Machine Learning &amp; CV</h3>
+                <p class="dev-description">Deep learning, YOLO object detection, computer vision, TensorFlow, Random
+                    Forest, LLM-based structured extraction &amp; AI-accelerated delivery</p>
+            </div>
+
+            <div class="dev-card">
+                <div class="dev-icon"><i class="fas fa-code"></i></div>
+                <h3 class="dev-title">Software &amp; API Engineering</h3>
+                <p class="dev-description">Python, R, JavaScript, SQL, FastAPI, React, RESTful API architecture, PostgreSQL,
+                    microservices, version control &amp; clean code practices</p>
             </div>
 
             <div class="dev-card">
                 <div class="dev-icon"><i class="fas fa-chart-column"></i></div>
-                <h3 class="dev-title">Analytics & Visualisation</h3>
-                <p class="dev-description">Dashboard design, Tableau, Power BI, Metabase, spatial dashboards,
-                    reporting for non-technical stakeholders</p>
+                <h3 class="dev-title">BI Dashboards &amp; Executive Analytics</h3>
+                <p class="dev-description">Interactive decision dashboards, Power BI, Tableau, Metabase, spatial analytics,
+                    and executive reporting for non-technical leadership</p>
             </div>
 
             <div class="dev-card">
                 <div class="dev-icon"><i class="fas fa-diagram-project"></i></div>
                 <h3 class="dev-title">Technical Project Management</h3>
                 <p class="dev-description">End-to-end delivery ownership, technical direction &amp; architecture
-                    decisions, tool and framework selection, agile iteration, cross-functional and remote team
-                    leadership, stakeholder management, AI-accelerated delivery</p>
+                    decisions, rapid agile iteration, cross-functional remote team leadership, stakeholder management</p>
             </div>
 
             <div class="dev-card">
                 <div class="dev-icon"><i class="fas fa-users"></i></div>
-                <h3 class="dev-title">Soft Skills</h3>
-                <p class="dev-description">Team player, presentation &amp; public speaking, technical communication,
-                    problem solving, stakeholder management, remote &amp; cross-cultural collaboration, mentoring,
-                    continuous learning</p>
+                <h3 class="dev-title">Leadership &amp; Stakeholder Communication</h3>
+                <p class="dev-description">Translating complex technical data for executive decision-makers, technical mentorship,
+                    public speaking, cross-cultural collaboration, continuous learning</p>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
     <section id="experience">
-            <h2 class="section-title">Relevant Experiences</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">March 2025 - Present (Remote)</div>
-                        <h3 class="timeline-title">Data Engineer</h3>
-                        <h4 class="timeline-company">International Water Management Institute (IWMI) <a
-                                href="https://www.iwmi.cgiar.org/" target="_blank"
-                                rel="noopener noreferrer">(iwmi.cgiar.org)</a></h4>
-                        <ul class="timeline-description">
-                            <li>Data engineer on IWMI's Market Intelligence work, delivering intelligence support
-                                across CGIAR Centers and the CGIAR Science Program Accelerator</li>
-                            <li>Own the data harvesting layer end to end — sourcing secondary data from governments,
-                                NGOs, and international organisations, and bringing it into a single analysis-ready
-                                foundation</li>
-                            <li>Built the policy and document ingestion pipeline that mines policy documents and
-                                unstructured text for demand signals, turning scattered publications into structured,
-                                queryable evidence</li>
-                            <li>Designed and built the <strong><a href="https://catalyst-lab-prototype.lovable.app"
-                                        target="_blank" rel="noopener noreferrer">Demand Signal Explorer</a></strong>
-                                for the Accelerator, an
-                                AI-integrated tool that surfaces and interrogates extracted demand signals for
-                                decision makers</li>
-                            <li>Engineered the AI components — extraction, enrichment, and retrieval — that convert raw
-                                multi-source data into usable market and policy intelligence</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">May 2025 - September 2025 (Contract)</div>
-                        <h3 class="timeline-title">Technical Project Manager - MSDAT GIS</h3>
-                        <h4 class="timeline-company">eHealth4everyone, Abuja, Nigeria <a
-                                href="https://ehealth4everyone.com/" target="_blank"
-                                rel="noopener noreferrer">(ehealth4everyone.com)</a></h4>
-                        <ul class="timeline-description">
-                            <li>Technical lead for <strong>MSDAT GIS</strong>, the geospatial arm of Nigeria's
-                                Multi-Source Data Analytics and Triangulation platform — a national-scale system for
-                                health planning, programme targeting, and spatial decision support</li>
-                            <li>Owned the technical direction across the full stack: tool selection, framework,
-                                architecture, backend, frontend, design system, and styling — driving the decisions
-                                while building consensus with the team</li>
-                            <li>Designed and integrated a suite of <strong>10+ analysis tools</strong> into a single
-                                interface, covering heat maps, clustering and hotspot detection, choropleth and
-                                thematic mapping, buffer and proximity analysis, spatial querying, layer overlay, and
-                                on-the-fly indicator visualisation</li>
-                            <li>Connected the GIS layer to MSDAT's multi-source health indicator data, so users can move
-                                from national figures down to state and LGA-level spatial analysis in one workflow</li>
-                            <li>Personally built the bulk of the frontend GIS and visualisation layer, from map
-                                interactions and legends to the analysis panels</li>
-                            <li>Used Claude and Anthropic's AI tooling throughout implementation, driving roughly 70% of
-                                the design and frontend build and compressing delivery from months to weeks</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">June 2025 - Present (Remote)</div>
-                        <h3 class="timeline-title">Geospatial Data Engineer</h3>
-                        <h4 class="timeline-company">Envirotrust, Germany <a
-                                href="projects/projects.html#envirotrust">(read the engineering decisions)</a></h4>
-                        <ul class="timeline-description">
-                            <li>Built scalable ETL pipelines and RESTful APIs to process and serve large geospatial
-                                datasets
-                                (Zarr, COG,
-                                Parquet) using Xarray, DuckDB, FastAPI, and Titiler for real-time visualization and
-                                analysis
-                            </li>
-                            <li>Deployed cloud-native infrastructure on AWS (S3, Lambda, EC2) with Docker and CI/CD
-                                (GitHub
-                                Actions) to
-                                automate, scale, and maintain geospatial workflows</li>
-                            <li>Led collaborative development on GitHub, ensuring clean code, agile iteration, and
-                                reliable
-                                deployment
-                                across remote teams</li>
-                            <li>Engineered data pipelines to source and aggregate diverse geospatial data for wildfire,
-                                flood, heat, and
-                                wind risk modeling, preparing it for cloud-based analysis</li>
-                            <li>Developed scalable data aggregation strategies for environmental risk parameters,
-                                optimizing
-                                data
-                                transfer to cloud platforms for advanced scenario modeling</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">August 2025 - Present (Remote)</div>
-                        <h3 class="timeline-title">Geospatial | Data Engineer | Data Analyst</h3>
-                        <h4 class="timeline-company">Spatialnode (Freelance), Delaware, United States <a
-                                href="https://www.spatialnode.net/" target="_blank"
-                                rel="noopener noreferrer">(spatialnode.net)</a></h4>
-                        <ul class="timeline-description">
-                            <li>Project-based freelance engagements — brought in as data engineer, data analyst, or
-                                data scientist depending on what each project needs</li>
-                            <li>Projects delivered: <strong>IWMI Demand Intelligence Information System (DIIS)</strong>,
-                                <strong><a href="https://mdii.iwmi.org/" target="_blank" rel="noopener noreferrer">IWMI
-                                        Multidimensional Digital Inclusiveness Index (MDII)</a></strong> — including
-                                its <a href="https://mdii.iwmi.org/#dashboard" target="_blank"
-                                    rel="noopener noreferrer">scoring dashboard</a> — and currently the
-                                <strong>SFL Location Intelligence</strong> project
-                            </li>
-                            <li>Delivered end-to-end data and analytics solutions for decision support across each
-                                engagement</li>
-                            <li>Handled the full data lifecycle across both projects, including data ingestion,
-                                cleaning, preprocessing, transformation, validation, and storage using DAX, Python, and
-                                Azure Functions</li>
-                            <li>Built and maintained CI/CD pipelines to automate data processing workflows, dashboard
-                                updates, and report refreshes, ensuring reliability and reproducibility</li>
-                            <li>Developed interactive Power BI dashboards and analytical reports, enabling
-                                evidence-based decision-making across Nigeria, Bangladesh, Ethiopia, and other
-                                countries</li>
-                            <li>Processed, standardized, and analyzed 10,000+ records from multi-source, unstructured,
-                                and semi-structured datasets, improving data quality and usability</li>
-                            <li>Extracted and structured critical indicators and insights from documents, and
-                                collaborated with stakeholders to define metrics, reporting requirements, and
-                                analytical outputs</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023 - 2024 (Hybrid)</div>
-                        <h3 class="timeline-title">Geospatial Analyst</h3>
-                        <h4 class="timeline-company">Milsat Technologies Limited, Abuja, Nigeria</h4>
-                        <ul class="timeline-description">
-                            <li>Performed advanced data analytics to uncover insights and trends, enhancing
-                                decision-making
-                                accuracy
-                            </li>
-                            <li>Led the design and management of geospatial and statistical dashboards for real-time
-                                monitoring and
-                                analysis</li>
-                            <li>Developed and optimized ETL processes for efficient data extraction, transformation, and
-                                loading</li>
-                            <li>Implemented and maintained databases to improve data storage and retrieval</li>
-                            <li>Designed unbiased survey questionnaires to enhance response accuracy and reliability
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023 - Present</div>
-                        <h3 class="timeline-title">Training and Capacity Development Lead (Volunteer)</h3>
-                        <h4 class="timeline-company">Spatial and Data Science Society of Nigeria (SDSN) <a
-                                href="https://sdssn.org" target="_blank" rel="noopener noreferrer">(sdss.org)</a></h4>
-                        <ul class="timeline-description">
-                            <li>Delivered GeoAI and spatial data science workshops across multiple universities
-                                nationwide
-                            </li>
-                            <li>Coordinated online training programs reaching 500+ participants</li>
-                            <li>Led website development and content management, increasing engagement by 40%</li>
-                            <li>Mentored 50+ emerging geospatial professionals in technical skill development</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023 - Present (Remote)</div>
-                        <h3 class="timeline-title">Geospatial Tutor and Mentor (Volunteer)</h3>
-                        <h4 class="timeline-company">Geoanalytec, Nigeria <a
-                                href="https://www.linkedin.com/company/geoanaltech" target="_blank"
-                                rel="noopener noreferrer">(LinkedIn)</a></h4>
-                        <ul class="timeline-description">
-                            <li>Trained 150+ students across Africa in GIS and remote sensing, achieving 80% course
-                                completion rate</li>
-                            <li>Delivered comprehensive basic and advanced training in Python, QGIS, ArcGIS, and Google
-                                Earth Engine
-                            </li>
-                            <li>Coordinated 10+ GIS events and 30+ structured weekend training sessions</li>
-                            <li>Provided ongoing mentorship to participants, supporting career development in geospatial
-                                fields</li>
-                        </ul>
-                    </div>
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">March 2025 - Present (Remote)</div>
+                    <h3 class="timeline-title">Data Engineer</h3>
+                    <h4 class="timeline-company">International Water Management Institute (IWMI) <a
+                            href="https://www.iwmi.cgiar.org/" target="_blank"
+                            rel="noopener noreferrer">(iwmi.cgiar.org)</a></h4>
+                    <ul class="timeline-description">
+                        <li>Spearhead the data harvesting and engineering architecture for IWMI's Market Intelligence initiative, delivering intelligence support across CGIAR Centers and the CGIAR Science Program Accelerator.</li>
+                        <li>Own the end-to-end data pipeline layer, automating ingestion of secondary datasets from national governments, NGOs, and multilateral organisations into a unified, analysis-ready data foundation.</li>
+                        <li>Engineered high-throughput policy and document ingestion pipelines that mine unstructured text and institutional reports for demand signals, converting scattered publications into structured, queryable intelligence.</li>
+                        <li>Designed and launched the <strong><a href="https://catalyst-lab-prototype.lovable.app"
+                                    target="_blank" rel="noopener noreferrer">Demand Signal Explorer</a></strong>, an AI-integrated decision platform surfacing 380+ evidence-backed demand signals for executive leadership.</li>
+                        <li>Architected the AI components—automated extraction, semantic enrichment, and contextual retrieval—converting raw multi-source data into strategic market and policy intelligence.</li>
+                    </ul>
                 </div>
             </div>
-        </section>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">May 2025 - September 2025 (Contract)</div>
+                    <h3 class="timeline-title">Technical Project Manager — MSDAT GIS</h3>
+                    <h4 class="timeline-company">eHealth4everyone, Abuja, Nigeria <a
+                            href="https://ehealth4everyone.com/" target="_blank"
+                            rel="noopener noreferrer">(ehealth4everyone.com)</a></h4>
+                    <ul class="timeline-description">
+                        <li>Directed technical strategy and product delivery for <strong>MSDAT GIS</strong>, Nigeria's flagship Multi-Source Data Analytics and Triangulation platform for national health planning, resource allocation, and spatial decision support.</li>
+                        <li>Owned technical architecture across the entire stack—tool evaluation, system design, backend APIs, frontend GIS interface, and design system—driving consensus across cross-functional engineering and health domain teams.</li>
+                        <li>Designed and integrated a suite of <strong>10+ advanced spatial analysis tools</strong> into a unified interface (hotspot detection, cluster analysis, choropleth mapping, buffer &amp; proximity analysis, spatial querying, and multi-layer overlays).</li>
+                        <li>Integrated the geospatial engine directly with national health indicator datasets, empowering decision-makers to seamlessly transition from macro national metrics to granular state and LGA (Local Government Area) spatial analysis.</li>
+                        <li>Accelerated product delivery from projected months to weeks (~70% development velocity increase) by leveraging modern architecture and AI-assisted workflows.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">June 2025 - Present (Remote)</div>
+                    <h3 class="timeline-title">Geospatial Data Engineer</h3>
+                    <h4 class="timeline-company">Envirotrust, Germany <a
+                            href="projects/projects.html#envirotrust">(read engineering decisions)</a></h4>
+                    <ul class="timeline-description">
+                        <li>Engineered scalable, cloud-native ETL pipelines and RESTful APIs serving gigabyte-scale geospatial datasets (Zarr, COG, Parquet) using Xarray, DuckDB, FastAPI, and TiTiler for real-time visualization and analytics.</li>
+                        <li>Architected cloud infrastructure on AWS (S3, Lambda, EC2) with Docker containerization and GitHub Actions CI/CD to automate, scale, and maintain mission-critical geospatial workflows.</li>
+                        <li>Sourced, harmonized, and aggregated multi-sensor climate and environmental feeds powering predictive risk modeling for wildfire, flood, extreme heat, and wind hazards across Europe.</li>
+                        <li>Optimized cloud data transfer and query strategies for environmental risk parameters, significantly lowering data retrieval latency for complex scenario simulations.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">August 2025 - Present (Remote)</div>
+                    <h3 class="timeline-title">Geospatial &amp; Data Engineer | Analytics Consultant</h3>
+                    <h4 class="timeline-company">Spatialnode (Freelance), Delaware, United States <a
+                            href="https://www.spatialnode.net/" target="_blank"
+                            rel="noopener noreferrer">(spatialnode.net)</a></h4>
+                    <ul class="timeline-description">
+                        <li>Delivered end-to-end data engineering and business intelligence solutions across high-impact engagements: <strong>IWMI Demand Intelligence Information System (DIIS)</strong>, <strong><a href="https://mdii.iwmi.org/" target="_blank" rel="noopener noreferrer">IWMI Multidimensional Digital Inclusiveness Index (MDII)</a></strong>, and <strong>SFL Location Intelligence</strong>.</li>
+                        <li>Managed the full data lifecycle across projects—ingestion, cleaning, validation, transformation, and storage—leveraging Python, DAX, and Azure Functions.</li>
+                        <li>Built and maintained automated CI/CD data pipelines ensuring 100% reproducible data refreshes and dashboard uptime.</li>
+                        <li>Developed interactive Power BI dashboards and analytical reports enabling evidence-based policymaking across Nigeria, Bangladesh, Ethiopia, and international partner countries.</li>
+                        <li>Standardized and analyzed 10,000+ complex multi-source records, transforming disparate survey and tabular data into actionable intelligence metrics.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - 2024 (Hybrid)</div>
+                    <h3 class="timeline-title">Geospatial Analyst</h3>
+                    <h4 class="timeline-company">Milsat Technologies Limited, Abuja, Nigeria</h4>
+                    <ul class="timeline-description">
+                        <li>Delivered advanced geospatial analytics and predictive modeling that improved strategic decision-making accuracy for corporate and public sector clients.</li>
+                        <li>Led the design and deployment of real-time geospatial and statistical dashboards for spatial monitoring and executive reporting.</li>
+                        <li>Optimized ETL data workflows and relational database schemas to enhance query performance and data storage efficiency.</li>
+                        <li>Designed and administered structured spatial survey frameworks to ensure high data integrity and accuracy.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - Present</div>
+                    <h3 class="timeline-title">Training and Capacity Development Lead (Volunteer)</h3>
+                    <h4 class="timeline-company">Spatial and Data Science Society of Nigeria (SDSN) <a
+                            href="https://sdssn.org" target="_blank" rel="noopener noreferrer">(sdssn.org)</a></h4>
+                    <ul class="timeline-description">
+                        <li>Spearheaded national capacity building in GeoAI and spatial data science, delivering hands-on workshops across universities nationwide.</li>
+                        <li>Coordinated online training programs reaching 500+ participants and mentored 50+ emerging geospatial professionals.</li>
+                        <li>Led digital platform and content strategy, driving a 40% increase in community engagement.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - Present (Remote)</div>
+                    <h3 class="timeline-title">Geospatial Tutor and Mentor (Volunteer)</h3>
+                    <h4 class="timeline-company">Geoanalytec, Nigeria <a
+                            href="https://www.linkedin.com/company/geoanaltech" target="_blank"
+                            rel="noopener noreferrer">(LinkedIn)</a></h4>
+                    <ul class="timeline-description">
+                        <li>Trained 150+ students and professionals across Africa in GIS, remote sensing, and Python, achieving an 80% course completion rate.</li>
+                        <li>Organized and led 10+ GIS events and 30+ structured weekend masterclasses in Google Earth Engine, QGIS, ArcGIS, and spatial programming.</li>
+                        <li>Provided 1-on-1 technical mentorship and career guidance to emerging data practitioners.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <!-- Education Section -->
         <section id="education">
@@ -1648,7 +1662,7 @@
 
         <!-- Projects -->
         <section id="projects">
-            <h2 class="section-title">Projects</h2>
+            <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid" id="gisProjectsGrid">
                 <!-- Visible projects (first 3) -->
                 <div class="project-card">
@@ -1656,9 +1670,7 @@
                     <div class="project-content">
                         <div class="project-date">April 1st, 2025</div>
                         <h3 class="project-title">Nigeria Forest Watch</h3>
-                        <p class="project-description">A tool designed to visualize and analyze forest data in Nigeria
-                            using
-                            remote sensing datasets.</p>
+                        <p class="project-description">Interactive earth observation platform designed to monitor, visualize, and analyze forest cover dynamics and conservation trends across Nigeria.</p>
                         <a href="https://ee-adedoyinsamuel25.projects.earthengine.app/view/nigeriaforestapp"
                             class="project-link" target="_blank">View Project</a>
                     </div>
@@ -1668,12 +1680,10 @@
                     <img src="images/farmwatch-agric-monitoring.png" alt="FarmWatch" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 25th, 2024</div>
-                        <h3 class="project-title">FarmWatch: Monitoring Agricultural Lands</h3>
-                        <p class="project-description">A geospatial pipeline that monitors agricultural lands using
-                            satellite imagery and OSM data.</p>
+                        <h3 class="project-title">FarmWatch: Agricultural Land Monitoring</h3>
+                        <p class="project-description">End-to-end geospatial data pipeline integrating high-resolution satellite imagery with OpenStreetMap data for automated crop monitoring.</p>
                         <a href="https://github.com/SammyGIS/geospatial-de-pipeline" class="project-link"
-                            target="_blank">View
-                            Project</a>
+                            target="_blank">View Project</a>
                     </div>
                 </div>
 
@@ -1681,10 +1691,8 @@
                     <img src="images/gee-deforestation-app.png" alt="GEE Deforestation App" class="project-image">
                     <div class="project-content">
                         <div class="project-date">February 25th, 2025</div>
-                        <h3 class="project-title">GEE App for Monitoring Deforestation</h3>
-                        <p class="project-description">Leveraging Google Earth Engine to visualize land use changes in
-                            the
-                            Amazon.</p>
+                        <h3 class="project-title">Amazon Deforestation Monitoring Platform</h3>
+                        <p class="project-description">Cloud-scale Google Earth Engine application analyzing multi-temporal satellite data to track land use transitions in the Amazon basin.</p>
                         <a href="https://ee-adedoyinsamuel25.projects.earthengine.app/view/deforestation-app"
                             class="project-link" target="_blank">View Project</a>
                     </div>
@@ -1694,10 +1702,8 @@
                     <img src="images/tree-health-dashboard.png" alt="Tree Monitoring" class="project-image">
                     <div class="project-content">
                         <div class="project-date">March 29th, 2025</div>
-                        <h3 class="project-title">Monitoring Tree Health with Geospatial Technology</h3>
-                        <p class="project-description">Advanced geospatial pipeline using ArcGIS Notebooks and Google
-                            Earth
-                            Engine.</p>
+                        <h3 class="project-title">Urban Tree Health Geospatial Dashboard</h3>
+                        <p class="project-description">Automated pipeline utilizing ArcGIS Notebooks and Earth Engine to detect vegetative stress and track urban tree health.</p>
                         <a href="https://milsat.maps.arcgis.com/apps/dashboards/6af06d2657914369a3e774d3a9781a8b"
                             class="project-link" target="_blank">View Project</a>
                     </div>
@@ -1708,10 +1714,8 @@
                     <img src="images/soil-organic-carbon-prediction.jpg" alt="SOC Prediction" class="project-image">
                     <div class="project-content">
                         <div class="project-date">March 22, 2025</div>
-                        <h3 class="project-title">Soil Organic Carbon Prediction</h3>
-                        <p class="project-description">ML-based spatial modeling for predicting SOC in Mato Grosso,
-                            Brazil.
-                        </p>
+                        <h3 class="project-title">Soil Organic Carbon Prediction Model</h3>
+                        <p class="project-description">Predictive machine learning pipeline modeling soil organic carbon stocks to support sustainable agriculture in Mato Grosso, Brazil.</p>
                         <a href="https://github.com/SammyGIS/matto-grosso-soc-prediction" class="project-link"
                             target="_blank">View Project</a>
                     </div>
@@ -1721,8 +1725,8 @@
                     <img src="images/air-quality-r-spatial.jpg" alt="Air Quality" class="project-image">
                     <div class="project-content">
                         <div class="project-date">May 22, 2022</div>
-                        <h3 class="project-title">Air Quality Prediction Analysis</h3>
-                        <p class="project-description">Analysis of EPA monitoring station data using R Spatial.</p>
+                        <h3 class="project-title">Air Quality Prediction &amp; Spatial Analysis</h3>
+                        <p class="project-description">Spatial statistical modeling analyzing EPA sensor networks to forecast particulate matter and urban air quality indices in R.</p>
                         <a href="https://github.com/SammyGIS/Air-Quality-Prediction-Analysis-in-R" class="project-link"
                             target="_blank">View Project</a>
                     </div>
@@ -1730,8 +1734,7 @@
             </div>
 
             <div class="show-more-container">
-                <a href="projects/projects.html" class="project-link" target="_blank">Show More
-                    Project</a>
+                <a href="projects/projects.html" class="project-link" target="_blank">Show More Projects</a>
             </div>
         </section>
 
@@ -1785,8 +1788,8 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-date">2023 - 2026</div>
-                        <h3 class="timeline-title">AWS Cloud Practitioner</h3>
-                        <p class="timeline-description">AWS Cloud - Specialized in Cloud Data Engineering.</p>
+                        <h3 class="timeline-title">AWS Certified Cloud Practitioner</h3>
+                        <p class="timeline-description">Amazon Web Services &mdash; Specialized in Cloud Architecture, Scalable Storage, and Cloud Data Engineering.</p>
                     </div>
                 </div>
 
@@ -1794,8 +1797,7 @@
                     <div class="timeline-content">
                         <div class="timeline-date">2025</div>
                         <h3 class="timeline-title">Applied Data Science Labs</h3>
-                        <p class="timeline-description">World Quant Univeristy - Focus on pyhton, Data analysis, Machine
-                            learning and Performance and evaluation with projects and capstone.</p>
+                        <p class="timeline-description">WorldQuant University &mdash; Advanced Python, Data Analysis, Machine Learning, Statistical Modeling, and Applied Capstone Projects.</p>
                     </div>
                 </div>
             </div>
@@ -1934,24 +1936,21 @@
 
         <!-- Awards-->
         <section id="awards">
-            <h2 class="section-title">Awards</h2>
+            <h2 class="section-title">Honours &amp; Awards</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">September 2025</div>
-                        <h3 class="timeline-title">ESRI Young Scholar Africa 2023</h3>
-                        <p class="timeline-description">https://x.com/SambusNigeria/status/1712117189673672996</p>
+                        <div class="timeline-date">2023</div>
+                        <h3 class="timeline-title">ESRI Young Scholar Africa</h3>
+                        <p class="timeline-description">Awarded by ESRI / Sambus Geospatial recognizing outstanding academic and applied geospatial innovation across Africa. <a href="https://x.com/SambusNigeria/status/1712117189673672996" target="_blank" rel="noopener noreferrer">(View Announcement)</a></p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">October 2025</div>
-                        <h3 class="timeline-title">Nigeria Meta Geospatial & Mobility Data winners for Health Hackathon.
-                        </h3>
-                        <p class="timeline-description">
-                            https://ng.linkedin.com/posts/dsnai_winner-announcement-congratulations-to-activity-7034148823950110722-WP2l"
-                        </p>
+                        <div class="timeline-date">2023</div>
+                        <h3 class="timeline-title">Winner &mdash; Nigeria Meta Geospatial &amp; Mobility Data Health Hackathon</h3>
+                        <p class="timeline-description">1st Place winner for developing geospatial mobility intelligence solutions for national health planning and disease intervention targeting. <a href="https://ng.linkedin.com/posts/dsnai_winner-announcement-congratulations-to-activity-7034148823950110722-WP2l" target="_blank" rel="noopener noreferrer">(View Announcement)</a></p>
                     </div>
                 </div>
             </div>
